@@ -13,6 +13,8 @@ import AllUsers from "../Pages/AdminDashboardPages/AllUsers/AllUsers";
 import BlogAdmin from "../Pages/AdminDashboardPages/BlogPages/BlogAdmin";
 import BlogHistory from "../Pages/AdminDashboardPages/BlogPages/BlogHistory";
 import EditBlog from "../Pages/AdminDashboardPages/BlogPages/EditBlog";
+import PendingPost from "../Pages/AdminDashboardPages/PendingPostPages/PendingPost";
+import PendingPostDetails from "../Pages/AdminDashboardPages/PendingPostPages/PendingPostDetails";
 import Blog from "../Pages/BlogPages/Blog";
 import BlogDetails from "../Pages/BlogPages/BlogDetails";
 import Contact from "../Pages/FooterPages/Contact";
@@ -21,6 +23,8 @@ import RefundPolicy from "../Pages/FooterPages/RefundPolicy";
 import TermsAndConditions from "../Pages/FooterPages/TermsAndConditions";
 import Home from "../Pages/HomePages/Home";
 import Profile from "../Pages/ProfilePages/Profile";
+import Profilio from "../Pages/ProfilioPages/Profilio";
+import ProfilioDetails from "../Pages/ProfilioPages/ProfilioDetails";
 import DashboardRedirect from "../Pages/UserDashboardPages/DashboardRedirect";
 import UserBlogHistory from "../Pages/UserDashboardPages/UserBlogHistory";
 import UserDashboard from "../Pages/UserDashboardPages/UserDashboard";
@@ -37,6 +41,14 @@ export const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/portfolio",
+        element: <Profilio />,
+      },
+      {
+        path: "/portfolio-details/:id",
+        element: <ProfilioDetails />,
       },
       {
         path: "/about-us-more-information",
@@ -100,6 +112,14 @@ export const routes = createBrowserRouter([
       {
         index: true,
         element: <AdminDashboard />,
+      },
+      {
+        path: "post-management/pending-all-post",
+        element: <PendingPost />,
+      },
+      {
+        path: "/admin-dashboard/post-management/pending-all-post-details/:id",
+        element: <PendingPostDetails />,
       },
       {
         path: "manage-users/all-users",

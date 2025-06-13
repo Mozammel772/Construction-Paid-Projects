@@ -22,7 +22,7 @@ const Register = () => {
   const [modalType, setModalType] = useState("");
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
-  const { createUser } = useAuth();
+  const { createUser, updateUserProfile } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onSubmit = async (data) => {
@@ -43,13 +43,13 @@ const Register = () => {
       const result = await createUser(data.email, data.password);
       firebaseUser = result.user;
       console.log("Firebase user created:", firebaseUser.uid);
-
+      await updateUserProfile(data.fullName);
       // Step 2: Prepare user info for MongoDB (exclude password)
       const userInfo = {
         name: data.fullName,
         email: data.email,
         phone: data.phoneNumber,
-        instituteName: data.projectsName || "",
+        projectsName: data.projectsName || "",
       };
 
       console.log("Sending user data to MongoDB:", userInfo);
@@ -347,7 +347,6 @@ const Register = () => {
                     defaultValue=""
                     control={control}
                     rules={{
-                      required: "Name is required",
                       minLength: {
                         value: 2,
                         message: "Name must be at least 2 characters long.",
@@ -372,7 +371,7 @@ const Register = () => {
                             <input
                               {...field}
                               id="projectsName"
-                              placeholder="Enter your full name"
+                              placeholder="Enter your project name (optional)"
                               className={`w-full pl-10 pr-3 py-3 border rounded-md text-gray-700 transition-colors hover:border-purple-300 focus:outline-none focus:ring-1 focus:ring-green-200 ${
                                 error
                                   ? "border-red-500"
@@ -469,7 +468,6 @@ const Register = () => {
                             id="password-feedback"
                             className="text-red-500 text-sm mt-1 flex items-center"
                           >
-                           
                             {error.message}
                           </p>
                         )}

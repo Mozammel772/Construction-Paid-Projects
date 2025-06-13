@@ -1,3 +1,4 @@
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
@@ -6,18 +7,15 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyARyb1BAOIbUkaZzoI21G5gEj-KyrO4oYE",
-  authDomain: "network-online-service-a8ffb.firebaseapp.com",
-  projectId: "network-online-service-a8ffb",
-  // storageBucket: "network-online-service-a8ffb.firebasestorage.app",
-  storageBucket: "network-online-service-a8ffb.appspot.com",
-
-  messagingSenderId: "755298212721",
-  appId: "1:755298212721:web:a4dbf2aa7334c7fdc0f4d0",
+  apiKey: "AIzaSyDCMQQK_CtfYBvh7MNXTYcDC4B2bSGuAeA",
+  authDomain: "construction-9e9df.firebaseapp.com",
+  projectId: "construction-9e9df",
+  storageBucket: "construction-9e9df.firebasestorage.app",
+  messagingSenderId: "704555395461",
+  appId: "1:704555395461:web:f5e18600c771ef47eb7cec",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
 export default auth;

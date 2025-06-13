@@ -1,15 +1,15 @@
-// import axios from "axios";
-// import {
-//   createUserWithEmailAndPassword,
-//   onAuthStateChanged,
-//   signInWithEmailAndPassword,
-//   signOut,
-//   updateProfile,
-// } from "firebase/auth";
-// import { useEffect, useState } from "react";
-// import auth from "../firebase/firebase.config";
-// import useAxiosPublic from "../hooks/useAxiosPublic";
-// import AuthContext from "./AuthContext";
+import axios from "axios";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
+import { useEffect, useState } from "react";
+import auth from "../firebase/firebase.config";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import AuthContext from "./AuthContext";
 
 // const AuthProvider = ({ children }) => {
 //   const [user, setUser] = useState(null);
@@ -31,48 +31,36 @@
 //     return signOut(auth);
 //   };
 
-//   const updateUserProfile = (name, photo) => {
-//     return updateProfile(auth.currentUser, {
-//       displayName: name,
-//       photoURL: photo,
-//     });
+//   // ✅ updateUserProfile now refreshes user state
+//   const updateUserProfile = async (name, photo) => {
+//     if (auth.currentUser) {
+//       await updateProfile(auth.currentUser, {
+//         displayName: name,
+//         photoURL: photo,
+//       });
+
+//       // ✅ Update the user state with new info
+//       const updatedUser = {
+//         ...auth.currentUser,
+//         displayName: name,
+//         photoURL: photo,
+//       };
+//       setUser(updatedUser);
+//     }
 //   };
 
-//   // onAuthStateChange
-//   // useEffect(() => {
-//   //   const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-//   //     if (currentUser?.email) {
-//   //       setUser(currentUser);
-
-//   //       // Get JWT token
-//   //       await axios.post(
-//   //         `http://localhost:9000/jwt`,
-//   //         {
-//   //           email: currentUser?.email,
-//   //         },
-//   //         { withCredentials: true }
-//   //       );
-//   //     } else {
-//   //       setUser(currentUser);
-//   //       await axios.get(`http://localhost:9000/logout`, {
-//   //         withCredentials: true,
-//   //       });
-//   //     }
-//   //     setLoading(false);
-//   //   });
-//   //   return () => {
-//   //     return unsubscribe();
-//   //   };
-//   // }, []);
-
+//   // ✅ Ensure user info is always fresh on auth change
 //   useEffect(() => {
 //     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
 //       try {
 //         if (currentUser?.email) {
-//           setUser(currentUser);
+//           await currentUser.reload(); // ✅ Refresh user data
+//           const refreshedUser = auth.currentUser;
+//           setUser(refreshedUser);
+
 //           await axios.post(
 //             `http://localhost:9000/auth/jwt`,
-//             { email: currentUser.email },
+//             { email: refreshedUser.email },
 //             { withCredentials: true }
 //           );
 //         } else {
@@ -84,13 +72,13 @@
 //       } catch (error) {
 //         console.error("Auth state error:", error);
 //       } finally {
-//         setLoading(false); // always set loading false at the end
+//         setLoading(false);
 //       }
 //     });
 
 //     return () => unsubscribe();
 //   }, []);
-
+//   console.log("current user", user);
 //   const authInfo = {
 //     user,
 //     setUser,
@@ -99,7 +87,7 @@
 //     createUser,
 //     signIn,
 //     logOut,
-//     updateUserProfile,
+//     updateUserProfile, // ✅ Updated version included
 //   };
 
 //   return (
@@ -109,18 +97,7 @@
 
 // export default AuthProvider;
 
-import axios from "axios";
-import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-  updateProfile,
-} from "firebase/auth";
-import { useEffect, useState } from "react";
-import auth from "../firebase/firebase.config";
-import useAxiosPublic from "../hooks/useAxiosPublic";
-import AuthContext from "./AuthContext";
+// ...same imports as before
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -142,7 +119,6 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  // ✅ updateUserProfile now refreshes user state
   const updateUserProfile = async (name, photo) => {
     if (auth.currentUser) {
       await updateProfile(auth.currentUser, {
@@ -150,24 +126,28 @@ const AuthProvider = ({ children }) => {
         photoURL: photo,
       });
 
-      // ✅ Update the user state with new info
-      const updatedUser = {
-        ...auth.currentUser,
-        displayName: name,
-        photoURL: photo,
-      };
-      setUser(updatedUser);
+      setUser({
+        name,
+        email: auth.currentUser.email,
+        uid: auth.currentUser.uid,
+        imageUrl: photo,
+      });
     }
   };
 
-  // ✅ Ensure user info is always fresh on auth change
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       try {
         if (currentUser?.email) {
-          await currentUser.reload(); // ✅ Refresh user data
+          await currentUser.reload();
           const refreshedUser = auth.currentUser;
-          setUser(refreshedUser);
+
+          setUser({
+            name: refreshedUser.displayName || "",
+            email: refreshedUser.email,
+            uid: refreshedUser.uid,
+            imageUrl: refreshedUser.photoURL || "",
+          });
 
           await axios.post(
             `http://localhost:9000/auth/jwt`,
@@ -189,7 +169,7 @@ const AuthProvider = ({ children }) => {
 
     return () => unsubscribe();
   }, []);
-  console.log("current user", user);
+  console.log("curerent", user);
   const authInfo = {
     user,
     setUser,
@@ -198,7 +178,7 @@ const AuthProvider = ({ children }) => {
     createUser,
     signIn,
     logOut,
-    updateUserProfile, // ✅ Updated version included
+    updateUserProfile,
   };
 
   return (

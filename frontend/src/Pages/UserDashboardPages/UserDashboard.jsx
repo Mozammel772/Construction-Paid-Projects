@@ -25,7 +25,7 @@ const UserDashboard = () => {
 
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
-
+console.log(user)
   const handleImageChange = (e, type) => {
     if (type === "before") setBeforeImage(e.target.files[0]);
     else if (type === "after") setAfterImage(e.target.files[0]);
@@ -76,7 +76,7 @@ const UserDashboard = () => {
         authorRole: user.role,
         authorUrl: user.imageUrl,
       };
-
+console.log(blogData)
       const res = await axiosPublic.post("/blog/blog", blogData);
       if (res.status === 200 || res.status === 201) {
         toast.success("Blog post created successfully!");

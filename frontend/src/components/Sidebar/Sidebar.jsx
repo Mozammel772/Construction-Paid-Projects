@@ -6,6 +6,7 @@ import {
   FaCrown,
   FaHistory,
   FaNewspaper,
+  FaPoll,
   FaTools,
   FaUsers,
   FaUserShield,
@@ -116,11 +117,18 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
       description: "Overview & Analytics",
     },
     {
+      path: "/admin-dashboard/post-management/pending-all-post",
+      icon: FaPoll,
+      label: "Pending Post",
+      description: "Post Management",
+    },
+    {
       path: "/admin-dashboard/manage-users/all-users",
       icon: FaUsers,
       label: "Manage Users",
       description: "User Management",
     },
+
     {
       path: "/admin-dashboard/blog",
       icon: FaNewspaper,

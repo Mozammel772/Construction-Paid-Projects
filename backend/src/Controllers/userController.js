@@ -6,26 +6,21 @@ const admin = require("../config/firebaseAdmin");
 
 const registerUser = async (req, res) => {
   const user = req.body;
-
   try {
-    // Check if user already exists (including partial records)
     const existingUser = await userCollection.findOne({ email: user.email });
 
     if (existingUser) {
-      console.log("Existing user found:", existingUser);
-
-      // If it's a partial record (only email and lastActive), update it
       if (!existingUser.name && !existingUser.phone) {
         console.log("Updating partial user record with complete information");
 
         const totalUsers = await userCollection.estimatedDocumentCount();
-        const role = totalUsers === 1 ? "admin" : "user"; // Adjust logic as needed
+        const role = totalUsers === 1 ? "admin" : "user"; // 
 
         const updatedUser = {
           name: user.name,
           email: user.email,
           phone: user.phone,
-          instituteName: user.instituteName || "",
+          projectsName: user.projectsName || "",
           createdAt: moment().format("YYYY-MM-DD HH:mm:ss"),
           role,
           imgUrl: "https://i.ibb.co/4Vg7qxJ/4042356.png",
@@ -36,15 +31,11 @@ const registerUser = async (req, res) => {
           { email: user.email },
           { $set: updatedUser }
         );
-
-        console.log("User updated successfully:", result);
         return res.send({
           success: true,
           message: "User registration completed",
         });
       } else {
-        // Complete user already exists
-        console.log("Complete user already exists");
         return res.status(400).send({
           success: false,
           message: "User already exists",
@@ -68,7 +59,6 @@ const registerUser = async (req, res) => {
     };
 
     const result = await userCollection.insertOne(newUser);
-    console.log("New user created successfully:", result.insertedId);
     res.send({ success: true, insertedId: result.insertedId });
   } catch (error) {
     console.error("Registration error:", error);
@@ -96,7 +86,6 @@ const getUserRole = async (req, res) => {
     }
     res.json({ role: user.role });
   } catch (error) {
-    console.error("Error fetching user role:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -143,7 +132,6 @@ const deleteUser = async (req, res) => {
       message: "User deleted from both Firebase and MongoDB",
     });
   } catch (error) {
-    console.error("Delete user error:", error);
     res.status(500).send({
       success: false,
       message: "Failed to delete user",
@@ -184,7 +172,6 @@ const updateUserProfile = async (req, res) => {
       res.send({ success: false, message: "No changes were made" });
     }
   } catch (error) {
-    console.error("Error updating profile:", error);
     res.status(500).send({ success: false, message: "Internal Server Error" });
   }
 };
@@ -198,7 +185,6 @@ const getUserByEmail = async (req, res) => {
     }
     res.status(200).json(user);
   } catch (error) {
-    console.error("Error fetching user:", error);
     res.status(500).json({ message: "Server error" });
   }
 };
