@@ -9,8 +9,7 @@ const { connectDB } = require("./config/db");
 const authRouter = require("./routes/authRoutes");
 const userRouter = require("./routes/userRoutes");
 const blogRouter = require("./routes/blogRoutes");
-const courseRouter = require("./routes/courseRoutes");
-const userDashboardRouter = require("./routes/userDashboardRoutes");
+
 
 // Load environment variables from .env file
 dotenv.config();
@@ -36,8 +35,6 @@ connectDB().catch((err) => console.error("MongoDB connection error:", err));
 // Routes
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
-app.use("/api/user", userDashboardRouter);
-app.use("/courses", courseRouter);
 app.use("/blog", blogRouter);
 // Root route
 app.get("/", (req, res) => {

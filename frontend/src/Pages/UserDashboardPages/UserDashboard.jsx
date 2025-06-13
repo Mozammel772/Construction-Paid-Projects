@@ -66,6 +66,7 @@ const UserDashboard = () => {
       const blogData = {
         title: data.title,
         category: data.category,
+        review: data.serviceReview,
         content: editorContent,
         beforeImage: beforeImageUrl,
         afterImage: afterImageUrl,
@@ -130,7 +131,7 @@ const UserDashboard = () => {
             </label>
             <input
               type="text"
-              {...register("title", { required: "Title is required" })}
+              {...register("serviceReview", { required: "Title is required" })}
               className="input input-bordered w-full bg-orange-50 border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-200"
               placeholder="Enter blog title"
             />
@@ -161,6 +162,22 @@ const UserDashboard = () => {
             {errors.category && (
               <p className="text-orange-600 text-sm mt-1">
                 {errors.category.message}
+              </p>
+            )}
+          </div>
+          <div>
+            <label className="block mb-1 text-base md:text-lg font-semibold text-orange-700">
+              Service Reviews :
+            </label>
+            <textarea
+              rows={4}
+              {...register("title", { required: "Review is required" })}
+              className="textarea textarea-bordered w-full bg-orange-50 border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-200"
+              placeholder="Write your review here..."
+            />
+            {errors.title && (
+              <p className="text-orange-600 text-sm mt-1">
+                {errors.title.message}
               </p>
             )}
           </div>

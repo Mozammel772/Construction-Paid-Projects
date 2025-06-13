@@ -28,7 +28,7 @@ const ServiceCard = ({ image, title, description }) => {
 const Services = () => {
   return (
     <div className="my-10">
-      <TittleAnimation tittle="Nos Services" />
+      <TittleAnimation tittle="Nos Services" subtittle="Services " />
 
       {/* Responsive Grid with 4 Services */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 ">

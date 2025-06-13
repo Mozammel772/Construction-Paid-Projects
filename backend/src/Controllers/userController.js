@@ -8,8 +8,6 @@ const registerUser = async (req, res) => {
   const user = req.body;
 
   try {
-    console.log("Registration attempt for:", user.email);
-
     // Check if user already exists (including partial records)
     const existingUser = await userCollection.findOne({ email: user.email });
 
@@ -62,7 +60,7 @@ const registerUser = async (req, res) => {
       name: user.name,
       email: user.email,
       phone: user.phone,
-      instituteName: user.instituteName || "",
+      ProjectsName: user.ProjectsName || "",
       createdAt: moment().format("YYYY-MM-DD HH:mm:ss"),
       role,
       imageUrl: "https://i.ibb.co/4Vg7qxJ/4042356.png",

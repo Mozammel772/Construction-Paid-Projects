@@ -5,7 +5,10 @@ const Exprience = () => {
   return (
     <div className="py-12 text-center">
       <div>
-        <TittleAnimation tittle="Pourquoi nous faire confiance" />
+        <TittleAnimation
+          tittle="Pourquoi nous faire confiance"
+          subtittle="faire confiance "
+        />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-14 px-5 rounded-md">
@@ -27,7 +30,9 @@ const Exprience = () => {
         <div className="flex flex-col items-center bg-orange-100 p-6 rounded-lg shadow-md">
           <FaStopwatch className="text-4xl text-orange-900 mb-2" />
           <h3 className="font-semibold text-lg text-orange-800">Réactivité</h3>
-          <p className="text-sm text-orange-700">Interlocuteur unique et dédié</p>
+          <p className="text-sm text-orange-700">
+            Interlocuteur unique et dédié
+          </p>
         </div>
       </div>
     </div>

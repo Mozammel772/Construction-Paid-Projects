@@ -1,7 +1,8 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
 require("dotenv").config();
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@network-online-service.bfjpnvo.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@construction-projects.z7ox4nb.mongodb.net/?retryWrites=true&w=majority&appName=Construction-Projects`;
+// const uri = "mongodb+srv://Construction-Projects:<db_password>@construction-projects.z7ox4nb.mongodb.net/?retryWrites=true&w=majority&appName=Construction-Projects";
 
 const client = new MongoClient(uri, {
   serverApi: {
@@ -17,21 +18,14 @@ const connectDB = async () => {
 };
 
 const getUserCollection = () => {
-  return client.db("Network-Online-Service").collection("users");
+  return client.db("Construction-Projects").collection("users");
 };
-const getCourseCollection = () => {
-  return client.db("Network-Online-Service").collection("courses");
-};
-const getEnrollmentCollection = () => {
-  return client.db("Network-Online-Service").collection("enrollments");
-};
+
 const getBlogsCollection = () => {
-  return client.db("Network-Online-Service").collection("blog");
+  return client.db("Construction-Projects").collection("blog");
 };
 module.exports = {
   connectDB,
   getUserCollection,
-  getCourseCollection,
-  getEnrollmentCollection,
   getBlogsCollection,
 };

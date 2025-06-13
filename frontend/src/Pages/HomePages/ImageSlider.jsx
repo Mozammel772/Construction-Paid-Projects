@@ -37,7 +37,7 @@ const ImageSlider = () => {
   return (
     <div>
       <div>
-        <TittleAnimation tittle="travaux antérieurs" />
+        <TittleAnimation tittle="travaux antérieurs" subtittle="antérieurs" />
       </div>
       <div className="flex flex-col items-center gap-4 py-6 bg-white">
         <div

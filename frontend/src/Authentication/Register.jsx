@@ -49,7 +49,7 @@ const Register = () => {
         name: data.fullName,
         email: data.email,
         phone: data.phoneNumber,
-        instituteName: data.institutionName || "",
+        instituteName: data.projectsName || "",
       };
 
       console.log("Sending user data to MongoDB:", userInfo);
@@ -119,11 +119,11 @@ const Register = () => {
         <title>Mathematics | Sign Up</title>
       </Helmet>
       <div className="flex justify-center items-center min-h-[80vh] py-6">
-        <div className="w-full max-w-xl bg-white shadow-2xl rounded-xl overflow-hidden border border-indigo-100">
+        <div className="w-full max-w-xl bg-white shadow-2xl rounded-xl overflow-hidden border border-orange-100">
           {/* Header */}
-          <div className="bg-indigo-600 py-4 px-5 lg:py-6 lg:px-8 text-white">
+          <div className="bg-orange-600 py-4 px-5 lg:py-6 lg:px-8 text-white">
             <h1 className="text-2xl font-bold">Create Your Account</h1>
-            <p className="text-indigo-200 mt-1">
+            <p className="text-orange-200 mt-1">
               Join us and start your learning journey
             </p>
           </div>
@@ -334,16 +334,16 @@ const Register = () => {
                   />
                 </div>
 
-                {/* Institution Name */}
+                {/* projects Name */}
 
                 <div className="form-control">
-                  <label htmlFor="institutionName" className="label">
+                  <label htmlFor="projectsName" className="label">
                     <span className="label-text text-base mb-1 font-medium text-gray-700">
-                      Institution Name (Optional) :
+                      Projects Name (Optional) :
                     </span>
                   </label>
                   <Controller
-                    name="institutionName"
+                    name="projectsName"
                     defaultValue=""
                     control={control}
                     rules={{
@@ -371,7 +371,7 @@ const Register = () => {
                             </div>
                             <input
                               {...field}
-                              id="institutionName"
+                              id="projectsName"
                               placeholder="Enter your full name"
                               className={`w-full pl-10 pr-3 py-3 border rounded-md text-gray-700 transition-colors hover:border-purple-300 focus:outline-none focus:ring-1 focus:ring-green-200 ${
                                 error
@@ -381,19 +381,19 @@ const Register = () => {
                                   : "border-gray-300"
                               }`}
                               aria-invalid={!!error}
-                              aria-describedby="institutionName-feedback"
+                              aria-describedby="projectsName-feedback"
                             />
                           </div>
                           {error ? (
                             <p
-                              id="institutionName-feedback"
+                              id="projectsName-feedback"
                               className="text-red-500 text-sm mt-1 flex items-center"
                             >
                               {error.message}
                             </p>
                           ) : field.value ? (
                             <p
-                              id="institutionName-feedback"
+                              id="projectsName-feedback"
                               className="text-green-600 text-sm mt-1 flex items-center"
                             >
                               Name is Valid
@@ -454,12 +454,12 @@ const Register = () => {
                             {showPassword ? (
                               <AiFillEyeInvisible
                                 size={20}
-                                className="text-indigo-600"
+                                className="text-orange-600"
                               />
                             ) : (
                               <AiFillEye
                                 size={20}
-                                className="text-indigo-400"
+                                className="text-orange-400"
                               />
                             )}
                           </button>
@@ -525,12 +525,12 @@ const Register = () => {
                             {showPassword ? (
                               <AiFillEyeInvisible
                                 size={20}
-                                className="text-indigo-600"
+                                className="text-orange-600"
                               />
                             ) : (
                               <AiFillEye
                                 size={20}
-                                className="text-indigo-400"
+                                className="text-orange-400"
                               />
                             )}
                           </button>
@@ -552,7 +552,7 @@ const Register = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full py-3 px-4 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 disabled={loading || isSubmitting}
               >
                 {loading || isSubmitting ? (
@@ -593,7 +593,7 @@ const Register = () => {
                 Already have an account?{" "}
                 <Link
                   to="/login"
-                  className="text-indigo-600 hover:text-indigo-800 font-medium"
+                  className="text-orange-600 hover:text-orange-800 font-medium"
                 >
                   Sign In
                 </Link>
@@ -629,7 +629,7 @@ const Register = () => {
 
               <h2
                 className={`text-xl font-bold ${
-                  modalType === "success" ? "text-indigo-700" : "text-red-600"
+                  modalType === "success" ? "text-orange-700" : "text-red-600"
                 }`}
               >
                 {modalType === "success" ? "Success!" : "Oops!"}
@@ -638,7 +638,7 @@ const Register = () => {
 
               {modalType === "success" ? (
                 <button
-                  className="mt-6 px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-base font-medium transition-colors shadow-md"
+                  className="mt-6 px-6 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg text-base font-medium transition-colors shadow-md"
                   onClick={() => navigate("/")}
                 >
                   Continue
