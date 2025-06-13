@@ -54,8 +54,7 @@ const Navbar = () => {
             <div
               key={index}
               className="relative"
-              onMouseEnter={() => setDesktopSubMenu(index)}
-              onMouseLeave={() => setDesktopSubMenu(null)}
+            
             >
               {item.subLinks ? (
                 <div className="flex items-center cursor-pointer">

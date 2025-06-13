@@ -1,3 +1,4 @@
+import { Home, HomeIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import {
@@ -5,6 +6,7 @@ import {
   FaCrown,
   FaHistory,
   FaNewspaper,
+  FaTools,
   FaUsers,
   FaUserShield,
 } from "react-icons/fa";
@@ -92,7 +94,10 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
             {item.subItems.map((sub) => {
               const isSubActive = isActive(sub.path);
               return (
-                <div className={isSubActive ? "w-[90%]" : "w-full"} key={sub.path}>
+                <div
+                  className={isSubActive ? "w-[90%]" : "w-full"}
+                  key={sub.path}
+                >
                   <MenuItem item={sub} onClick={onClick} level={level + 1} />
                 </div>
               );
@@ -141,9 +146,15 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
   const userMenuItems = [
     {
       path: "/user-dashboard",
-      icon: MdDashboard,
-      label: "Dashboard",
-      description: "Your Overview",
+      icon: FaTools,
+      label: "Work Post",
+      description: "Your Work Post",
+    },
+    {
+      path: "/user-dashboard/blog-history",
+      icon: FaTools,
+      label: "History",
+      description: "My Work History",
     },
     {
       path: "/history",
@@ -192,7 +203,9 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
                   {role === "admin" ? "Admin Panel" : "User Panel"}
                 </h1>
                 <p className="text-orange-700 text-xs">
-                  {role === "admin" ? "Management Console" : "Learning Dashboard"}
+                  {role === "admin"
+                    ? "Management Console"
+                    : "Construction Dashboard"}
                 </p>
               </div>
             </div>
@@ -217,7 +230,11 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
               </div>
               <ul className="space-y-2">
                 {adminMenuItems.map((item) => (
-                  <MenuItem key={item.path} item={item} onClick={handleMenuClick} />
+                  <MenuItem
+                    key={item.path}
+                    item={item}
+                    onClick={handleMenuClick}
+                  />
                 ))}
               </ul>
             </div>
@@ -226,18 +243,42 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
               <div className="flex items-center gap-2 mb-4">
                 <MdSchool className="w-4 h-4 text-orange-600" />
                 <h3 className="text-xs font-semibold text-orange-800 uppercase tracking-wider">
-                  Learning
+                  Construction
                 </h3>
                 <div className="flex-1 h-px bg-gradient-to-r from-orange-300 to-transparent"></div>
               </div>
               <ul className="space-y-2">
                 {userMenuItems.map((item) => (
-                  <MenuItem key={item.path} item={item} onClick={handleMenuClick} />
+                  <MenuItem
+                    key={item.path}
+                    item={item}
+                    onClick={handleMenuClick}
+                  />
                 ))}
               </ul>
             </div>
           )}
 
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <Home className="w-4 h-4 text-orange-600" />
+              <h3 className="text-xs font-semibold text-orange-800 uppercase tracking-wider">
+                Home
+              </h3>
+              <div className="flex-1 h-px bg-gradient-to-r from-orange-300 to-transparent"></div>
+            </div>
+            <ul className="space-y-2">
+              <MenuItem
+                item={{
+                  path: "/",
+                  icon: HomeIcon,
+                  label: "Home",
+                  description: "Go To Home",
+                }}
+                onClick={handleMenuClick}
+              />
+            </ul>
+          </div>
           <div>
             <div className="flex items-center gap-2 mb-4">
               <CgProfile className="w-4 h-4 text-orange-600" />

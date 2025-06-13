@@ -15,21 +15,19 @@ import BlogHistory from "../Pages/AdminDashboardPages/BlogPages/BlogHistory";
 import EditBlog from "../Pages/AdminDashboardPages/BlogPages/EditBlog";
 import Blog from "../Pages/BlogPages/Blog";
 import BlogDetails from "../Pages/BlogPages/BlogDetails";
-import DashboardRedirect from "../Pages/DashboardRedirect";
 import Contact from "../Pages/FooterPages/Contact";
 import PrivacyPolicy from "../Pages/FooterPages/PrivacyPolicy";
 import RefundPolicy from "../Pages/FooterPages/RefundPolicy";
 import TermsAndConditions from "../Pages/FooterPages/TermsAndConditions";
 import Home from "../Pages/HomePages/Home";
 import Profile from "../Pages/ProfilePages/Profile";
-import ContinueLearning from "../Pages/UserDashboard/ContinueLearning";
-import CoursePlayer from "../Pages/UserDashboard/CoursePlayer";
-import UserCourse from "../Pages/UserDashboard/UserCourse";
-import UserDashboard from "../Pages/UserDashboard/UserDashboard";
+import DashboardRedirect from "../Pages/UserDashboardPages/DashboardRedirect";
+import UserBlogHistory from "../Pages/UserDashboardPages/UserBlogHistory";
+import UserDashboard from "../Pages/UserDashboardPages/UserDashboard";
+import UserEditBlog from "../Pages/UserDashboardPages/UserEditBlog";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 import UserRoute from "./UserRouter";
-
 export const routes = createBrowserRouter([
   {
     path: "/",
@@ -44,7 +42,7 @@ export const routes = createBrowserRouter([
         path: "/about-us-more-information",
         element: <About />,
       },
-     
+
       // Blog
       {
         path: "/blog-us",
@@ -67,7 +65,7 @@ export const routes = createBrowserRouter([
         path: "/forgot-password",
         element: <ForgotPassword />,
       },
-      
+
       // footer
       {
         path: "/contact-us",
@@ -107,7 +105,7 @@ export const routes = createBrowserRouter([
         path: "manage-users/all-users",
         element: <AllUsers />,
       },
-     
+
       // Admin Blog Routes
       {
         path: "create-a-new-blog",
@@ -125,7 +123,7 @@ export const routes = createBrowserRouter([
         path: "*",
         element: <ErrorPage />,
       },
-      // Admin Profile oo Password Change 
+      // Admin Profile oo Password Change
       {
         path: "my-profile",
         element: <Profile />,
@@ -152,33 +150,24 @@ export const routes = createBrowserRouter([
         element: <UserDashboard />,
       },
       {
-        path: "course-outline",
-        element: <UserCourse />,
+        path: "blog-history",
+        element: <UserBlogHistory />,
+      },
+      {
+        path: "edit-blog/:id",
+        element: <UserEditBlog />,
+      },
+      {
+        path: "*",
+        element: <ErrorPage />,
       },
     ],
   },
-
   {
     path: "/dashboard",
     element: (
       <PrivateRoute>
         <DashboardRedirect />
-      </PrivateRoute>
-    ),
-  },
-  {
-    path: "/learn/:id",
-    element: (
-      <PrivateRoute>
-        <ContinueLearning />
-      </PrivateRoute>
-    ),
-  },
-  {
-    path: "/course-player/:courseId",
-    element: (
-      <PrivateRoute>
-        <CoursePlayer />
       </PrivateRoute>
     ),
   },
