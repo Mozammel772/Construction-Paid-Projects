@@ -1,0 +1,617 @@
+// "use client"
+
+// import Lottie from "lottie-react"
+// import { useState } from "react"
+// import { Controller, useForm } from "react-hook-form"
+// import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"
+// import { FiLock, FiMail } from "react-icons/fi"
+// import { Link, useLocation, useNavigate } from "react-router-dom"
+// import error from "../../lottie-animation/error.json"
+// import success from "../../lottie-animation/success.json"
+// import useAuth from "../hooks/useAuth"
+// import useAxiosPublic from "../hooks/useAxiosPublic"
+
+// const Login = () => {
+//   const { handleSubmit, control } = useForm()
+//   const [loading, setLoading] = useState(false)
+//   const [showPassword, setShowPassword] = useState(false)
+//   const [modalMessage, setModalMessage] = useState("")
+//   const [isModalVisible, setIsModalVisible] = useState(false)
+//   const [modalType, setModalType] = useState("")
+//   const { signIn } = useAuth()
+//   const navigate = useNavigate()
+//   const location = useLocation()
+//   const from = location.state?.from?.pathname || "/"
+//   const axiosPublic = useAxiosPublic()
+
+//   const onSubmit = async (data) => {
+//     setLoading(true)
+
+//     try {
+//       const result = await signIn(data.email, data.password)
+//       const user = result.user
+//       console.log(user)
+//       await axiosPublic.post("/auth/jwt", { email: user.email }, { withCredentials: true })
+//       setModalMessage("Login Completed Successfully!")
+//       setModalType("success")
+//       setIsModalVisible(true)
+//     } catch (err) {
+//       const firebaseErrorMap = {
+//         "auth/invalid-email": "The email is invalid.",
+//         "auth/invalid-credential": "Incorrect email or password.",
+//         "auth/user-not-found": "No user found with this email.",
+//         "auth/wrong-password": "Incorrect password.",
+//         "auth/network-request-failed": "Network error occurred.",
+//         "auth/too-many-requests": "Too many attempts, please try again later.",
+//       }
+
+//       const friendlyMessage = firebaseErrorMap[err?.code] || "There was a problem logging in. Please try again."
+//       setModalMessage(friendlyMessage)
+//       setModalType("error")
+//       setIsModalVisible(true)
+//     } finally {
+//       setLoading(false)
+//     }
+//   }
+
+//   return (
+//     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100">
+//       <div className="w-[90%] max-w-md bg-white shadow-xl rounded-2xl overflow-hidden border border-indigo-100">
+//         {/* Header */}
+//         <div className="bg-indigo-600 py-6 px-8 text-white">
+//           <h2 className="text-2xl font-bold">Welcome Back</h2>
+//           <p className="text-indigo-200 mt-1">Sign in to continue your journey</p>
+//         </div>
+
+//         {/* Form */}
+//         <div className="p-8">
+//           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+//             {/* Email */}
+//             <div className="form-control">
+//               <label className="text-sm font-medium text-gray-700 mb-1 block" htmlFor="email">
+//                 Email Address
+//               </label>
+//               <Controller
+//                 name="email"
+//                 defaultValue=""
+//                 control={control}
+//                 rules={{
+//                   required: "Email address is required.",
+//                   pattern: {
+//                     value: /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+//                     message: "Invalid email address",
+//                   },
+//                 }}
+//                 render={({ field, fieldState }) => {
+//                   const { error } = fieldState
+//                   return (
+//                     <div className="relative">
+//                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+//                         <FiMail className="h-5 w-5 text-gray-400" />
+//                       </div>
+//                       <input
+//                         {...field}
+//                         id="email"
+//                         className={`w-full pl-10 pr-3 py-3 border rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 transition-all ${error
+//                           ? "border-red-500 focus:ring-red-200"
+//                           : field.value
+//                             ? "border-indigo-500 focus:ring-indigo-200"
+//                             : "border-gray-300 focus:ring-indigo-100"
+//                           }`}
+//                         placeholder="example@gmail.com"
+//                         aria-invalid={!!error}
+//                         aria-describedby="email-feedback"
+//                       />
+//                       {error ? (
+//                         <p id="email-feedback" className="text-red-500 text-sm mt-1 flex items-center">
+//                           <span className="inline-block w-1 h-1 rounded-full bg-red-500 mr-2"></span>
+//                           {error.message}
+//                         </p>
+//                       ) : field.value ? (
+//                         <p id="email-feedback" className="text-indigo-500 text-sm mt-1 flex items-center">
+//                           <span className="inline-block w-1 h-1 rounded-full bg-indigo-500 mr-2"></span>
+//                           Email Address Valid
+//                         </p>
+//                       ) : null}
+//                     </div>
+//                   )
+//                 }}
+//               />
+//             </div>
+
+//             {/* Password */}
+//             <div className="form-control">
+//               <div className="flex justify-between items-center mb-1">
+//                 <label className="text-sm font-medium text-gray-700" htmlFor="password">
+//                   Password
+//                 </label>
+//                 <Link to="/forgot-password" className="text-xs text-indigo-600 hover:text-indigo-800 font-medium">
+//                   Forgot Password?
+//                 </Link>
+//               </div>
+//               <Controller
+//                 name="password"
+//                 control={control}
+//                 defaultValue=""
+//                 rules={{
+//                   required: "Password is required.",
+//                   pattern: {
+//                     value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+//                     message:
+//                       "Password must be at least 8 characters long, and must contain uppercase, lowercase, and numbers.",
+//                   },
+//                 }}
+//                 render={({ field, fieldState: { error } }) => (
+//                   <div>
+//                     <div className="relative">
+//                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+//                         <FiLock className="h-5 w-5 text-gray-400" />
+//                       </div>
+//                       <input
+//                         {...field}
+//                         id="password"
+//                         type={showPassword ? "text" : "password"}
+//                         className={`w-full pl-10 pr-10 py-3 border rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 transition-all ${error
+//                           ? "border-red-500 focus:ring-red-200"
+//                           : field.value
+//                             ? "border-indigo-500 focus:ring-indigo-200"
+//                             : "border-gray-300 focus:ring-indigo-100"
+//                           }`}
+//                         placeholder="••••••••"
+//                         aria-invalid={!!error}
+//                         aria-describedby="password-feedback"
+//                       />
+//                       <button
+//                         type="button"
+//                         onClick={() => setShowPassword(!showPassword)}
+//                         className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700 focus:outline-none"
+//                       >
+//                         {showPassword ? (
+//                           <AiFillEyeInvisible size={20} className="text-indigo-600" />
+//                         ) : (
+//                           <AiFillEye size={20} className="text-indigo-400" />
+//                         )}
+//                       </button>
+//                     </div>
+//                     {error && (
+//                       <p id="password-feedback" className="text-red-500 text-sm mt-1 flex items-center">
+//                         <span className="inline-block w-1 h-1 rounded-full bg-red-500 mr-2"></span>
+//                         {error.message}
+//                       </p>
+//                     )}
+//                   </div>
+//                 )}
+//               />
+//             </div>
+
+//             {/* Submit Button */}
+//             <button
+//               type="submit"
+//               className="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-70 disabled:cursor-not-allowed"
+//               disabled={loading}
+//             >
+//               {loading ? (
+//                 <div className="flex justify-center items-center space-x-2">
+//                   <svg
+//                     className="animate-spin h-5 w-5 text-white"
+//                     xmlns="http://www.w3.org/2000/svg"
+//                     fill="none"
+//                     viewBox="0 0 24 24"
+//                   >
+//                     <circle
+//                       className="opacity-25"
+//                       cx="12"
+//                       cy="12"
+//                       r="10"
+//                       stroke="currentColor"
+//                       strokeWidth="4"
+//                     ></circle>
+//                     <path
+//                       className="opacity-75"
+//                       fill="currentColor"
+//                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+//                     ></path>
+//                   </svg>
+//                   <span>Signing In...</span>
+//                 </div>
+//               ) : (
+//                 <span className="font-semibold text-md tracking-wider">Sign In</span>
+//               )}
+//             </button>
+//           </form>
+
+//           {/* Register Link */}
+//           <div className="mt-8 text-center">
+//             <p className="text-gray-600">
+//               Don't have an account?{" "}
+//               <Link to="/register" className="text-indigo-600 hover:text-indigo-800 font-medium">
+//                 Create Account
+//               </Link>
+//             </p>
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Modal */}
+//       {isModalVisible && (
+//         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50 px-4">
+//           <div className="bg-white p-8 rounded-xl shadow-2xl text-center w-[90%] max-w-md relative animate-fadeIn">
+//             <div className="flex justify-center">
+//               {modalType === "success" ? (
+//                 <Lottie animationData={success} loop style={{ margin: "-60px", width: 200, height: 200 }} />
+//               ) : (
+//                 <Lottie
+//                   animationData={error}
+//                   loop
+//                   style={{
+//                     margin: "-50px",
+//                     padding: "10px",
+//                     width: 150,
+//                     height: 200,
+//                   }}
+//                 />
+//               )}
+//             </div>
+
+//             <h2 className={`text-xl font-bold ${modalType === "success" ? "text-indigo-700" : "text-red-600"}`}>
+//               {modalType === "success" ? "Success!" : "Oops!"}
+//             </h2>
+//             <p className="text-gray-700 mt-2">{modalMessage}</p>
+
+//             {modalType === "success" ? (
+//               <button
+//                 className="mt-6 px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-md font-medium transition-colors shadow-md"
+//                 onClick={() => navigate(from)}
+//               >
+//                 Continue
+//               </button>
+//             ) : (
+//               <button
+//                 className="mt-6 px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-md font-medium transition-colors shadow-md"
+//                 onClick={() => setIsModalVisible(false)}
+//               >
+//                 Try Again
+//               </button>
+//             )}
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   )
+// }
+
+// export default Login
+
+
+
+"use client";
+
+import Lottie from "lottie-react";
+import { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { Controller, useForm } from "react-hook-form";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { FiLock, FiMail } from "react-icons/fi";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import error from "../../lottie-animation/error.json";
+import success from "../../lottie-animation/success.json";
+import useAuth from "../hooks/useAuth";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+
+const Login = () => {
+  const { handleSubmit, control } = useForm();
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalType, setModalType] = useState("");
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const axiosPublic = useAxiosPublic();
+
+  const onSubmit = async (data) => {
+    setLoading(true);
+
+    try {
+      const result = await signIn(data.email, data.password);
+      const user = result.user;
+      console.log(user);
+      await axiosPublic.post(
+        "/auth/jwt",
+        { email: user.email },
+        { withCredentials: true }
+      );
+      setModalMessage("Login Completed Successfully!");
+      setModalType("success");
+      setIsModalVisible(true);
+    } catch (err) {
+      const firebaseErrorMap = {
+        "auth/invalid-email": "The email is invalid.",
+        "auth/invalid-credential": "Incorrect email or password.",
+        "auth/user-not-found": "No user found with this email.",
+        "auth/wrong-password": "Incorrect password.",
+        "auth/network-request-failed": "Network error occurred.",
+        "auth/too-many-requests": "Too many attempts, please try again later.",
+      };
+
+      const friendlyMessage =
+        firebaseErrorMap[err?.code] ||
+        "There was a problem logging in. Please try again.";
+      setModalMessage(friendlyMessage);
+      setModalType("error");
+      setIsModalVisible(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div>
+      <Helmet>
+        <title>Mathematics | Sign In</title>
+      </Helmet>
+      <div className="flex justify-center items-center min-h-[70vh]">
+        <div className="w-full max-w-xl bg-white shadow-2xl rounded-xl overflow-hidden border border-indigo-100">
+          {/* Header */}
+          <div className="bg-indigo-600 py-6 px-8 text-white">
+            <h2 className="text-2xl font-bold">Welcome Back</h2>
+            <p className="text-indigo-200 mt-1">
+              Sign in to continue your journey
+            </p>
+          </div>
+
+          {/* Form */}
+          <div className="p-7">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+              <div className="form-control">
+                <label className="label" htmlFor="email">
+                  <span className="label-text text-base mb-1 font-medium text-gray-700">
+                    Email Address :
+                  </span>
+                </label>
+                <Controller
+                  name="email"
+                  defaultValue=""
+                  control={control}
+                  rules={{
+                    required: "Email address is required.",
+                    pattern: {
+                      value: /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                      message: "Invalid email address",
+                    },
+                  }}
+                  render={({ field, fieldState }) => {
+                    const { error } = fieldState;
+                    return (
+                      <>
+                        <div className="relative">
+                          <div className="absolute left-0 inset-y-0 flex items-center pl-3 pointer-events-none">
+                            <FiMail className="h-5 w-5 text-gray-400" />
+                          </div>
+                          <input
+                            {...field}
+                            id="email"
+                            className={`w-full pl-10 pr-3 py-3 border rounded-md text-gray-700 transition-colors hover:border-purple-300 focus:outline-none focus:ring-1 focus:ring-green-200 ${
+                              error
+                                ? "border-red-500"
+                                : field.value
+                                ? "border-green-300"
+                                : "border-gray-300"
+                            }`}
+                            placeholder="example@gmail.com"
+                            aria-invalid={!!error}
+                            aria-describedby="email-feedback"
+                          />
+                        </div>
+
+                        {error ? (
+                          <p
+                            id="email-feedback"
+                            className="text-red-500 text-sm mt-1 flex items-center"
+                          >
+                            {error.message}
+                          </p>
+                        ) : field.value ? (
+                          <p
+                            id="email-feedback"
+                            className="text-green-600 text-sm mt-1 flex items-center"
+                          >
+                            Email Address Valid
+                          </p>
+                        ) : null}
+                      </>
+                    );
+                  }}
+                />
+              </div>
+              {/* Password */}
+              <div className="form-control">
+                <label className="label" htmlFor="password">
+                  <span className="label-text text-base mb-1  font-medium text-gray-700">
+                    Password :
+                  </span>
+                </label>
+
+                <Controller
+                  name="password"
+                  control={control}
+                  defaultValue=""
+                  rules={{
+                    required: "Password is required.",
+                    pattern: {
+                      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+                      message:
+                        "Password must be at least 8 characters long, and must contain uppercase, lowercase, and numbers.",
+                    },
+                  }}
+                  render={({ field, fieldState: { error } }) => (
+                    <div>
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                          <FiLock className="h-5 w-5 text-gray-400" />
+                        </div>
+                        <input
+                          {...field}
+                          id="password"
+                          type={showPassword ? "text" : "password"}
+                          className={`w-full pl-10 pr-3 py-3 border rounded-md text-gray-700 transition-colors hover:border-purple-300 focus:outline-none focus:ring-1 focus:ring-green-200 ${
+                            error
+                              ? "border-red-500"
+                              : field.value
+                              ? "border-green-300"
+                              : "border-gray-300"
+                          }`}
+                          placeholder="••••••••"
+                          aria-invalid={!!error}
+                          aria-describedby="password-feedback"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700 focus:outline-none"
+                        >
+                          {showPassword ? (
+                            <AiFillEyeInvisible
+                              size={20}
+                              className="text-indigo-600"
+                            />
+                          ) : (
+                            <AiFillEye size={20} className="text-indigo-400" />
+                          )}
+                        </button>
+                      </div>
+                      {error && (
+                        <p
+                          id="password-feedback"
+                          className="text-red-500 text-sm mt-1 flex items-center"
+                        >
+                          {error.message}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                />
+                <div className="my-2">
+                  <Link
+                    to="/forgot-password"
+                    className="text-sm text-indigo-600 hover:text-indigo-800 font-medium"
+                  >
+                    Forgot Password?
+                  </Link>
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                disabled={loading}
+              >
+                {loading ? (
+                  <div className="flex justify-center items-center space-x-2">
+                    <svg
+                      className="animate-spin h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    <span>Signing In...</span>
+                  </div>
+                ) : (
+                  <span className="font-semibold text-base tracking-wider">
+                    Sign In
+                  </span>
+                )}
+              </button>
+            </form>
+
+            {/* Register Link */}
+            <div className="mt-4 text-center">
+              <p className="text-gray-600">
+                Don't have an account?{" "}
+                <Link
+                  to="/register"
+                  className="text-indigo-600 hover:text-indigo-800 font-medium"
+                >
+                  Create Account
+                </Link>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Modal */}
+        {isModalVisible && (
+          <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50 px-4">
+            <div className="bg-white p-8 rounded-xl shadow-2xl text-center w-[90%] max-w-md relative animate-fadeIn">
+              <div className="flex justify-center">
+                {modalType === "success" ? (
+                  <Lottie
+                    animationData={success}
+                    loop
+                    style={{ margin: "-60px", width: 200, height: 200 }}
+                  />
+                ) : (
+                  <Lottie
+                    animationData={error}
+                    loop
+                    style={{
+                      margin: "-50px",
+                      padding: "10px",
+                      width: 150,
+                      height: 200,
+                    }}
+                  />
+                )}
+              </div>
+
+              <h2
+                className={`text-xl font-bold ${
+                  modalType === "success" ? "text-indigo-700" : "text-red-600"
+                }`}
+              >
+                {modalType === "success" ? "Success!" : "Oops!"}
+              </h2>
+              <p className="text-gray-700 mt-2">{modalMessage}</p>
+
+              {modalType === "success" ? (
+                <button
+                  className="mt-6 px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-base font-medium transition-colors shadow-md"
+                  onClick={() => navigate(from)}
+                >
+                  Continue
+                </button>
+              ) : (
+                <button
+                  className="mt-6 px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-base font-medium transition-colors shadow-md"
+                  onClick={() => setIsModalVisible(false)}
+                >
+                  Try Again
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Login;
+
