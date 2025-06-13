@@ -1,16 +1,16 @@
 import { FaFacebook, FaPhoneAlt, FaYoutube } from "react-icons/fa";
 import { MdEmail, MdLocationOn } from "react-icons/md";
 import { Link } from "react-router-dom";
-
+import logo from "../../../public/icon.jpg";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-indigo-50 ">
+    <footer className="bg-orange-50 mt-10">
       <div className="footer max-w-7xl mx-auto px-5 py-12 grid grid-cols-1 md:grid-cols-3 gap-10 text-base-content ">
         {/* Logo & Contact Info */}
         <div>
-          <img src="/logo.png" alt="Mathematics Logo" className="h-12 mb-2" />
+          <img src={logo} alt="Logo" className="h-12 mb-2" />
           <p className="mb-4 font-bold uppercase text-base">Office Address</p>
 
           <p className="flex items-center gap-2 mb-1">
@@ -25,8 +25,8 @@ const Footer = () => {
         </div>
 
         {/* Useful Links */}
-        <div className="text-base"> 
-          <h2 className="footer-title mb-4 text-base">Useful Links</h2>
+        <div className="text-base">
+          <h2 className="footer-title mb-4 text-base text-black font-bold">Useful Links</h2>
           <Link
             to="/about-us-more-information"
             className="link link-hover block mb-2 text-center md:text-left "

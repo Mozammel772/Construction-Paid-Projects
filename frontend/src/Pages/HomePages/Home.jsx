@@ -1,15 +1,19 @@
-import HomePages from './HomePages'
-import Instructors from './Instructors'
-import Textimonial from './Textimonial'
+import Banner from "./Banner";
+import Exprience from "./Exprience";
+import ImageSlider from "./ImageSlider";
+import Services from "./Services";
+import TestimonialsSlider from "./TestimonialsSlider";
 
 const Home = () => {
   return (
     <div>
-      <HomePages/>
-      <Instructors/>
-      <Textimonial/>
+      <Banner />
+      <Services />
+      <ImageSlider />
+      <Exprience />
+      <TestimonialsSlider />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

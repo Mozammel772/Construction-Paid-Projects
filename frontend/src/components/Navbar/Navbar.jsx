@@ -95,8 +95,8 @@ const Navbar = () => {
               to="/login"
               className={`inline-block px-4 py-2 rounded-md ${
                 location.pathname === "/login"
-                  ? "bg-orange-700 text-white"
-                  : "text-white bg-orange-900 hover:bg-orange-700"
+                  ? "bg-orange-600 text-white"
+                  : "text-white bg-orange-600 hover:bg-orange-700"
               }`}
             >
               Login
