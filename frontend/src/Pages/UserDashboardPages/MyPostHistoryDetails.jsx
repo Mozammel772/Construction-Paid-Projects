@@ -1,0 +1,213 @@
+
+import DOMPurify from "dompurify";
+import { useEffect, useRef, useState } from "react";
+import { BsArrowsMove } from "react-icons/bs";
+import { FaCheck, FaEdit, FaTimes, FaTrash } from "react-icons/fa";
+import { useNavigate, useParams } from "react-router-dom";
+import TittleAnimation from "../../components/TittleAnimation/TittleAnimation";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+
+
+const MyPostHistoryDetails = () => {
+  const [blog, setBlog] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [actionLoading, setActionLoading] = useState(false);
+  const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchBlog = async () => {
+      try {
+        const res = await axiosPublic.get(`/blog/blog/${id}`);
+        setBlog(res.data);
+      } catch (err) {
+        console.error("Failed to load blog", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlog();
+  }, [id]);
+
+  const handleApprove = async () => {
+    try {
+      setActionLoading(true);
+      await axiosPublic.patch(`/blog/blog/accept/${id}`);
+      navigate("/admin-dashboard/post-management/pending-all-post");
+    } catch (err) {
+      console.error("Approve failed", err);
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleReject = async () => {
+    try {
+      setActionLoading(true);
+      await axiosPublic.patch(`/blog/blog/reject/${id}`);
+      navigate("/admin/pending-blogs");
+    } catch (err) {
+      console.error("Reject failed", err);
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm("Are you sure?");
+    if (!confirmDelete) return;
+
+    try {
+      setActionLoading(true);
+      await axiosPublic.delete(`/blog/blog/${id}`);
+      navigate("/admin/pending-blogs");
+    } catch (err) {
+      console.error("Delete failed", err);
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleEdit = () => {
+    navigate(`/admin-dashboard/post-management/pending-all-post-edit/${id}`);
+  };
+
+  if (loading) return <div className="text-center p-5">Loading...</div>;
+  if (!blog) return <div className="text-center p-5">No blog found.</div>;
+
+  return (
+    <div className="max-w-7xl mx-auto p-4 space-y-10">
+      <TittleAnimation
+        tittle="Pending Blog Details"
+        subtittle="Admin Reviews"
+      />
+
+      <div className="bg-white border border-orange-100 rounded-xl shadow hover:shadow-md transition">
+        <ImageComparison before={blog.beforeImage} after={blog.afterImage} />
+
+        <div className="p-6 space-y-4">
+          <div>
+            <h2 className="text-xl font-semibold text-orange-700">
+              {blog.title}
+            </h2>
+          </div>
+          <div className="bg-white border-l-4 border-orange-400 shadow-md rounded-lg p-10 flex items-start gap-4 min-h-[200px] md:min-h-[250px]">
+            <img
+              src={blog.beforeImage}
+              alt="Client"
+              className="w-14 h-14 rounded-full object-cover"
+            />
+            <div>
+              <p className="font-semibold text-orange-600">{blog.authorName}</p>
+              <div className="text-yellow-500 text-sm mb-2">★★★★☆</div>
+              <p className="text-gray-700">{blog.review}</p>
+            </div>
+          </div>
+          <div>
+            <div
+              className="prose text-gray-700 max-w-none"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(blog.content),
+              }}
+            />
+          </div>
+
+          {/* Actions */}
+          <div className="flex flex-wrap gap-3 mt-10">
+            <button
+              onClick={handleApprove}
+              className="btn btn-sm bg-green-500 hover:bg-green-600 text-white"
+              disabled={actionLoading}
+            >
+              <FaCheck className="mr-1" /> Approve
+            </button>
+            <button
+              onClick={handleReject}
+              className="btn btn-sm bg-yellow-500 hover:bg-yellow-600 text-white"
+              disabled={actionLoading}
+            >
+              <FaTimes className="mr-1" /> Reject
+            </button>
+            <button
+              onClick={handleEdit}
+              className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-white"
+            >
+              <FaEdit className="mr-1" /> Edit
+            </button>
+            <button
+              onClick={handleDelete}
+              className="btn btn-sm bg-red-500 hover:bg-red-600 text-white"
+              disabled={actionLoading}
+            >
+              <FaTrash className="mr-1" /> Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Image Comparison
+const ImageComparison = ({ before, after }) => {
+  const containerRef = useRef(null);
+  const [sliderPos, setSliderPos] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handleMove = (e) => {
+    if (!isDragging) return;
+    const bounds = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - bounds.left;
+    const percentage = (x / bounds.width) * 100;
+    setSliderPos(Math.max(10, Math.min(90, percentage)));
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative w-full h-[350px] overflow-hidden rounded-t-xl"
+      onMouseMove={handleMove}
+      onMouseUp={() => setIsDragging(false)}
+      onMouseLeave={() => setIsDragging(false)}
+      onTouchMove={(e) => {
+        const touch = e.touches[0];
+        handleMove({ clientX: touch.clientX });
+      }}
+      onTouchEnd={() => setIsDragging(false)}
+    >
+      <img
+        src={after}
+        alt="After"
+        className="absolute top-0 left-0 w-full h-full object-cover"
+      />
+      <div
+        className="absolute top-0 left-0 h-full overflow-hidden"
+        style={{ width: `${sliderPos}%` }}
+      >
+        <img src={before} alt="Before" className="w-full h-full object-cover" />
+      </div>
+      <div
+        className="absolute top-0 h-full border-l-4 border-orange-700 z-20"
+        style={{ left: `${sliderPos}%` }}
+      />
+      <div
+        className="absolute top-1/2 z-30 -translate-x-1/2 -translate-y-1/2"
+        style={{ left: `${sliderPos}%` }}
+      >
+        <div
+          onMouseDown={() => setIsDragging(true)}
+          onTouchStart={() => setIsDragging(true)}
+          className="w-14 h-14 bg-white border-4 border-orange-600 rounded-full shadow-lg flex items-center justify-center"
+        >
+          <div className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-xl">
+            <BsArrowsMove />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MyPostHistoryDetails;

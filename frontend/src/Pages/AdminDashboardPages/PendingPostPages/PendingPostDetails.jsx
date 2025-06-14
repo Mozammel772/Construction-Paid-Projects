@@ -308,7 +308,7 @@ const PendingPostDetails = () => {
   };
 
   const handleEdit = () => {
-    navigate(`/admin/edit-blog/${id}`);
+    navigate(`/admin-dashboard/post-management/pending-all-post-edit/${id}`);
   };
 
   if (loading) return <div className="text-center p-5">Loading...</div>;

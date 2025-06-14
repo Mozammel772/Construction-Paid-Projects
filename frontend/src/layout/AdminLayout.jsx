@@ -68,7 +68,7 @@ const AdminLayout = () => {
         <div className="flex-1 pt-16 lg:ml-64 transition-all duration-300 ease-in-out bg-white">
           {/* Page Content */}
           <div className="p-4 md:p-6 max-w-7xl mx-auto">
-            <div className="bg-white rounded-lg shadow-2xl border border-indigo-700 min-h-[calc(100vh-8rem)]">
+            <div className="bg-white rounded-lg shadow-2xl border border-orange-700 min-h-[calc(100vh-8rem)]">
               <div className="p-6">
                 <Outlet />
               </div>
@@ -76,7 +76,7 @@ const AdminLayout = () => {
           </div>
 
           {/* Footer */}
-          <footer className="bg-white mt-auto py-4 px-6 border-t border-gray-700 text-center text-gray-400 text-sm">
+          <footer className="bg-orange-50 mt-auto py-4 px-6 border-t border-gray-700 text-center text-gray-400 text-sm">
             <p>
               © {new Date().getFullYear()} Admin Dashboard - Built with CARE ❤️
             </p>

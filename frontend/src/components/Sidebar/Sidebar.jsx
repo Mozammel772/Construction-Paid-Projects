@@ -5,7 +5,7 @@ import {
   FaChartLine,
   FaCrown,
   FaHistory,
-  FaNewspaper,
+  FaPaintBrush,
   FaPoll,
   FaTools,
   FaUsers,
@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { HiLogout, HiX } from "react-icons/hi";
-import { MdDashboard, MdSchool } from "react-icons/md";
+import { MdSchool } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useRole from "../../hooks/useRole";
@@ -110,12 +110,12 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
   };
 
   const adminMenuItems = [
-    {
-      path: "/admin-dashboard",
-      icon: MdDashboard,
-      label: "Dashboard",
-      description: "Overview & Analytics",
-    },
+    // {
+    //   path: "/admin-dashboard",
+    //   icon: MdDashboard,
+    //   label: "Dashboard",
+    //   description: "Overview & Analytics",
+    // },
     {
       path: "/admin-dashboard/post-management/pending-all-post",
       icon: FaPoll,
@@ -128,26 +128,11 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
       label: "Manage Users",
       description: "User Management",
     },
-
     {
-      path: "/admin-dashboard/blog",
-      icon: FaNewspaper,
-      label: "Blog",
-      description: "Post Of Blog",
-      subItems: [
-        {
-          path: "/admin-dashboard/create-a-new-blog",
-          icon: FaNewspaper,
-          label: "Create Blog",
-          description: "Post Of Blog",
-        },
-        {
-          path: "/admin-dashboard/blog-history",
-          icon: FaNewspaper,
-          label: "Blog History",
-          description: "Post Of Blog",
-        },
-      ],
+      path: "/admin-dashboard/request-a-quote",
+      icon: FaPaintBrush,
+      label: "Request A Quote",
+      description: "Problem Solving",
     },
   ];
 
@@ -159,10 +144,10 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
       description: "Your Work Post",
     },
     {
-      path: "/user-dashboard/blog-history",
+      path: "/user-dashboard/my-post-history",
       icon: FaTools,
-      label: "History",
-      description: "My Work History",
+      label: "Post History",
+      description: "My Post History",
     },
     {
       path: "/history",

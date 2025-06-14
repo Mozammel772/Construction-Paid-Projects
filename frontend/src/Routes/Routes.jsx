@@ -13,6 +13,7 @@ import AllUsers from "../Pages/AdminDashboardPages/AllUsers/AllUsers";
 import BlogAdmin from "../Pages/AdminDashboardPages/BlogPages/BlogAdmin";
 import BlogHistory from "../Pages/AdminDashboardPages/BlogPages/BlogHistory";
 import EditBlog from "../Pages/AdminDashboardPages/BlogPages/EditBlog";
+import PendingEditPost from "../Pages/AdminDashboardPages/PendingPostPages/PendingEditPost";
 import PendingPost from "../Pages/AdminDashboardPages/PendingPostPages/PendingPost";
 import PendingPostDetails from "../Pages/AdminDashboardPages/PendingPostPages/PendingPostDetails";
 import Blog from "../Pages/BlogPages/Blog";
@@ -26,9 +27,9 @@ import Profile from "../Pages/ProfilePages/Profile";
 import Profilio from "../Pages/ProfilioPages/Profilio";
 import ProfilioDetails from "../Pages/ProfilioPages/ProfilioDetails";
 import DashboardRedirect from "../Pages/UserDashboardPages/DashboardRedirect";
-import UserBlogHistory from "../Pages/UserDashboardPages/UserBlogHistory";
+import MyPostHistory from "../Pages/UserDashboardPages/MyPostHistory";
+import MyPostHistoryDetails from "../Pages/UserDashboardPages/MyPostHistoryDetails";
 import UserDashboard from "../Pages/UserDashboardPages/UserDashboard";
-import UserEditBlog from "../Pages/UserDashboardPages/UserEditBlog";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 import UserRoute from "./UserRouter";
@@ -122,6 +123,10 @@ export const routes = createBrowserRouter([
         element: <PendingPostDetails />,
       },
       {
+        path: "/admin-dashboard/post-management/pending-all-post-edit/:id",
+        element: <PendingEditPost />,
+      },
+      {
         path: "manage-users/all-users",
         element: <AllUsers />,
       },
@@ -170,12 +175,12 @@ export const routes = createBrowserRouter([
         element: <UserDashboard />,
       },
       {
-        path: "blog-history",
-        element: <UserBlogHistory />,
+        path: "my-post-history",
+        element: <MyPostHistory />,
       },
       {
-        path: "edit-blog/:id",
-        element: <UserEditBlog />,
+        path: "my-post-history-details/:id",
+        element: <MyPostHistoryDetails />,
       },
       {
         path: "*",
