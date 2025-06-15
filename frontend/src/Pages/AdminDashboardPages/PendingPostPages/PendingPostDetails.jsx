@@ -46,14 +46,14 @@ const PendingPostDetails = () => {
     try {
       setActionLoading(true);
       await axiosPublic.patch(`/blog/blog/reject/${id}`);
-      navigate("/admin/pending-blogs");
+      navigate("/admin-dashboard/post-management/pending-all-post");
     } catch (err) {
       console.error("Reject failed", err);
     } finally {
       setActionLoading(false);
     }
   };
-
+ 
   const handleDelete = async () => {
     const confirmDelete = window.confirm("Are you sure?");
     if (!confirmDelete) return;
@@ -61,7 +61,7 @@ const PendingPostDetails = () => {
     try {
       setActionLoading(true);
       await axiosPublic.delete(`/blog/blog/${id}`);
-      navigate("/admin/pending-blogs");
+      navigate("admin-dashboard/post-management/pending-all-post");
     } catch (err) {
       console.error("Delete failed", err);
     } finally {

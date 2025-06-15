@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { BsArrowsMove } from "react-icons/bs";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import TittleAnimation from "../../components/TittleAnimation/TittleAnimation";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
@@ -30,47 +31,47 @@ const MyPostHistoryDetails = () => {
     fetchBlog();
   }, [id]);
 
-  const handleApprove = async () => {
-    try {
-      setActionLoading(true);
-      await axiosPublic.patch(`/blog/blog/accept/${id}`);
-      navigate("/admin-dashboard/post-management/pending-all-post");
-    } catch (err) {
-      console.error("Approve failed", err);
-    } finally {
-      setActionLoading(false);
-    }
-  };
 
-  const handleReject = async () => {
-    try {
-      setActionLoading(true);
-      await axiosPublic.patch(`/blog/blog/reject/${id}`);
-      navigate("/admin/pending-blogs");
-    } catch (err) {
-      console.error("Reject failed", err);
-    } finally {
-      setActionLoading(false);
-    }
-  };
+const handleDelete = async () => {
+  const result = await Swal.fire({
+    title: "Are you sure?",
+    text: "You won’t be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Yes, delete it!",
+  });
 
-  const handleDelete = async () => {
-    const confirmDelete = window.confirm("Are you sure?");
-    if (!confirmDelete) return;
-
+  if (result.isConfirmed) {
     try {
       setActionLoading(true);
       await axiosPublic.delete(`/blog/blog/${id}`);
-      navigate("/admin/pending-blogs");
+
+      await Swal.fire({
+        icon: "success",
+        title: "Deleted!",
+        text: "Your post has been successfully deleted.",
+        confirmButtonColor: "#d97706",
+      });
+
+      navigate("/user-dashboard/my-post-history");
     } catch (err) {
       console.error("Delete failed", err);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
     } finally {
       setActionLoading(false);
     }
-  };
+  }
+};
+
 
   const handleEdit = () => {
-    navigate(`/admin-dashboard/post-management/pending-all-post-edit/${id}`);
+    navigate(`/user-dashboard/my-post-history-details/edit/${id}`);
   };
 
   if (loading) return <LoadingSpinner />;
@@ -114,21 +115,7 @@ const MyPostHistoryDetails = () => {
           </div>
 
           {/* Actions */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 w-full py-10">
-            {/* <button
-              onClick={handleApprove}
-              className="w-full btn btn-base bg-green-500 hover:bg-green-600 text-white"
-              disabled={actionLoading}
-            >
-              <FaCheck className="mr-1" /> Approve
-            </button>
-            <button
-              onClick={handleReject}
-              className="w-full btn btn-base bg-yellow-500 hover:bg-yellow-600 text-white"
-              disabled={actionLoading}
-            >
-              <FaTimes className="mr-1" /> Reject
-            </button> */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 w-full py-10">          
             <button
               onClick={handleEdit}
               className="w-full btn btn-base  lg:btn-lg bg-blue-500 hover:bg-blue-600 text-white"
