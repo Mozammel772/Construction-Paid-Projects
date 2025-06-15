@@ -25,7 +25,7 @@ const UserDashboard = () => {
 
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
-console.log(user)
+  console.log(user);
   const handleImageChange = (e, type) => {
     if (type === "before") setBeforeImage(e.target.files[0]);
     else if (type === "after") setAfterImage(e.target.files[0]);
@@ -76,7 +76,7 @@ console.log(user)
         authorRole: user.role,
         authorUrl: user.imageUrl,
       };
-console.log(blogData)
+      console.log(blogData);
       const res = await axiosPublic.post("/blog/blog", blogData);
       if (res.status === 200 || res.status === 201) {
         toast.success("Blog post created successfully!");
@@ -112,12 +112,12 @@ console.log(blogData)
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center px-4 py-12 bg-white">
+    <div className="min-h-screen flex justify-center items-center  px-1 md:px-4 py-12 bg-white">
       <Helmet>
         <title>Admin | Create Blog Post</title>
       </Helmet>
 
-      <div className="w-full max-w-5xl border border-orange-300 rounded-2xl bg-white shadow-lg p-8">
+      <div className="w-full max-w-7xl border border-orange-300 rounded-xl bg-white shadow-lg p-4 md:p-8">
         <TittleAnimation
           tittle="Create Services Post"
           subtittle="Services Post"
@@ -238,12 +238,11 @@ console.log(blogData)
               )}
             </div>
           </div>
-
           {/* Submit */}
           <button
             type="submit"
             disabled={loading}
-            className={`btn w-full text-white text-lg font-semibold transition ${
+            className={`btn w-full btn-base lg:btn-lg text-white text-lg font-semibold transition ${
               loading
                 ? "bg-orange-300 cursor-not-allowed"
                 : "bg-orange-600 hover:bg-orange-700"

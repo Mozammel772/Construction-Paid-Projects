@@ -1,10 +1,11 @@
 import { Navigate } from "react-router-dom";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import useRole from "../hooks/useRole";
 
 const UserRoute = ({ children }) => {
   const { role, isLoading, error } = useRole();
 
-  if (isLoading) return <p className="min-h-screen mx-auto justify-center items-center text-2xl font-semibold italic">Loading dashboard...</p>;
+  if (isLoading) return <LoadingSpinner/>
 
   if (role === "user") return children;
 

@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import useAuth from "../hooks/useAuth";
-import useAutoLogout from "../hooks/useAutoLogout";
 
 const PrivateRoute = ({ children }) => {
   // useAutoLogout();
@@ -9,11 +9,7 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen text-xl">
-        Loading...
-      </div>
-    );
+    return <LoadingSpinner/>
   }
 
   if (!user) {

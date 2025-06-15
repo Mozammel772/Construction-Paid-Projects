@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { HiLogout, HiX } from "react-icons/hi";
-import { MdSchool } from "react-icons/md";
+import { MdDashboard, MdSchool } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useRole from "../../hooks/useRole";
@@ -110,12 +110,12 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
   };
 
   const adminMenuItems = [
-    // {
-    //   path: "/admin-dashboard",
-    //   icon: MdDashboard,
-    //   label: "Dashboard",
-    //   description: "Overview & Analytics",
-    // },
+    {
+      path: "/admin-dashboard",
+      icon: MdDashboard,
+      label: "Dashboard",
+      description: "Overview & Analytics",
+    },
     {
       path: "/admin-dashboard/post-management/pending-all-post",
       icon: FaPoll,

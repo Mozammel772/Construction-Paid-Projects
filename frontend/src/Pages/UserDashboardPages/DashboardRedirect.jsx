@@ -1,5 +1,6 @@
 // DashboardRedirect.jsx
 import { Navigate } from "react-router-dom";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import useAuth from "../../hooks/useAuth";
 import useRole from "../../hooks/useRole";
 
@@ -8,11 +9,7 @@ const DashboardRedirect = () => {
     const { role, isLoading: roleLoading } = useRole();
 
     if (authLoading || roleLoading) {
-        return (
-            <div className="flex justify-center items-center h-screen text-xl">
-                Loading...
-            </div>
-        );
+        return <LoadingSpinner/>
     }
 
     if (!user) {

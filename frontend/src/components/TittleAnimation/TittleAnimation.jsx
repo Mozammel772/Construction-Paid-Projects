@@ -40,9 +40,9 @@ const TittleAnimation = ({ tittle, subtittle }) => {
         variants={fadeUp}
         custom={2}
       >
-        <div className="flex-grow h-px bg-orange-400"></div>
+        <div className="flex-grow h-px bg-orange-400 "></div>
         <span className="mx-4 text-lg md:text-xl font-semibold text-gray-800">{subtittle}</span>
-        <div className="flex-grow h-px bg-orange-400"></div>
+        <div className="flex-grow h-px bg-orange-400 "></div>
       </motion.div>
     </div>
   );

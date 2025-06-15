@@ -1,6 +1,7 @@
 import DOMPurify from "dompurify";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import TittleAnimation from "../../components/TittleAnimation/TittleAnimation";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
@@ -49,7 +50,7 @@ const Profilio = () => {
   };
 
   if (loading) {
-    return <div className="text-center text-lg p-5">Loading blogs...</div>;
+    return <LoadingSpinner />;
   }
 
   return (
@@ -81,7 +82,7 @@ const Profilio = () => {
           {filteredBlogs.map((blog) => (
             <div
               key={blog._id}
-              className="card w-96 bg-white border border-orange-100 rounded-md shadow-md hover:shadow-lg transition duration-300"
+              className="card w-full bg-white border border-orange-100 rounded-md shadow-md hover:shadow-lg transition duration-300"
             >
               {/* Image */}
               <figure className="rounded-t-2xl overflow-hidden p-2">
@@ -92,31 +93,37 @@ const Profilio = () => {
                 />
               </figure>
 
-              {/* Content */}
-              <div className="card-body p-4 space-y-3">
-                <h2 className="card-title text-lg font-bold text-orange-700">
-                  {blog.title?.slice(0, 30)}
-                </h2>
-
-                <p className="text-sm text-gray-600">
+            
+              <div className="card-body p-4 space-y-3 bg-orange-50">
+                <p className="text-base text-gray-600">
+                  Tittle:{" "}
+                  <span className="text-orange-600 font-medium">
+                    {blog.title?.slice(0, 40)} ...
+                  </span>
+                </p>
+                <p className="text-base text-gray-600">
                   Category:{" "}
                   <span className="text-orange-600 font-medium">
                     {blog.category || "Uncategorized"}
                   </span>
                 </p>
-
+                <p className="text-base text-gray-600">
+                  Content:{" "}
+                 
                 <div
-                  className="text-sm text-gray-600 line-clamp-3 prose max-w-none"
+                  className="line-clamp-3 prose max-w-none font-medium "
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(blog.content?.slice(0, 100)),
                   }}
                 ></div>
+                </p>
+
 
                 {/* Button */}
                 <div className="card-actions pt-2">
                   <button
                     onClick={() => navigate(`/portfolio-details/${blog._id}`)}
-                    className="btn w-[90%] bg-orange-500 hover:bg-orange-600 text-white rounded-md px-4 py-2"
+                    className="btn w-[95%] btn-base lg:btn-lg bg-orange-500 hover:bg-orange-600 text-white rounded-md px-4 py-2 mx-auto"
                   >
                     View Details
                   </button>

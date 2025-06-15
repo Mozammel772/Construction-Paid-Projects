@@ -91,7 +91,6 @@ const PendingPostEdit = () => {
       };
 
       await axiosPublic.put(`/blog/blog/${id}`, updatedData);
-      toast.success("Post updated successfully!");
       navigate("/admin-dashboard/post-management/pending-all-post");
     } catch (err) {
       toast.error("Update failed. Try again.");
@@ -116,7 +115,7 @@ const PendingPostEdit = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-6">
       <TittleAnimation tittle="Edit Pending Post" subtittle="Admin Editing" />
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>
@@ -179,10 +178,10 @@ const PendingPostEdit = () => {
 
         <button
           type="submit"
-          className={`btn w-full text-white font-semibold ${loading ? "bg-orange-300" : "bg-orange-600 hover:bg-orange-700"}`}
+          className={`btn btn-base lg:btn-lg w-full text-white font-semibold ${loading ? "bg-orange-300" : "bg-orange-600 hover:bg-orange-700"}`}
           disabled={loading}
         >
-          {loading ? "Updating..." : "Update Blog"}
+          {loading ? "Updating..." : "Update Post"}
         </button>
       </form>
     </div>
