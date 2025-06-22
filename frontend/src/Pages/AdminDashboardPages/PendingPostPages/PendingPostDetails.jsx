@@ -1,8 +1,10 @@
+import { format } from "date-fns";
 import DOMPurify from "dompurify";
 import { useEffect, useRef, useState } from "react";
 import { BsArrowsMove } from "react-icons/bs";
 import { FaCheck, FaEdit, FaTimes, FaTrash } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
 import TittleAnimation from "../../../components/TittleAnimation/TittleAnimation";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
@@ -29,14 +31,30 @@ const PendingPostDetails = () => {
 
     fetchBlog();
   }, [id]);
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return format(date, "MMMM d, yyyy, h:mm a"); // Example: June 15, 2025, 7:30 PM
+  };
 
   const handleApprove = async () => {
     try {
       setActionLoading(true);
       await axiosPublic.patch(`/blog/blog/accept/${id}`);
-      navigate("/admin-dashboard/post-management/pending-all-post");
+      Swal.fire({
+        icon: "success",
+        title: "Approved!",
+        text: "Blog has been approved successfully.",
+        confirmButtonColor: "#3085d6",
+      });
+      navigate("/admin-dashboard");
     } catch (err) {
       console.error("Approve failed", err);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Failed to approve blog.",
+        confirmButtonColor: "#d33",
+      });
     } finally {
       setActionLoading(false);
     }
@@ -46,24 +64,57 @@ const PendingPostDetails = () => {
     try {
       setActionLoading(true);
       await axiosPublic.patch(`/blog/blog/reject/${id}`);
-      navigate("/admin-dashboard/post-management/pending-all-post");
+      Swal.fire({
+        icon: "success",
+        title: "Rejected!",
+        text: "Blog has been rejected.",
+        confirmButtonColor: "#3085d6",
+      });
+      navigate("/admin-dashboard");
     } catch (err) {
       console.error("Reject failed", err);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Failed to reject blog.",
+        confirmButtonColor: "#d33",
+      });
     } finally {
       setActionLoading(false);
     }
   };
- 
+
   const handleDelete = async () => {
-    const confirmDelete = window.confirm("Are you sure?");
-    if (!confirmDelete) return;
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (!result.isConfirmed) return;
 
     try {
       setActionLoading(true);
       await axiosPublic.delete(`/blog/blog/${id}`);
-      navigate("admin-dashboard/post-management/pending-all-post");
+      Swal.fire({
+        icon: "success",
+        title: "Deleted!",
+        text: "Blog has been deleted.",
+        confirmButtonColor: "#3085d6",
+      });
+      navigate("/admin-dashboard");
     } catch (err) {
       console.error("Delete failed", err);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Failed to delete blog.",
+        confirmButtonColor: "#d33",
+      });
     } finally {
       setActionLoading(false);
     }
@@ -87,6 +138,20 @@ const PendingPostDetails = () => {
         <ImageComparison before={blog.beforeImage} after={blog.afterImage} />
 
         <div className="p-6 space-y-4">
+          <div className="py-2">
+            <p className="text-sm text-orange-600 italic">
+              📅 Published on {formatDate(blog.createdAt)}
+            </p>
+          </div>
+          <div className="py-5">
+            <h1>Post Auther Information</h1>
+            <p className="text-base font-semibold text-orange-700">
+              Name : {blog.name}
+            </p>
+            <p className="text-base font-semibold text-orange-700">
+              Email : {blog.email}
+            </p>
+          </div>
           <div className="py-5">
             <h2 className="text-xl font-semibold text-orange-700">
               {blog.title}

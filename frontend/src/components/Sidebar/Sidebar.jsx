@@ -1,6 +1,5 @@
 import { Home, HomeIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import { CgProfile } from "react-icons/cg";
 import {
   FaChartLine,
   FaCrown,
@@ -13,7 +12,7 @@ import {
 } from "react-icons/fa";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { HiLogout, HiX } from "react-icons/hi";
-import { MdDashboard, MdSchool } from "react-icons/md";
+import { MdSchool } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useRole from "../../hooks/useRole";
@@ -21,7 +20,7 @@ import useRole from "../../hooks/useRole";
 const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { logOut } = useAuth();
+  const { logOut, user } = useAuth();
   const { role } = useRole();
   const [openDropdown, setOpenDropdown] = useState(null);
 
@@ -110,14 +109,14 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
   };
 
   const adminMenuItems = [
+    // {
+    //   path: "/admin-dashboard",
+    //   icon: MdDashboard,
+    //   label: "Dashboard",
+    //   description: "Overview & Analytics",
+    // },
     {
       path: "/admin-dashboard",
-      icon: MdDashboard,
-      label: "Dashboard",
-      description: "Overview & Analytics",
-    },
-    {
-      path: "/admin-dashboard/post-management/pending-all-post",
       icon: FaPoll,
       label: "Pending Post",
       description: "Post Management",
@@ -134,6 +133,12 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
       label: "Request A Quote",
       description: "Problem Solving",
     },
+    {
+      path: "/admin-dashboard/on-site-visits",
+      icon: FaPaintBrush,
+      label: "On-Site-Visits",
+      description: "Problem Solving",
+    },
   ];
 
   const userMenuItems = [
@@ -148,6 +153,12 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
       icon: FaTools,
       label: "Post History",
       description: "My Post History",
+    },
+    {
+      path: "/user-dashboard/create-a-quote-requsted",
+      icon: FaPaintBrush,
+      label: "Request A Quote",
+      description: "Problem Solving",
     },
     {
       path: "/history",
@@ -272,7 +283,7 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
               />
             </ul>
           </div>
-          <div>
+          {/* <div>
             <div className="flex items-center gap-2 mb-4">
               <CgProfile className="w-4 h-4 text-orange-600" />
               <h3 className="text-xs font-semibold text-orange-800 uppercase tracking-wider">
@@ -283,15 +294,19 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
             <ul className="space-y-2">
               <MenuItem
                 item={{
-                  path: "/my-profile",
+                  path:
+                    role === "admin"
+                      ? "/admin-dashboard/my-profile"
+                      : "/user-dashboard/my-profile",
                   icon: CgProfile,
-                  label: "Profile",
-                  description: "Personal Settings",
+                  label: role === "admin" ? " Profile" : " Profile",
+                  description:
+                    role === "admin" ? "Admin Settings" : "Personal Settings",
                 }}
                 onClick={handleMenuClick}
               />
             </ul>
-          </div>
+          </div> */}
 
           <div className="border-t border-orange-200 pt-4">
             <button

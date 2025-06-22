@@ -24,8 +24,17 @@ const getUserCollection = () => {
 const getBlogsCollection = () => {
   return client.db("Construction-Projects").collection("blog");
 };
+const getBookingCollection = () => {
+  return client.db("Construction-Projects").collection("bookings");
+};
+const getOnSiteVisitCollection = () => {
+  return client.db("Construction-Projects").collection("OnSiteVisit");
+};
+
 module.exports = {
   connectDB,
   getUserCollection,
   getBlogsCollection,
+  getBookingCollection,
+  getOnSiteVisitCollection,
 };

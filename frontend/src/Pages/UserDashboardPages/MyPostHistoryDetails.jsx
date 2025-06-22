@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import DOMPurify from "dompurify";
 import { useEffect, useRef, useState } from "react";
 import { BsArrowsMove } from "react-icons/bs";
@@ -31,104 +32,140 @@ const MyPostHistoryDetails = () => {
     fetchBlog();
   }, [id]);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return format(date, "MMMM d, yyyy, h:mm a"); // Example: June 15, 2025, 7:30 PM
+  };
 
-const handleDelete = async () => {
-  const result = await Swal.fire({
-    title: "Are you sure?",
-    text: "You won’t be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#d33",
-    cancelButtonColor: "#3085d6",
-    confirmButtonText: "Yes, delete it!",
-  });
+  const handleDelete = async () => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won’t be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    });
 
-  if (result.isConfirmed) {
-    try {
-      setActionLoading(true);
-      await axiosPublic.delete(`/blog/blog/${id}`);
+    if (result.isConfirmed) {
+      try {
+        setActionLoading(true);
+        await axiosPublic.delete(`/blog/blog/${id}`);
 
-      await Swal.fire({
-        icon: "success",
-        title: "Deleted!",
-        text: "Your post has been successfully deleted.",
-        confirmButtonColor: "#d97706",
-      });
+        await Swal.fire({
+          icon: "success",
+          title: "Deleted!",
+          text: "Your post has been successfully deleted.",
+          confirmButtonColor: "#d97706",
+        });
 
-      navigate("/user-dashboard/my-post-history");
-    } catch (err) {
-      console.error("Delete failed", err);
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!",
-      });
-    } finally {
-      setActionLoading(false);
+        navigate("/user-dashboard/my-post-history");
+      } catch (err) {
+        console.error("Delete failed", err);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      } finally {
+        setActionLoading(false);
+      }
     }
-  }
-};
-
+  };
 
   const handleEdit = () => {
     navigate(`/user-dashboard/my-post-history-details/edit/${id}`);
+  };
+  const handleOnSiteVisit = () => {
+    navigate(`/user-dashboard/my-post-history-details/on/site/visit/${id}`);
+  };
+  const handleDefectClaim = () => {
+    navigate(`/user-dashboard/my-post-history-details/defect/claim/${id}`);
   };
 
   if (loading) return <LoadingSpinner />;
   if (!blog) return <div className="text-center p-5">No blog found.</div>;
 
   return (
-    <div className="max-w-7xl mx-auto p-2 space-y-10">
-      <TittleAnimation
-        tittle="Pending Blog Details"
-        subtittle="Admin Reviews"
-      />
+    <div>
+      <div className="max-w-7xl mx-auto p-2 space-y-10">
+        <TittleAnimation
+          tittle="Pending Blog Details"
+          subtittle="Admin Reviews"
+        />
 
-      <div className="bg-white border border-orange-100 rounded-xl shadow hover:shadow-md transition">
-        <ImageComparison before={blog.beforeImage} after={blog.afterImage} />
+        <div className="bg-white border border-orange-100 rounded-xl shadow hover:shadow-md transition">
+          <ImageComparison before={blog.beforeImage} after={blog.afterImage} />
 
-        <div className="p-4 space-y-4">
-          <div className="py-5">
-            <h2 className="text-xl font-semibold text-orange-700">
-              {blog.title}
-            </h2>
-          </div>
-          <div className="bg-orange-50 border-l-4  border-orange-400 shadow-md rounded-lg p-10 flex items-start gap-4 min-h-[250px] md:min-h-[300px]">
-            <img
-              src={blog.beforeImage}
-              alt="Client"
-              className="w-14 h-14 rounded-full object-cover"
-            />
-            <div>
-              <p className="font-semibold text-orange-600">{blog.authorName}</p>
-              <div className="text-yellow-500 text-sm mb-2">★★★★☆</div>
-              <p className="text-gray-700">{blog.review}</p>
+          <div className="p-4 space-y-4">
+            <div className="py-2">
+              <p className="text-sm text-orange-600 italic">
+                📅 Published on {formatDate(blog.createdAt)}
+              </p>
             </div>
-          </div>
-          <div className="pt-5">
-            <div
-              className="prose text-gray-700 max-w-none"
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(blog.content),
-              }}
-            />
-          </div>
+            <div className="py-5">
+              <h2 className="text-xl font-semibold text-orange-700">
+                {blog.title}
+              </h2>
+            </div>
+            <div className="bg-orange-50 border-l-4  border-orange-400 shadow-md rounded-lg p-10 flex items-start gap-4 min-h-[250px] md:min-h-[300px]">
+              <img
+                src={blog.beforeImage}
+                alt="Client"
+                className="w-14 h-14 rounded-full object-cover"
+              />
+              <div>
+                <p className="font-semibold text-orange-600">
+                  {blog.authorName}
+                </p>
+                <div className="text-yellow-500 text-sm mb-2">★★★★☆</div>
+                <p className="text-gray-700">{blog.review}</p>
+              </div>
+            </div>
+            <div className="pt-5">
+              <div
+                className="prose text-gray-700 max-w-none"
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(blog.content),
+                }}
+              />
+            </div>
 
-          {/* Actions */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 w-full py-10">          
-            <button
-              onClick={handleEdit}
-              className="w-full btn btn-base  lg:btn-lg bg-blue-500 hover:bg-blue-600 text-white"
-            >
-              <FaEdit className="mr-1" /> Edit
-            </button>
-            <button
-              onClick={handleDelete}
-              className="w-full btn btn-base lg:btn-lg bg-red-500 hover:bg-red-600 text-white"
-              disabled={actionLoading}
-            >
-              <FaTrash className="mr-1" /> Delete
-            </button>
+            {/* Actions */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 w-full py-10">
+              {blog.status === "pending" && (
+                <button
+                  onClick={handleEdit}
+                  className="w-full btn btn-base lg:btn-lg bg-blue-500 hover:bg-blue-600 text-white"
+                >
+                  <FaEdit className="mr-1" /> Edit
+                </button>
+              )}
+              <button
+                onClick={handleDelete}
+                className="w-full btn btn-base lg:btn-lg bg-red-500 hover:bg-red-600 text-white"
+                disabled={actionLoading}
+              >
+                <FaTrash className="mr-1" /> Delete
+              </button>
+              {blog.status === "accepted" && (
+                <button
+                  onClick={handleDefectClaim}
+                  className="w-full btn btn-base lg:btn-lg bg-orange-500 hover:bg-orange-600 text-white"
+                >
+                  <FaEdit className="mr-1" /> Defect Claim
+                </button>
+              )}
+              {blog.status === "accepted" && (
+                <button
+                  onClick={handleOnSiteVisit}
+                  className="w-full btn btn-base lg:btn-lg bg-orange-500 hover:bg-orange-600 text-white"
+                >
+                  <FaEdit className="mr-1" /> On Site Visit
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>

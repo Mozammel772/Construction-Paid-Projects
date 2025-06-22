@@ -3,8 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { toast } from "react-toastify";
-
+import Swal from "sweetalert2";
 import TittleAnimation from "../../components/TittleAnimation/TittleAnimation";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
@@ -25,7 +24,7 @@ const UserDashboard = () => {
 
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
-  console.log(user);
+
   const handleImageChange = (e, type) => {
     if (type === "before") setBeforeImage(e.target.files[0]);
     else if (type === "after") setAfterImage(e.target.files[0]);
@@ -50,8 +49,13 @@ const UserDashboard = () => {
 
   const onSubmit = async (data) => {
     setLoading(true);
+
     if (!editorContent || editorContent === "<p><br></p>") {
-      toast.error("Blog content cannot be empty.");
+      Swal.fire({
+        icon: "error",
+        title: "Empty Content!",
+        text: "Blog content cannot be empty.",
+      });
       setLoading(false);
       return;
     }
@@ -66,33 +70,94 @@ const UserDashboard = () => {
       const blogData = {
         title: data.title,
         category: data.category,
-        review: data.serviceReview,
+        review: data.review,
         content: editorContent,
         beforeImage: beforeImageUrl,
         afterImage: afterImageUrl,
         createdAt: new Date().toISOString(),
-        authorName: user.name,
-        authorEmail: user.email,
-        authorRole: user.role,
-        authorUrl: user.imageUrl,
+        name: user.name,
+        email: user.email,
+        role: user.role,
       };
+
       console.log(blogData);
+
       const res = await axiosPublic.post("/blog/blog", blogData);
+
       if (res.status === 200 || res.status === 201) {
-        toast.success("Blog post created successfully!");
+        Swal.fire({
+          icon: "success",
+          title: "Blog Created!",
+          text: "Your blog has been posted successfully.",
+          timer: 2000,
+          showConfirmButton: false,
+        });
         reset();
         setBeforeImage(null);
         setAfterImage(null);
         setEditorContent("");
       } else {
-        toast.error("Failed to create blog post.");
+        Swal.fire({
+          icon: "error",
+          title: "Failed!",
+          text: "Blog post creation failed.",
+        });
       }
     } catch (err) {
-      toast.error(err.message || "Something went wrong!");
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: err.message || "Something went wrong!",
+      });
     } finally {
       setLoading(false);
     }
   };
+
+  // const onSubmit = async (data) => {
+  //   setLoading(true);
+  //   if (!editorContent || editorContent === "<p><br></p>") {
+  //     toast.error("Blog content cannot be empty.");
+  //     setLoading(false);
+  //     return;
+  //   }
+
+  //   try {
+  //     let beforeImageUrl = "";
+  //     let afterImageUrl = "";
+
+  //     if (beforeImage) beforeImageUrl = await uploadImage(beforeImage);
+  //     if (afterImage) afterImageUrl = await uploadImage(afterImage);
+
+  //     const blogData = {
+  //       title: data.title,
+  //       category: data.category,
+  //       review: data.review,
+  //       content: editorContent,
+  //       beforeImage: beforeImageUrl,
+  //       afterImage: afterImageUrl,
+  //       createdAt: new Date().toISOString(),
+  //       name: user.name,
+  //       email: user.email,
+  //       role: user.role,
+  //     };
+  //     console.log(blogData);
+  //     const res = await axiosPublic.post("/blog/blog", blogData);
+  //     if (res.status === 200 || res.status === 201) {
+  //       toast.success("Blog post created successfully!");
+  //       reset();
+  //       setBeforeImage(null);
+  //       setAfterImage(null);
+  //       setEditorContent("");
+  //     } else {
+  //       toast.error("Failed to create blog post.");
+  //     }
+  //   } catch (err) {
+  //     toast.error(err.message || "Something went wrong!");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const quillModules = {
     toolbar: [
@@ -127,11 +192,11 @@ const UserDashboard = () => {
           {/* Title */}
           <div>
             <label className="block mb-1 text-base md:text-lg font-semibold text-orange-700">
-              Service Title :
+              Title :
             </label>
             <input
               type="text"
-              {...register("serviceReview", { required: "Title is required" })}
+              {...register("title", { required: "Title is required" })}
               className="input input-bordered w-full bg-orange-50 border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-200"
               placeholder="Enter blog title"
             />
@@ -145,7 +210,7 @@ const UserDashboard = () => {
           {/* Service Category */}
           <div>
             <label className="block mb-1  font-semibold text-orange-700 text-base md:text-lg">
-              Service Category :
+              Category :
             </label>
             <select
               {...register("category", {
@@ -167,11 +232,11 @@ const UserDashboard = () => {
           </div>
           <div>
             <label className="block mb-1 text-base md:text-lg font-semibold text-orange-700">
-              Service Reviews :
+              Reviews :
             </label>
             <textarea
               rows={4}
-              {...register("title", { required: "Review is required" })}
+              {...register("review", { required: "Review is required" })}
               className="textarea textarea-bordered w-full bg-orange-50 border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-200"
               placeholder="Write your review here..."
             />

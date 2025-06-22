@@ -4,6 +4,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import TittleAnimation from "../../../components/TittleAnimation/TittleAnimation";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import "./QuillCustom.css";
@@ -91,7 +92,14 @@ const PendingPostEdit = () => {
       };
 
       await axiosPublic.put(`/blog/blog/${id}`, updatedData);
-      navigate("/admin-dashboard/post-management/pending-all-post");
+     Swal.fire({
+            icon: "success",
+            title: "Post Updated",
+            text: "Your post has been successfully updated!",
+            confirmButtonColor: "#d97706",
+          }).then(() => {
+            navigate(`/admin-dashboard/post-management/pending-all-post-details/${id}`);
+          });
     } catch (err) {
       toast.error("Update failed. Try again.");
     } finally {

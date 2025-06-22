@@ -6,8 +6,9 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import AdminLayout from "../layout/AdminLayout";
 import MainLayout from "../layout/MainLayout";
 import UserLayout from "../layout/UserLayout";
-import AdminDashboard from "../Pages/AdminDashboard/AdminDashboard";
+import AdminQuotes from "../Pages/AdminDashboardPages/AdminQuotes/AdminQuotes";
 import AllUsers from "../Pages/AdminDashboardPages/AllUsers/AllUsers";
+import AdminOnSiteVisits from "../Pages/AdminDashboardPages/OnSiteVisits/OnSiteVisits";
 import PendingEditPost from "../Pages/AdminDashboardPages/PendingPostPages/PendingEditPost";
 import PendingPost from "../Pages/AdminDashboardPages/PendingPostPages/PendingPost";
 import PendingPostDetails from "../Pages/AdminDashboardPages/PendingPostPages/PendingPostDetails";
@@ -22,7 +23,10 @@ import DashboardRedirect from "../Pages/UserDashboardPages/DashboardRedirect";
 import EditMyPostHistory from "../Pages/UserDashboardPages/EditMyPostHistory";
 import MyPostHistory from "../Pages/UserDashboardPages/MyPostHistory";
 import MyPostHistoryDetails from "../Pages/UserDashboardPages/MyPostHistoryDetails";
+import OnSiteVisit from "../Pages/UserDashboardPages/OnSiteVisit";
+import Profile from "../Pages/UserDashboardPages/Profile";
 import UserDashboard from "../Pages/UserDashboardPages/UserDashboard";
+import Quote from "../Pages/UserQuotePages/Quote";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 import UserRoute from "./UserRouter";
@@ -44,7 +48,7 @@ export const routes = createBrowserRouter([
         path: "/portfolio-details/:id",
         element: <ProfilioDetails />,
       },
-     
+
       // Authentication
       {
         path: "/register",
@@ -92,12 +96,9 @@ export const routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <AdminDashboard />,
-      },
-      {
-        path: "post-management/pending-all-post",
         element: <PendingPost />,
       },
+
       {
         path: "/admin-dashboard/post-management/pending-all-post-details/:id",
         element: <PendingPostDetails />,
@@ -109,6 +110,14 @@ export const routes = createBrowserRouter([
       {
         path: "manage-users/all-users",
         element: <AllUsers />,
+      },
+      {
+        path: "request-a-quote",
+        element: <AdminQuotes />,
+      },
+      {
+        path: "on-site-visits",
+        element: <AdminOnSiteVisits />,
       },
       {
         path: "*",
@@ -144,6 +153,19 @@ export const routes = createBrowserRouter([
         path: "my-post-history-details/edit/:id",
         element: <EditMyPostHistory />,
       },
+      {
+        path: "create-a-quote-requsted",
+        element: <Quote />,
+      },
+      {
+        path: "my-post-history-details/on/site/visit/:id",
+        element: <OnSiteVisit />,
+      },
+      {
+        path: "my-post-history-details/edit/:id",
+        element: <Profile />,
+      },
+
       {
         path: "*",
         element: <ErrorPage />,

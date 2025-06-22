@@ -21,9 +21,14 @@ const MyPostHistory = () => {
       pending: { label: "Pending", bg: "bg-yellow-500" },
       rejected: { label: "Rejected", bg: "bg-red-500" },
     };
-    const current = statusMap[status] || { label: "Unknown", bg: "bg-gray-500" };
+    const current = statusMap[status] || {
+      label: "Unknown",
+      bg: "bg-gray-500",
+    };
     return (
-      <span className={`px-3 py-1 rounded-full text-white text-xs font-semibold ${current.bg}`}>
+      <span
+        className={`px-3 py-1 rounded-full text-white text-xs font-semibold ${current.bg}`}
+      >
         {current.label}
       </span>
     );
@@ -35,6 +40,8 @@ const MyPostHistory = () => {
       try {
         setLoading(true);
         const res = await axiosPublic.get(`/blog/blog?email=${user?.email}`);
+
+        console.log(res);
         setBlogs(res.data || []);
       } catch (err) {
         console.error("Failed to load blogs", err);
@@ -47,7 +54,7 @@ const MyPostHistory = () => {
   }, [user, axiosPublic]);
 
   if (loading) return <LoadingSpinner />;
-
+  console.log("ehdsa", user.email);
   return (
     <div className="max-w-7xl mx-auto p-4">
       <TittleAnimation
@@ -104,7 +111,9 @@ const MyPostHistory = () => {
                 <div className="card-actions pt-2">
                   <button
                     onClick={() =>
-                      navigate(`/user-dashboard/my-post-history-details/${blog._id}`)
+                      navigate(
+                        `/user-dashboard/my-post-history-details/${blog._id}`
+                      )
                     }
                     className="btn w-[95%] btn-base lg:btn-lg bg-orange-500 hover:bg-orange-600 text-white rounded-md px-4 py-2 mx-auto"
                   >
@@ -121,4 +130,3 @@ const MyPostHistory = () => {
 };
 
 export default MyPostHistory;
-
