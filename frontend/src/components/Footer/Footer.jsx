@@ -88,7 +88,7 @@ const Footer = () => {
       {/* Bottom copyright strip */}
       <div className="border-t border-gray-300 text-center text-sm p-4 bg-base-100">
         <p>
-          &copy; {currentYear} Mathematics || Developed by{" "}
+          &copy; {currentYear} AM DECO || Developed by{" "}
           <a
             href="https://www.facebook.com/mozammel.dev"
             target="_blank"

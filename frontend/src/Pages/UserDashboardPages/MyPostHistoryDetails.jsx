@@ -133,7 +133,7 @@ const MyPostHistoryDetails = () => {
             </div>
 
             {/* Actions */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 w-full py-10">
+            <div className="grid grid-cols-1 md:grid-cols-2  gap-5 w-full py-10">
               {blog.status === "pending" && (
                 <button
                   onClick={handleEdit}
@@ -149,14 +149,14 @@ const MyPostHistoryDetails = () => {
               >
                 <FaTrash className="mr-1" /> Delete
               </button>
-              {blog.status === "accepted" && (
+              {/* {blog.status === "accepted" && (
                 <button
                   onClick={handleDefectClaim}
                   className="w-full btn btn-base lg:btn-lg bg-orange-500 hover:bg-orange-600 text-white"
                 >
                   <FaEdit className="mr-1" /> Defect Claim
                 </button>
-              )}
+              )} */}
               {blog.status === "accepted" && (
                 <button
                   onClick={handleOnSiteVisit}

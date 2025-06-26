@@ -16,7 +16,7 @@ const TermsAndConditions = () => {
   return (
     <>
       <Helmet>
-        <title>Mathematics | Terms & Conditions</title>
+        <title>AM DECO | Terms & Conditions</title>
       </Helmet>
       <div className="px-2 py-5">
         <TittleAnimation tittle="Terms & Conditions"  subtittle="Follow Terms & Conditions"/>
@@ -28,7 +28,7 @@ const TermsAndConditions = () => {
           animate="visible"
           custom={1}
         >
-          Welcome to Mathematics
+          Welcome to AM DECO
         </motion.h1>
 
         <motion.p
@@ -40,12 +40,12 @@ const TermsAndConditions = () => {
         >
           By accessing and using our website at{" "}
           <a
-            href="https://Mathematicsonline.com"
+            href="https://AM DECOonline.com"
             className="text-blue-600 underline"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Mathematicsonline.com
+            AM DECOonline.com
           </a>
           , you agree to be bound by these terms and conditions. Please read them carefully.
         </motion.p>
@@ -69,7 +69,7 @@ const TermsAndConditions = () => {
           Intellectual Property
         </motion.h2>
         <motion.p className="mb-6 text-lg text-justify" variants={fadeUp} initial="hidden" animate="visible" custom={6}>
-          All content on Mathematics is protected by copyright and belongs to Mathematics or its licensors. You may use content for personal, non-commercial purposes only. You may not reproduce, sell, or redistribute any material.
+          All content on AM DECO is protected by copyright and belongs to AM DECO or its licensors. You may use content for personal, non-commercial purposes only. You may not reproduce, sell, or redistribute any material.
         </motion.p>
 
         <motion.h2 className="text-2xl font-semibold mb-4 flex items-center gap-2" variants={fadeUp} initial="hidden" animate="visible" custom={7}>
@@ -93,7 +93,7 @@ const TermsAndConditions = () => {
           Content Liability
         </motion.h2>
         <motion.p className="mb-6 text-lg text-justify" variants={fadeUp} initial="hidden" animate="visible" custom={12}>
-          We are not responsible for content that appears on external websites linking to us. You agree to defend us against claims arising from content on your site that links to Mathematics.
+          We are not responsible for content that appears on external websites linking to us. You agree to defend us against claims arising from content on your site that links to AM DECO.
         </motion.p>
 
         <motion.h2 className="text-2xl font-semibold mb-4 flex items-center gap-2" variants={fadeUp} initial="hidden" animate="visible" custom={13}>
@@ -109,7 +109,7 @@ const TermsAndConditions = () => {
           Disclaimer
         </motion.h2>
         <motion.p className="mb-6 text-lg text-justify" variants={fadeUp} initial="hidden" animate="visible" custom={16}>
-          We do not guarantee the accuracy, completeness, or availability of information on our site. Mathematics will not be liable for any damages resulting from the use of our website.
+          We do not guarantee the accuracy, completeness, or availability of information on our site. AM DECO will not be liable for any damages resulting from the use of our website.
         </motion.p>
 
         <motion.p
@@ -119,7 +119,7 @@ const TermsAndConditions = () => {
           animate="visible"
           custom={17}
         >
-          📘 Thank you for trusting Mathematics. If you have any questions about these terms, please contact us.
+          📘 Thank you for trusting AM DECO. If you have any questions about these terms, please contact us.
         </motion.p>
       </div>
     </>

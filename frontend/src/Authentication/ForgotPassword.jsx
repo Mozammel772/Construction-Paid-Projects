@@ -51,7 +51,7 @@ const ForgotPassword = () => {
   return (
     <div>
       <Helmet>
-        <title>Mathematics | Forgot-Password</title>
+        <title>AM DECO | Forgot-Password</title>
       </Helmet>
       <div className="flex justify-center items-center min-h-[70vh]">
         <div className="w-[90%] max-w-md bg-white shadow-xl rounded-xl border overflow-hidden border-indigo-100">

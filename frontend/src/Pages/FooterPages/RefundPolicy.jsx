@@ -15,7 +15,7 @@ const RefundPolicy = () => {
   return (
     <>
       <Helmet>
-        <title>Mathematics | Refund Policy</title>
+        <title>AM DECO | Refund Policy</title>
       </Helmet>
       <div className="px-2 py-6 max-w-4xl mx-auto">
         <TittleAnimation
@@ -30,7 +30,7 @@ const RefundPolicy = () => {
           animate="visible"
           custom={1}
         >
-          At <strong>Mathematics</strong>, we are committed to delivering
+          At <strong>AM DECO</strong>, we are committed to delivering
           high-quality educational content and a smooth learning experience. To
           ensure clarity and fairness for all users, please read our refund and
           return policy carefully.
@@ -91,10 +91,10 @@ const RefundPolicy = () => {
           <li>
             Refund requests must be submitted via email to{" "}
             <a
-              href="mailto:support@Mathematics.com"
+              href="mailto:support@AM DECO.com"
               className="text-blue-600 underline"
             >
-              support@Mathematics.com
+              support@AM DECO.com
             </a>{" "}
             along with payment details.
           </li>
@@ -121,7 +121,7 @@ const RefundPolicy = () => {
             downloaded, refund requests will not be accepted.
           </li>
           <li>
-            Mathematics reserves the right to <strong>deny refunds</strong> that
+            AM DECO reserves the right to <strong>deny refunds</strong> that
             do not comply with our policy.
           </li>
         </motion.ul>

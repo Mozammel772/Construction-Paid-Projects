@@ -62,7 +62,7 @@ const Login = () => {
   return (
     <div>
       <Helmet>
-        <title>Mathematics | Sign In</title>
+        <title>AM DECO | Sign In</title>
       </Helmet>
       <div className="flex justify-center items-center min-h-[70vh]">
         <div className="w-full max-w-xl bg-white shadow-2xl rounded-xl overflow-hidden border border-orange-100">

@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import {
-  Cookie,
-  FileLock,
-  Info,
-  LockKeyhole,
-  Phone,
-  RefreshCcw,
-  Share2,
-  User,
+    Cookie,
+    FileLock,
+    Info,
+    LockKeyhole,
+    Phone,
+    RefreshCcw,
+    Share2,
+    User,
 } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import TittleAnimation from "../../components/TittleAnimation/TittleAnimation";
@@ -38,7 +38,7 @@ const PrivacyPolicy = () => {
   return (
     <div>
       <Helmet>
-        <title>Mathematics | Privacy Policy</title>
+        <title>AM DECO | Privacy Policy</title>
       </Helmet>
       <div>
         <motion.div

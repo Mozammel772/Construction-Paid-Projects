@@ -116,7 +116,7 @@ const Register = () => {
   return (
     <div>
       <Helmet>
-        <title>Mathematics | Sign Up</title>
+        <title>AM DECO | Sign Up</title>
       </Helmet>
       <div className="flex justify-center items-center min-h-[80vh] py-6">
         <div className="w-full max-w-xl bg-white shadow-2xl rounded-xl overflow-hidden border border-orange-100">
