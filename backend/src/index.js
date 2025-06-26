@@ -22,7 +22,7 @@ const port = process.env.PORT || 9000;
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://construction-projects.onrender.com",
     credentials: true,
   })
 );

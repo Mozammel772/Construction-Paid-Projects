@@ -25,7 +25,7 @@ const Quote = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:9000/api/bookings",
+        "https://construction-project-l8m8.onrender.com/api/bookings",
         formData
       );
       Swal.fire({

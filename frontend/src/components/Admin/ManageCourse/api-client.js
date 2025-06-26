@@ -4,7 +4,7 @@
  * A utility class for interacting with the course management API
  */
 class CourseApiClient {
-    constructor(baseUrl = "http://localhost:9000") {
+    constructor(baseUrl = "https://construction-project-l8m8.onrender.com") {
         this.baseUrl = baseUrl
     }
 

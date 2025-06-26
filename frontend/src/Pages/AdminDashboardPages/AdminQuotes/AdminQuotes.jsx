@@ -10,7 +10,7 @@ const AdminQuotes = () => {
 
   const fetchQuotes = async () => {
     try {
-      const res = await axios.get("http://localhost:9000/api/bookings");
+      const res = await axios.get("https://construction-project-l8m8.onrender.com/api/bookings");
       setQuotes(res.data);
     } catch (error) {
       Swal.fire({
@@ -52,7 +52,7 @@ const AdminQuotes = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await axios.patch(`http://localhost:9000/api/bookings/${id}/status`, {
+        await axios.patch(`https://construction-project-l8m8.onrender.com/api/bookings/${id}/status`, {
           status: "solved",
         });
 

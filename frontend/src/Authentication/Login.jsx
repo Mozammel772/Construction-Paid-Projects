@@ -29,7 +29,6 @@ const Login = () => {
     try {
       const result = await signIn(data.email, data.password);
       const user = result.user;
-      console.log(user);
       await axiosPublic.post(
         "/auth/jwt",
         { email: user.email },

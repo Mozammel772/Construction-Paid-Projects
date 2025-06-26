@@ -3,12 +3,11 @@ import { useEffect, useState } from "react";
 import {
   FaChartLine,
   FaCrown,
-  FaHistory,
   FaPaintBrush,
   FaPoll,
   FaTools,
   FaUsers,
-  FaUserShield,
+  FaUserShield
 } from "react-icons/fa";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { HiLogout, HiX } from "react-icons/hi";
@@ -160,12 +159,7 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
       label: "Request A Quote",
       description: "Problem Solving",
     },
-    {
-      path: "/history",
-      icon: FaHistory,
-      label: "History",
-      description: "Activity Log",
-    },
+   
   ];
 
   const handleMenuClick = (path) => {

@@ -27,22 +27,16 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     // Prevent duplicate submissions
-    if (isSubmitting) {
-      console.log("Submission already in progress, ignoring duplicate call");
-      return;
-    }
 
     setIsSubmitting(true);
     setLoading(true);
     let firebaseUser = null;
 
     try {
-      console.log("Starting registration process...");
-
       // Step 1: Create Firebase User
       const result = await createUser(data.email, data.password);
       firebaseUser = result.user;
-      console.log("Firebase user created:", firebaseUser.uid);
+
       await updateUserProfile(data.fullName);
       // Step 2: Prepare user info for MongoDB (exclude password)
       const userInfo = {
@@ -52,27 +46,21 @@ const Register = () => {
         projectsName: data.projectsName || "",
       };
 
-      console.log("Sending user data to MongoDB:", userInfo);
-
       // Step 3: Save to MongoDB
       const res = await axiosPublic.post("/users/register", userInfo, {
         withCredentials: true,
       });
-
-      console.log("MongoDB response:", res.data);
 
       if (res.data?.success) {
         // ✅ Success Modal
         setModalMessage("Registration Successful!");
         setModalType("success");
         setIsModalVisible(true);
-        console.log("Registration completed successfully");
       } else {
         // ❌ MongoDB insertion failed
         console.error("MongoDB insertion failed:", res.data);
         if (firebaseUser) {
           await firebaseUser.delete();
-          console.log("Firebase user deleted due to MongoDB failure");
         }
         throw new Error("MongoDB insertion failed.");
       }
