@@ -11,7 +11,7 @@ const AdminOnSiteVisits = () => {
 
   const fetchVisits = async () => {
     try {
-      const res = await axios.get("http://localhost:9000/api/onsitevisits");
+      const res = await axios.get("https://construction-paid-projects-6aga.vercel.app/api/onsitevisits");
       setVisits(res.data);
     } catch {
       Swal.fire({
@@ -59,7 +59,7 @@ const AdminOnSiteVisits = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await axios.patch(`http://localhost:9000/api/onsitevisits/${id}/status`, {
+        await axios.patch(`https://construction-paid-projects-6aga.vercel.app/api/onsitevisits/${id}/status`, {
           status: "solved",
         });
 

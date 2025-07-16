@@ -11,7 +11,7 @@ const AdminGenerateToken = () => {
   const handleGenerateToken = async () => {
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:9000/token/generate-token");
+      const res = await axios.post("https://construction-paid-projects-6aga.vercel.app/token/generate-token");
       setToken(res.data.token);
       setExpiresAt(new Date(res.data.expiresAt).toLocaleString());
 

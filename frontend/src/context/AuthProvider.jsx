@@ -1,10 +1,10 @@
 import axios from "axios";
 import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-  updateProfile,
+    createUserWithEmailAndPassword,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    signOut,
+    updateProfile,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
@@ -62,14 +62,14 @@ const AuthProvider = ({ children }) => {
           });
 
           await axios.post(
-            `http://localhost:9000/auth/jwt`,
+            `https://construction-paid-projects-6aga.vercel.app/auth/jwt`,
             { email: refreshedUser.email },
             { withCredentials: true }
           );
         } else {
           setUser(null);
           await axios.get(
-            `http://localhost:9000/auth/logout`,
+            `https://construction-paid-projects-6aga.vercel.app/auth/logout`,
             {
               withCredentials: true,
             }
