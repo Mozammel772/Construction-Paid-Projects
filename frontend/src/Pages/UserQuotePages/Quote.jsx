@@ -42,8 +42,8 @@ const Quote = () => {
         phone: "",
         email: "",
         message: "",
-        email: user.email,
-        registerName: user.name,
+        // email: user.email,
+        // registerName: user.name,
       });
     } catch (err) {
       if (err.response?.status === 409) {
