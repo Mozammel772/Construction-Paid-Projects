@@ -30,6 +30,9 @@ const getBookingCollection = () => {
 const getOnSiteVisitCollection = () => {
   return client.db("Construction-Projects").collection("OnSiteVisit");
 };
+const getTokenCollection = () => {
+  return client.db("Construction-Projects").collection("Tokem");
+};
 
 module.exports = {
   connectDB,
@@ -37,4 +40,5 @@ module.exports = {
   getBlogsCollection,
   getBookingCollection,
   getOnSiteVisitCollection,
+  getTokenCollection
 };

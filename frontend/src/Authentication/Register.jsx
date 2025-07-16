@@ -1,7 +1,7 @@
 "use client";
 
 import Lottie from "lottie-react";
-import { Building } from "lucide-react";
+import { Building, Key } from "lucide-react";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Controller, useForm } from "react-hook-form";
@@ -43,6 +43,7 @@ const Register = () => {
         name: data.fullName,
         email: data.email,
         phone: data.phoneNumber,
+        token: data.token,
         projectsName: data.projectsName || "",
       };
 
@@ -384,6 +385,76 @@ const Register = () => {
                               className="text-green-600 text-sm mt-1 flex items-center"
                             >
                               Name is Valid
+                            </p>
+                          ) : null}
+                        </>
+                      );
+                    }}
+                  />
+                </div>
+                {/* projects Name */}
+
+                <div className="form-control">
+                  <label htmlFor="projectsName" className="label">
+                    <span className="label-text text-base mb-1 font-medium text-gray-700">
+                      Token :
+                    </span>
+                  </label>
+                  <Controller
+                    name="token"
+                    defaultValue=""
+                    control={control}
+                    rules={{
+                      required: "Token is required",
+                      minLength: {
+                        value: 10,
+                        message: "Token must be exactly 10 digits",
+                      },
+                      maxLength: {
+                        value: 10,
+                        message: "Token must be exactly 10 digits",
+                      },
+                      pattern: {
+                        value: /^\d{10}$/,
+                        message: "Token must be numeric and 10 digits long",
+                      },
+                    }}
+                    render={({ field, fieldState }) => {
+                      const { error } = fieldState;
+                      return (
+                        <>
+                          <div className="relative">
+                            <div className="absolute left-0 inset-y-0 flex items-center pl-3 pointer-events-none">
+                              <Key className="h-5 w-5 text-gray-400" />
+                            </div>
+                            <input
+                              {...field}
+                              id="token"
+                              placeholder="Enter your Token"
+                              className={`w-full pl-10 pr-3 py-3 border rounded-md text-gray-700 transition-colors hover:border-purple-300 focus:outline-none focus:ring-1 focus:ring-green-200 ${
+                                error
+                                  ? "border-red-500"
+                                  : field.value
+                                  ? "border-green-300"
+                                  : "border-gray-300"
+                              }`}
+                              aria-invalid={!!error}
+                              aria-describedby="token-feedback"
+                            />
+                          </div>
+                          {error ? (
+                            <p
+                              id="token-feedback"
+                              className="text-red-500 text-sm mt-1 flex items-center"
+                            >
+                              {error.message}
+                            </p>
+                          ) : field.value ? (
+                            <p
+                              id="token-feedback"
+                              className="text-green-600 text-sm mt-1 flex items-center"
+                            >
+                              Token is Valid
                             </p>
                           ) : null}
                         </>

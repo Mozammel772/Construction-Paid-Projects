@@ -10,6 +10,7 @@ const Quote = () => {
     time: "",
     name: "",
     phone: "",
+    email: "",
     message: "",
   });
 
@@ -25,7 +26,7 @@ const Quote = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://construction-project-l8m8.onrender.com/api/bookings",
+        "http://localhost:9000/api/bookings",
         formData
       );
       Swal.fire({
@@ -39,6 +40,7 @@ const Quote = () => {
         time: "",
         name: "",
         phone: "",
+        email: "",
         message: "",
         email: user.email,
         registerName: user.name,
@@ -64,8 +66,8 @@ const Quote = () => {
 
   console.log(formData)
   return (
-    <div className="min-h-screen bg-orange-50 flex items-center justify-center py-10 px-4">
-      <div className="w-full max-w-5xl mx-auto bg-white rounded-2xl shadow-lg p-8 border border-orange-200">
+    <div className="min-h-screen bg-orange-50 flex items-center justify-center py-10 px-2 md:px-4">
+      <div className="w-full max-w-5xl mx-auto bg-white rounded-xl shadow-lg p-5 md:p-8 border border-orange-200">
         <h2 className="text-2xl font-bold text-center text-orange-700 mb-6">
           Get a Quote
         </h2>
@@ -117,18 +119,33 @@ const Quote = () => {
             />
           </div>
 
-          {/* Phone */}
+          {/* phone */}
           <div>
             <label className="block font-medium text-orange-700 mb-1">
-              Phone Number
+              Phone
             </label>
             <input
-              type="tel"
+              type="phone"
               name="phone"
               value={formData.phone}
               onChange={handleChange}
               className="input input-bordered w-full bg-orange-50 border-orange-300"
-              placeholder="Enter your phone number"
+              placeholder="Enter your phone Number"
+              required
+            />
+          </div>
+          {/* Email */}
+          <div>
+            <label className="block font-medium text-orange-700 mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="input input-bordered w-full bg-orange-50 border-orange-300"
+              placeholder="Enter your email address"
               required
             />
           </div>

@@ -11,6 +11,7 @@ const userRouter = require("./routes/userRoutes");
 const blogRouter = require("./routes/blogRoutes");
 const bookingRouter = require("./routes/bookingRoutes");
 const onsiteVisitRoutes = require("./routes/onsiteVisitRoutes");
+const tokenRoutes = require("./routes/tokenRoutes")
 
 // Load environment variables from .env file
 dotenv.config();
@@ -22,7 +23,7 @@ const port = process.env.PORT || 9000;
 // Middleware
 app.use(
   cors({
-    origin: "https://construction-projects.onrender.com",
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
@@ -39,6 +40,7 @@ app.use("/users", userRouter);
 app.use("/blog", blogRouter);
 app.use("/api", bookingRouter);
 app.use("/api", onsiteVisitRoutes);
+app.use("/token", tokenRoutes);
 // Root route
 app.get("/", (req, res) => {
   res.send("🚀 Network Online Service Server is Running!");

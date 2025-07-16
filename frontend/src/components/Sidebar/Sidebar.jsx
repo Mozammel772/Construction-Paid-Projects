@@ -138,6 +138,12 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
       label: "On-Site-Visits",
       description: "Problem Solving",
     },
+    {
+      path: "/admin-dashboard/create-token",
+      icon: FaTools,
+      label: "create-token",
+      description: "Token",
+    },
   ];
 
   const userMenuItems = [

@@ -6,6 +6,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import AdminLayout from "../layout/AdminLayout";
 import MainLayout from "../layout/MainLayout";
 import UserLayout from "../layout/UserLayout";
+import AdminGenerateToken from "../Pages/AdminDashboardPages/AdminGenerateToken/AdminGenerateToken";
 import AdminQuotes from "../Pages/AdminDashboardPages/AdminQuotes/AdminQuotes";
 import AllUsers from "../Pages/AdminDashboardPages/AllUsers/AllUsers";
 import AdminOnSiteVisits from "../Pages/AdminDashboardPages/OnSiteVisits/OnSiteVisits";
@@ -118,6 +119,10 @@ export const routes = createBrowserRouter([
       {
         path: "on-site-visits",
         element: <AdminOnSiteVisits />,
+      },
+      {
+        path: "create-token",
+        element: <AdminGenerateToken />,
       },
       {
         path: "*",

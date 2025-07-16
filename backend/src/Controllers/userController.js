@@ -1,25 +1,63 @@
 const moment = require("moment");
-const { getUserCollection } = require("../config/db");
+const { getUserCollection, getTokenCollection } = require("../config/db");
 const { ObjectId } = require("mongodb");
 const userCollection = getUserCollection();
 const admin = require("../config/firebaseAdmin");
 
 const registerUser = async (req, res) => {
   const user = req.body;
+  const tokenCollection = getTokenCollection();
+  const userCollection = getUserCollection();
+
   try {
+    // 1. Validate Token
+    const { token } = user;
+    if (!token) {
+      return res.status(400).send({
+        success: false,
+        message: "Token is required for registration.",
+      });
+    }
+
+    // Find token in DB
+    const dbToken = await tokenCollection.findOne({ token });
+
+    if (!dbToken) {
+      return res.status(400).send({
+        success: false,
+        message: "Invalid token.",
+      });
+    }
+
+    if (dbToken.used) {
+      return res.status(400).send({
+        success: false,
+        message: "Token already used.",
+      });
+    }
+
+    const now = new Date();
+    if (dbToken.expiresAt < now) {
+      return res.status(400).send({
+        success: false,
+        message: "Token expired.",
+      });
+    }
+
+    // 2. Check if user exists
     const existingUser = await userCollection.findOne({ email: user.email });
 
     if (existingUser) {
       if (!existingUser.name && !existingUser.phone) {
-        console.log("Updating partial user record with complete information");
-
+        // Partial user - update info and assign role
         const totalUsers = await userCollection.estimatedDocumentCount();
-        const role = totalUsers === 1 ? "admin" : "user"; // 
+        const role = totalUsers === 1 ? "admin" : "user";
 
         const updatedUser = {
           name: user.name,
           email: user.email,
           phone: user.phone,
+          token: user.token,
           projectsName: user.projectsName || "",
           createdAt: moment().format("YYYY-MM-DD HH:mm:ss"),
           role,
@@ -27,10 +65,14 @@ const registerUser = async (req, res) => {
           lastActive: Date.now(),
         };
 
-        const result = await userCollection.updateOne(
+        await userCollection.updateOne(
           { email: user.email },
           { $set: updatedUser }
         );
+
+        // Mark token as used
+        await tokenCollection.updateOne({ token }, { $set: { used: true } });
+
         return res.send({
           success: true,
           message: "User registration completed",
@@ -43,7 +85,7 @@ const registerUser = async (req, res) => {
       }
     }
 
-    // No existing user, create new one
+    // 3. Create new user
     const totalUsers = await userCollection.estimatedDocumentCount();
     const role = totalUsers === 0 ? "admin" : "user";
 
@@ -51,18 +93,22 @@ const registerUser = async (req, res) => {
       name: user.name,
       email: user.email,
       phone: user.phone,
-      ProjectsName: user.ProjectsName || "",
+      token: user.token,
+      projectsName: user.projectsName || "",
       createdAt: moment().format("YYYY-MM-DD HH:mm:ss"),
       role,
-      imageUrl: "https://i.ibb.co/4Vg7qxJ/4042356.png",
+      imgUrl: "https://i.ibb.co/4Vg7qxJ/4042356.png",
       lastActive: Date.now(),
     };
 
-    const result = await userCollection.insertOne(newUser);
-    res.send({ success: true, insertedId: result.insertedId });
+    await userCollection.insertOne(newUser);
+
+    // Mark token as used
+    await tokenCollection.updateOne({ token }, { $set: { used: true } });
+
+    res.send({ success: true, message: "User registered successfully" });
   } catch (error) {
     console.error("Registration error:", error);
-
     if (error.code === 11000) {
       return res.status(400).send({
         success: false,
@@ -76,6 +122,79 @@ const registerUser = async (req, res) => {
     });
   }
 };
+
+// const registerUser = async (req, res) => {
+//   const user = req.body;
+//   try {
+//     const existingUser = await userCollection.findOne({ email: user.email });
+
+//     if (existingUser) {
+//       if (!existingUser.name && !existingUser.phone) {
+//         console.log("Updating partial user record with complete information");
+
+//         const totalUsers = await userCollection.estimatedDocumentCount();
+//         const role = totalUsers === 1 ? "admin" : "user"; //
+
+//         const updatedUser = {
+//           name: user.name,
+//           email: user.email,
+//           phone: user.phone,
+//           projectsName: user.projectsName || "",
+//           createdAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+//           role,
+//           imgUrl: "https://i.ibb.co/4Vg7qxJ/4042356.png",
+//           lastActive: Date.now(),
+//         };
+
+//         const result = await userCollection.updateOne(
+//           { email: user.email },
+//           { $set: updatedUser }
+//         );
+//         return res.send({
+//           success: true,
+//           message: "User registration completed",
+//         });
+//       } else {
+//         return res.status(400).send({
+//           success: false,
+//           message: "User already exists",
+//         });
+//       }
+//     }
+
+//     // No existing user, create new one
+//     const totalUsers = await userCollection.estimatedDocumentCount();
+//     const role = totalUsers === 0 ? "admin" : "user";
+
+//     const newUser = {
+//       name: user.name,
+//       email: user.email,
+//       phone: user.phone,
+//       ProjectsName: user.ProjectsName || "",
+//       createdAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+//       role,
+//       imageUrl: "https://i.ibb.co/4Vg7qxJ/4042356.png",
+//       lastActive: Date.now(),
+//     };
+
+//     const result = await userCollection.insertOne(newUser);
+//     res.send({ success: true, insertedId: result.insertedId });
+//   } catch (error) {
+//     console.error("Registration error:", error);
+
+//     if (error.code === 11000) {
+//       return res.status(400).send({
+//         success: false,
+//         message: "User already exists",
+//       });
+//     }
+
+//     res.status(500).send({
+//       success: false,
+//       message: "Internal server error during registration",
+//     });
+//   }
+// };
 
 const getUserRole = async (req, res) => {
   const email = req.params.email;

@@ -3,7 +3,7 @@ const { getBookingCollection } = require("../config/db");
 
 const createBooking = async (req, res) => {
   try {
-    const { date, time, name, phone, message } = req.body;
+    const { date, time, name, phone,email, message } = req.body;
     const bookingDateTime = new Date(`${date}T${time}`);
 
     const bookingsCollection = getBookingCollection("bookings");
@@ -27,6 +27,7 @@ const createBooking = async (req, res) => {
       bookingDateTime,
       name,
       phone,
+      email,
       status: "unsolved",
       message,
       createdAt: new Date(),

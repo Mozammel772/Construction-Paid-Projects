@@ -1,4 +1,4 @@
-import { FaFacebook, FaPhoneAlt, FaYoutube } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail, MdLocationOn } from "react-icons/md";
 import { Link } from "react-router-dom";
 import logo from "../../../public/icon.jpg";
@@ -7,9 +7,9 @@ const Footer = () => {
 
   return (
     <footer className="bg-orange-50 mt-10">
-      <div className="footer max-w-7xl mx-auto px-5 py-12 grid grid-cols-1 md:grid-cols-3 gap-10 text-base-content ">
+      <div className="footer max-w-7xl mx-auto px-5 py-12 grid grid-cols-1 md:grid-cols-2 gap-10 text-base-content ">
         {/* Logo & Contact Info */}
-        <div>
+        <div className="ml-5">
           <img src={logo} alt="Logo" className="h-12 mb-2" />
           <p className="mb-4 font-bold uppercase text-base">Office Address</p>
 
@@ -59,30 +59,8 @@ const Footer = () => {
           </Link>
         </div>
 
-        {/* Social Media Links */}
-        <div>
-          <h2 className="footer-title mb-4 text-base">Follow Us</h2>
-          <div className="flex gap-4">
-            <a
-              href="https://facebook.com/yourpage"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="text-blue-600 text-2xl hover:text-blue-800 transition"
-            >
-              <FaFacebook />
-            </a>
-            <a
-              href="https://youtube.com/yourchannel"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="YouTube"
-              className="text-red-600 text-2xl hover:text-red-800 transition"
-            >
-              <FaYoutube />
-            </a>
-          </div>
-        </div>
+       
+       
       </div>
 
       {/* Bottom copyright strip */}

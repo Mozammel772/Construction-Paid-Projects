@@ -16,7 +16,7 @@ const getNavigationLinks = (user) => {
     baseLinks.push({ title: "Dashboard", link: "/dashboard" });
   }
 
-  baseLinks.push({ title: "Contact", link: "/contact" });
+  // baseLinks.push({ title: "Contact", link: "/contact" });
 
   return baseLinks;
 };
@@ -89,6 +89,7 @@ const Navbar = () => {
           ))}
 
           {/* Login (only if not logged in) */}
+         
           {!user && (
             <Link
               to="/login"
@@ -162,6 +163,7 @@ const Navbar = () => {
               ))}
 
               {/* Login (only if not logged in) */}
+            
               {!user && (
                 <Link
                   to="/login"

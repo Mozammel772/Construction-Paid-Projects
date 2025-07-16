@@ -62,14 +62,14 @@ const AuthProvider = ({ children }) => {
           });
 
           await axios.post(
-            `https://construction-project-l8m8.onrender.com/auth/jwt`,
+            `http://localhost:9000/auth/jwt`,
             { email: refreshedUser.email },
             { withCredentials: true }
           );
         } else {
           setUser(null);
           await axios.get(
-            `https://construction-project-l8m8.onrender.com/auth/logout`,
+            `http://localhost:9000/auth/logout`,
             {
               withCredentials: true,
             }

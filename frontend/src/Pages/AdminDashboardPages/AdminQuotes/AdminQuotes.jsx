@@ -10,7 +10,7 @@ const AdminQuotes = () => {
 
   const fetchQuotes = async () => {
     try {
-      const res = await axios.get("https://construction-project-l8m8.onrender.com/api/bookings");
+      const res = await axios.get("http://localhost:9000/api/bookings");
       setQuotes(res.data);
     } catch (error) {
       Swal.fire({
@@ -52,7 +52,7 @@ const AdminQuotes = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await axios.patch(`https://construction-project-l8m8.onrender.com/api/bookings/${id}/status`, {
+        await axios.patch(`http://localhost:9000/api/bookings/${id}/status`, {
           status: "solved",
         });
 
@@ -105,6 +105,7 @@ const AdminQuotes = () => {
                 <th className="p-3">Time</th>
                 <th className="p-3">Name</th>
                 <th className="p-3">Phone</th>
+                <th className="p-3">Email</th>
                 <th className="p-3">Message</th>
                 <th className="p-3">Status</th>
                 <th className="p-3">Action</th>
@@ -136,6 +137,7 @@ const AdminQuotes = () => {
                       <span className="text-green-600 text-xs">Copied!</span>
                     )}
                   </td>
+                  <td className="p-3">{quote.email}</td>
                   <td className="p-3">{quote.message}</td>
                   <td className="p-3">
                     <span
