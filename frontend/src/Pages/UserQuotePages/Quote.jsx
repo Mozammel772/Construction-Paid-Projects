@@ -26,7 +26,7 @@ const Quote = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://construction-paid-projects-6aga.vercel.app/api/bookings",
+        "http://localhost:9000/api/bookings",
         formData
       );
       Swal.fire({

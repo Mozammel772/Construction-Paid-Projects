@@ -4,7 +4,7 @@
  * A utility class for interacting with the course management API
  */
 class CourseApiClient {
-    constructor(baseUrl = "https://construction-paid-projects-6aga.vercel.app") {
+    constructor(baseUrl = "http://localhost:9000") {
         this.baseUrl = baseUrl
     }
 

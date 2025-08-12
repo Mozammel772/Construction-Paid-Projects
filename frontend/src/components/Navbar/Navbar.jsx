@@ -24,7 +24,7 @@ const getNavigationLinks = (user) => {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const { user } = useAuth();
+ const user = useAuth()
 
   const navigationLinks = getNavigationLinks(user);
 

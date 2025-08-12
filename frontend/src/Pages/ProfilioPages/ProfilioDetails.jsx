@@ -8,7 +8,7 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import TittleAnimation from "../../components/TittleAnimation/TittleAnimation";
 
 const fetchApprovedBlog = async (id) => {
-  const res = await axios.get(`https://construction-paid-projects-6aga.vercel.app/blog/blog/${id}`);
+  const res = await axios.get(`http://localhost:9000/blog/blog/${id}`);
   return res.data;
 };
 
