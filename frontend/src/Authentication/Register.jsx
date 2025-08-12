@@ -271,7 +271,6 @@ const Register = () => {
                     rules={{
                       required: "Phone number is required.",
                       pattern: {
-                        value: /^\d{11}$/,
                         message: "Invalid phone number",
                       },
                     }}
@@ -294,10 +293,6 @@ const Register = () => {
                                   ? "border-green-300"
                                   : "border-gray-300"
                               }`}
-                              value={`+88${field.value}`}
-                              onChange={(e) =>
-                                field.onChange(e.target.value.slice(3))
-                              }
                               aria-invalid={!!error}
                               aria-describedby="phoneNumber-feedback"
                             />
