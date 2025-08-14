@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const axiosSecure = axios.create({
-  baseURL: 'http://localhost:9000',
+  baseURL: 'https://api.amdeco-renovation.fr',
   withCredentials: true,
 });
 

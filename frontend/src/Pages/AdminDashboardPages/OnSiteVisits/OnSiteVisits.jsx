@@ -11,7 +11,7 @@ const AdminOnSiteVisits = () => {
 
   const fetchVisits = async () => {
     try {
-      const res = await axios.get("http://localhost:9000/api/onsitevisits");
+      const res = await axios.get("https://api.amdeco-renovation.fr/api/onsitevisits");
       setVisits(res.data);
     } catch {
       Swal.fire({
@@ -59,7 +59,7 @@ const AdminOnSiteVisits = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await axios.patch(`http://localhost:9000/api/onsitevisits/${id}/status`, {
+        await axios.patch(`https://api.amdeco-renovation.fr/api/onsitevisits/${id}/status`, {
           status: "solved",
         });
 
@@ -151,8 +151,8 @@ const AdminOnSiteVisits = () => {
                       handleStatusUpdate(visit._id, visit.status || "unsolved")
                     }
                     className={`btn btn-sm text-white ${visit.status === "solved"
-                        ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-orange-600 hover:bg-orange-700"
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-orange-600 hover:bg-orange-700"
                       }`}
                   >
                     {visit.status === "solved" ? "Solved" : "Mark as Solved"}

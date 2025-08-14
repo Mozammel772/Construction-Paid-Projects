@@ -238,7 +238,7 @@ const AuthProvider = ({ children }) => {
         } else {
           setUser(null);
           await axios.get(
-            `http://localhost:9000/auth/logout`,
+            `https://api.amdeco-renovation.fr/auth/logout`,
             {
               withCredentials: true,
             }

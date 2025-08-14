@@ -10,7 +10,7 @@ const AdminQuotes = () => {
 
   const fetchQuotes = async () => {
     try {
-      const res = await axios.get("http://localhost:9000/api/bookings");
+      const res = await axios.get("https://api.amdeco-renovation.fr/api/bookings");
       setQuotes(res.data);
     } catch (error) {
       Swal.fire({
@@ -52,7 +52,7 @@ const AdminQuotes = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await axios.patch(`http://localhost:9000/api/bookings/${id}/status`, {
+        await axios.patch(`https://api.amdeco-renovation.fr/api/bookings/${id}/status`, {
           status: "solved",
         });
 
@@ -142,8 +142,8 @@ const AdminQuotes = () => {
                   <td className="p-3">
                     <span
                       className={`badge ${quote.status === "solved"
-                          ? "badge-success"
-                          : "badge-warning"
+                        ? "badge-success"
+                        : "badge-warning"
                         }`}
                     >
                       {quote.status || "unsolved"}
