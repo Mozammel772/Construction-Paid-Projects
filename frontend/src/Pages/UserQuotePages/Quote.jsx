@@ -26,7 +26,7 @@ const Quote = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://api.amdeco-renovation.fr/api/bookings",
+        "http://localhost:9000/api/bookings",
         formData
       );
       Swal.fire({

@@ -235,16 +235,10 @@ const AuthProvider = ({ children }) => {
             uid: refreshedUser.uid,
             imageUrl: refreshedUser.photoURL || "",
           });
-
-          await axios.post(
-            `https://api.amdeco-renovation.fr/auth/jwt`,
-            { email: refreshedUser.email },
-            { withCredentials: true }
-          );
         } else {
           setUser(null);
           await axios.get(
-            `https://api.amdeco-renovation.fr/auth/logout`,
+            `http://localhost:9000/auth/logout`,
             {
               withCredentials: true,
             }

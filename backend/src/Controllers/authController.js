@@ -4,6 +4,7 @@ const { getUserCollection } = require("../config/db");
 
 
 const login = async (req, res) => {
+  console.log(req.body)
   const { email } = req.body;
 
   if (!email) {

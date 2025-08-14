@@ -5,7 +5,8 @@ const userCollection = getUserCollection();
 const admin = require("../config/firebaseAdmin");
 
 const registerUser = async (req, res) => {
-  const user = req.body;
+  const user = await req.body;
+  console.log("register", user)
   const tokenCollection = getTokenCollection();
   const userCollection = getUserCollection();
 

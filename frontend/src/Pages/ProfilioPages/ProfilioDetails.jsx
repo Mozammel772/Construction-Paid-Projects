@@ -8,7 +8,7 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import TittleAnimation from "../../components/TittleAnimation/TittleAnimation";
 
 const fetchApprovedBlog = async (id) => {
-  const res = await axios.get(`https://api.amdeco-renovation.fr/blog/blog/${id}`);
+  const res = await axios.get(`http://localhost:9000/blog/blog/${id}`);
   return res.data;
 };
 
@@ -27,7 +27,7 @@ const ProfilioDetails = () => {
   });
 
   if (isLoading)
-    return <LoadingSpinner/>
+    return <LoadingSpinner />
   if (isError)
     return (
       <div className="text-center text-red-600 p-5">Error: {error.message}</div>

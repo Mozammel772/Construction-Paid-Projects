@@ -19,6 +19,7 @@ dotenv.config();
 // Create express app
 const app = express();
 const port = process.env.PORT || 9000;
+app.use(express.json());
 
 // Middleware
 app.use(

@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-    baseURL: 'https://api.amdeco-renovation.fr'
-    
+    baseURL: 'http://localhost:9000'
+
 })
 
 const useAxiosPublic = () => {

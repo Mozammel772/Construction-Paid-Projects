@@ -11,7 +11,7 @@ const AdminOnSiteVisits = () => {
 
   const fetchVisits = async () => {
     try {
-      const res = await axios.get("https://api.amdeco-renovation.fr/api/onsitevisits");
+      const res = await axios.get("http://localhost:9000/api/onsitevisits");
       setVisits(res.data);
     } catch {
       Swal.fire({
@@ -59,7 +59,7 @@ const AdminOnSiteVisits = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await axios.patch(`https://api.amdeco-renovation.fr/api/onsitevisits/${id}/status`, {
+        await axios.patch(`http://localhost:9000/api/onsitevisits/${id}/status`, {
           status: "solved",
         });
 
@@ -83,7 +83,7 @@ const AdminOnSiteVisits = () => {
   };
 
   if (loading) {
-    return <LoadingSpinner/>
+    return <LoadingSpinner />
   }
 
   return (
@@ -140,9 +140,8 @@ const AdminOnSiteVisits = () => {
 
                 <div className="flex justify-between items-center pt-2">
                   <span
-                    className={`badge px-3 py-1 text-white text-xs ${
-                      visit.status === "solved" ? "bg-green-500" : "bg-yellow-500"
-                    }`}
+                    className={`badge px-3 py-1 text-white text-xs ${visit.status === "solved" ? "bg-green-500" : "bg-yellow-500"
+                      }`}
                   >
                     {visit.status || "unsolved"}
                   </span>
@@ -151,11 +150,10 @@ const AdminOnSiteVisits = () => {
                     onClick={() =>
                       handleStatusUpdate(visit._id, visit.status || "unsolved")
                     }
-                    className={`btn btn-sm text-white ${
-                      visit.status === "solved"
+                    className={`btn btn-sm text-white ${visit.status === "solved"
                         ? "bg-gray-400 cursor-not-allowed"
                         : "bg-orange-600 hover:bg-orange-700"
-                    }`}
+                      }`}
                   >
                     {visit.status === "solved" ? "Solved" : "Mark as Solved"}
                   </button>

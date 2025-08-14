@@ -29,11 +29,6 @@ const Login = () => {
     try {
       const result = await signIn(data.email, data.password);
       const user = result.user;
-      await axiosPublic.post(
-        "/auth/jwt",
-        { email: user.email },
-        { withCredentials: true }
-      );
       setModalMessage("Login Completed Successfully!");
       setModalType("success");
       setIsModalVisible(true);
@@ -104,13 +99,12 @@ const Login = () => {
                           <input
                             {...field}
                             id="email"
-                            className={`w-full pl-10 pr-3 py-3 border rounded-md text-gray-700 transition-colors hover:border-purple-300 focus:outline-none focus:ring-1 focus:ring-green-200 ${
-                              error
+                            className={`w-full pl-10 pr-3 py-3 border rounded-md text-gray-700 transition-colors hover:border-purple-300 focus:outline-none focus:ring-1 focus:ring-green-200 ${error
                                 ? "border-red-500"
                                 : field.value
-                                ? "border-green-300"
-                                : "border-gray-300"
-                            }`}
+                                  ? "border-green-300"
+                                  : "border-gray-300"
+                              }`}
                             placeholder="example@gmail.com"
                             aria-invalid={!!error}
                             aria-describedby="email-feedback"
@@ -167,13 +161,12 @@ const Login = () => {
                           {...field}
                           id="password"
                           type={showPassword ? "text" : "password"}
-                          className={`w-full pl-10 pr-3 py-3 border rounded-md text-gray-700 transition-colors hover:border-purple-300 focus:outline-none focus:ring-1 focus:ring-green-200 ${
-                            error
+                          className={`w-full pl-10 pr-3 py-3 border rounded-md text-gray-700 transition-colors hover:border-purple-300 focus:outline-none focus:ring-1 focus:ring-green-200 ${error
                               ? "border-red-500"
                               : field.value
-                              ? "border-green-300"
-                              : "border-gray-300"
-                          }`}
+                                ? "border-green-300"
+                                : "border-gray-300"
+                            }`}
                           placeholder="••••••••"
                           aria-invalid={!!error}
                           aria-describedby="password-feedback"
@@ -293,9 +286,8 @@ const Login = () => {
               </div>
 
               <h2
-                className={`text-xl font-bold ${
-                  modalType === "success" ? "text-orange-700" : "text-red-600"
-                }`}
+                className={`text-xl font-bold ${modalType === "success" ? "text-orange-700" : "text-red-600"
+                  }`}
               >
                 {modalType === "success" ? "Success!" : "Oops!"}
               </h2>
