@@ -1,7 +1,7 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
 require("dotenv").config();
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@construction-projects.z7ox4nb.mongodb.net/?retryWrites=true&w=majority&appName=Construction-Projects`;
+const uri = `mongodb+srv://Construction-Projects:dcw48n9B0WuIIFwp@construction-projects.z7ox4nb.mongodb.net/?retryWrites=true&w=majority&appName=Construction-Projects`;
 // const uri = "mongodb+srv://Construction-Projects:<db_password>@construction-projects.z7ox4nb.mongodb.net/?retryWrites=true&w=majority&appName=Construction-Projects";
 
 const client = new MongoClient(uri, {
