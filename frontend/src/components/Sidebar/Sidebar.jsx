@@ -127,10 +127,10 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
       description: "User Management",
     },
     {
-      path: "/admin-dashboard/request-a-quote",
+      path: "/admin-dashboard/reviws",
       icon: FaPaintBrush,
-      label: "Request A Quote",
-      description: "Problem Solving",
+      label: "Request A Review",
+      description: "Problem Review",
     },
     {
       path: "/admin-dashboard/on-site-visits",
@@ -143,6 +143,18 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
       icon: FaTools,
       label: "create-token",
       description: "Token",
+    },
+    {
+      path: "/admin-dashboard/before-after-image-upload",
+      icon: FaTools,
+      label: "Image Upload",
+      description: "Image Upload",
+    },
+    {
+      path: "/admin-dashboard/image-text-slider",
+      icon: FaTools,
+      label: "Image Text Slider",
+      description: "Image Text Slider",
     },
   ];
 
@@ -160,10 +172,16 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
       description: "My Post History",
     },
     {
-      path: "/user-dashboard/create-a-quote-requsted",
+      path: "/user-dashboard/on-site-visit",
       icon: FaPaintBrush,
-      label: "Request A Quote",
-      description: "Problem Solving",
+      label: " On Site Visit",
+      description: "On Site Visit",
+    },
+    {
+      path: "/user-dashboard/review",
+      icon: FaPaintBrush,
+      label: "Create Review",
+      description: "Post Your Review",
     },
    
   ];

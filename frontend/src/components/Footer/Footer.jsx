@@ -1,5 +1,3 @@
-import { FaPhoneAlt } from "react-icons/fa";
-import { MdEmail, MdLocationOn } from "react-icons/md";
 import { Link } from "react-router-dom";
 import logo from "../../../public/icon.jpg";
 const Footer = () => {
@@ -11,56 +9,43 @@ const Footer = () => {
         {/* Logo & Contact Info */}
         <div className="ml-5">
           <img src={logo} alt="Logo" className="h-12 mb-2" />
-          <p className="mb-4 font-bold uppercase text-base">Office Address</p>
+            <p className="mb-4 font-bold uppercase text-base">Office Address</p>
 
           <p className="flex items-center gap-2 mb-1">
-            <FaPhoneAlt /> 019111111
+            <FaPhoneAlt /> 0663277828
           </p>
           <p className="flex items-center gap-2 mb-1">
-            <MdEmail /> abc@gmail.com
+            <MdEmail /> contact@amdeco-renovation.fr
           </p>
           <p className="flex items-center gap-2">
-            <MdLocationOn /> 11/3 Dhaka, Bangladesh
+            <MdLocationOn /> France
           </p>
         </div>
 
         {/* Useful Links */}
         <div className="text-base">
-          <h2 className="footer-title mb-4 text-base text-black font-bold">Useful Links</h2>
+          <h2 className="footer-title mb-4 text-base text-black font-bold">
+            Useful Links
+          </h2>
           <Link
-            to="/about-us-more-information"
-            className="link link-hover block mb-2 text-center md:text-left "
-          >
-            About Us
-          </Link>
-          <Link
-            to="/contact-us"
+            to="/cookies-policy"
             className="link link-hover block mb-2 text-center md:text-left"
           >
-            Contact
+            Politique relative aux cookies 
           </Link>
           <Link
             to="/privacy-policy"
             className="link link-hover block mb-2 text-center md:text-left"
           >
-            Privacy Policy
+            Politique de confidentialité
           </Link>
           <Link
             to="/terms-and-conditions"
             className="link link-hover block mb-2 text-center md:text-left"
           >
-            Terms & Conditions
-          </Link>
-          <Link
-            to="/refund-policy"
-            className="link link-hover block text-center md:text-left"
-          >
-            Refund Policy
+            Conditions générales d’utilisation 
           </Link>
         </div>
-
-       
-       
       </div>
 
       {/* Bottom copyright strip */}
@@ -68,12 +53,12 @@ const Footer = () => {
         <p>
           &copy; {currentYear} AM DECO || Developed by{" "}
           <a
-            href="https://www.facebook.com/mozammel.dev"
+            href="https://github.com/Mozammel772"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:underline"
           >
-            Mozammel Hosen
+            Dev
           </a>
         </p>
       </div>

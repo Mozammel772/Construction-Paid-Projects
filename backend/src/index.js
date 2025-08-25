@@ -12,6 +12,9 @@ const blogRouter = require("./routes/blogRoutes");
 const bookingRouter = require("./routes/bookingRoutes");
 const onsiteVisitRoutes = require("./routes/onsiteVisitRoutes");
 const tokenRoutes = require("./routes/tokenRoutes")
+const reviewRoutes = require("./routes/reviewRoutes")
+const beforeAfterRoutes = require("./routes/beforeAfterRoutes")
+const imageTextSliderRoutes = require("./routes/imageTextSliderRoutes")
 
 // Load environment variables from .env file
 dotenv.config();
@@ -43,6 +46,9 @@ app.use("/blog", blogRouter);
 app.use("/api", bookingRouter);
 app.use("/api", onsiteVisitRoutes);
 app.use("/token", tokenRoutes);
+app.use("/review", reviewRoutes);
+app.use("/beforeafterimage", beforeAfterRoutes);
+app.use("/imagetextslider", imageTextSliderRoutes);
 // Root route
 app.get("/", (req, res) => {
   res.send("🚀 Network Online Service Server is Running!");

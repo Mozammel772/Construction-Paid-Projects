@@ -24,7 +24,7 @@ const getNavigationLinks = (user) => {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
- const user = useAuth()
+  const { user, logOut } = useAuth();
 
   const navigationLinks = getNavigationLinks(user);
 
@@ -51,11 +51,7 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex flex-1 justify-end gap-3 items-center font-bold text-lg">
           {navigationLinks.map((item, index) => (
-            <div
-              key={index}
-              className="relative"
-            
-            >
+            <div key={index} className="relative">
               {item.subLinks ? (
                 <div className="flex items-center cursor-pointer">
                   <span
@@ -89,19 +85,26 @@ const Navbar = () => {
           ))}
 
           {/* Login (only if not logged in) */}
-         
-          {!user && (
-            <Link
-              to="/login"
-              className={`inline-block px-4 py-2 rounded-md ${
-                location.pathname === "/login"
-                  ? "bg-orange-600 text-white"
-                  : "text-white bg-orange-600 hover:bg-orange-700"
-              }`}
-            >
-              Login
-            </Link>
-          )}
+
+          {user ? (
+                <span
+                  onClick={logOut}
+                  className="py-1.5 px-4 bg-red-100 hover:bg-red-200 text-red-600 rounded-md cursor-pointer"
+                >
+                  Logout
+                </span>
+              ) : (
+                <Link
+                  to="/login"
+                  className={`inline-block px-4 py-1.5 rounded-md ${
+                    location.pathname === "/login"
+                      ? "bg-orange-600 text-white"
+                      : "text-white bg-orange-600 hover:bg-orange-400"
+                  }`}
+                >
+                  Login
+                </Link>
+              )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -163,12 +166,22 @@ const Navbar = () => {
               ))}
 
               {/* Login (only if not logged in) */}
-            
-              {!user && (
+
+              {user ? (
+                <span
+                  onClick={logOut}
+                  className="py-1.5 px-4 bg-red-100 hover:bg-red-200 text-red-600 rounded-md cursor-pointer"
+                >
+                  Logout
+                </span>
+              ) : (
                 <Link
                   to="/login"
-                  onClick={handleMobileMenuClick}
-                  className="text-center py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-md font-semibold mt-5"
+                  className={`inline-block px-4 py-1.5 rounded-md w-20 ${
+                    location.pathname === "/login"
+                      ? "bg-orange-600 text-white"
+                      : "text-white bg-orange-600 hover:bg-orange-400"
+                  }`}
                 >
                   Login
                 </Link>

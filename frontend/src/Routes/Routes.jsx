@@ -8,14 +8,18 @@ import MainLayout from "../layout/MainLayout";
 import UserLayout from "../layout/UserLayout";
 import AdminGenerateToken from "../Pages/AdminDashboardPages/AdminGenerateToken/AdminGenerateToken";
 import AdminQuotes from "../Pages/AdminDashboardPages/AdminQuotes/AdminQuotes";
+import Reviews from "../Pages/AdminDashboardPages/allReviwsAdmin/Reviews";
+import ReviewsDetails from "../Pages/AdminDashboardPages/allReviwsAdmin/ReviewsDetails";
+import ReviwsEdit from "../Pages/AdminDashboardPages/allReviwsAdmin/ReviwsEdit";
 import AllUsers from "../Pages/AdminDashboardPages/AllUsers/AllUsers";
+import BeforeAfterImage from "../Pages/AdminDashboardPages/BeforeAfterImage/BeforeAfterImage";
+import ImageTextSlider from "../Pages/AdminDashboardPages/ImageTextSlider/ImageTextSlider";
 import AdminOnSiteVisits from "../Pages/AdminDashboardPages/OnSiteVisits/OnSiteVisits";
 import PendingEditPost from "../Pages/AdminDashboardPages/PendingPostPages/PendingEditPost";
 import PendingPost from "../Pages/AdminDashboardPages/PendingPostPages/PendingPost";
 import PendingPostDetails from "../Pages/AdminDashboardPages/PendingPostPages/PendingPostDetails";
-import Contact from "../Pages/FooterPages/Contact";
+import CookiesPolicy from "../Pages/FooterPages/CookiesPolicy";
 import PrivacyPolicy from "../Pages/FooterPages/PrivacyPolicy";
-import RefundPolicy from "../Pages/FooterPages/RefundPolicy";
 import TermsAndConditions from "../Pages/FooterPages/TermsAndConditions";
 import Home from "../Pages/HomePages/Home";
 import Profilio from "../Pages/ProfilioPages/Profilio";
@@ -26,6 +30,7 @@ import MyPostHistory from "../Pages/UserDashboardPages/MyPostHistory";
 import MyPostHistoryDetails from "../Pages/UserDashboardPages/MyPostHistoryDetails";
 import OnSiteVisit from "../Pages/UserDashboardPages/OnSiteVisit";
 import Profile from "../Pages/UserDashboardPages/Profile";
+import Reviwes from "../Pages/UserDashboardPages/Reviwes";
 import UserDashboard from "../Pages/UserDashboardPages/UserDashboard";
 import Quote from "../Pages/UserQuotePages/Quote";
 import AdminRoute from "./AdminRoute";
@@ -66,8 +71,8 @@ export const routes = createBrowserRouter([
 
       // footer
       {
-        path: "/contact-us",
-        element: <Contact />,
+        path: "/cookies-policy",
+        element: <CookiesPolicy />,
       },
       {
         path: "/privacy-policy",
@@ -76,10 +81,6 @@ export const routes = createBrowserRouter([
       {
         path: "/terms-and-conditions",
         element: <TermsAndConditions />,
-      },
-      {
-        path: "/refund-policy",
-        element: <RefundPolicy />,
       },
     ],
   },
@@ -101,11 +102,11 @@ export const routes = createBrowserRouter([
       },
 
       {
-        path: "/admin-dashboard/post-management/pending-all-post-details/:id",
+        path: "post-management/pending-all-post-details/:id",
         element: <PendingPostDetails />,
       },
       {
-        path: "/admin-dashboard/post-management/pending-all-post-edit/:id",
+        path: "post-management/pending-all-post-edit/:id",
         element: <PendingEditPost />,
       },
       {
@@ -123,6 +124,26 @@ export const routes = createBrowserRouter([
       {
         path: "create-token",
         element: <AdminGenerateToken />,
+      },
+      {
+        path: "reviws",
+        element: <Reviews />,
+      },
+      {
+        path: "reviws-details/:id",
+        element: <ReviewsDetails />,
+      },
+      {
+        path: "reviws-edit/:id",
+        element: <ReviwsEdit />,
+      },
+      {
+        path: "before-after-image-upload",
+        element: <BeforeAfterImage />,
+      },
+      {
+        path: "image-text-slider",
+        element: <ImageTextSlider/>
       },
       {
         path: "*",
@@ -163,12 +184,16 @@ export const routes = createBrowserRouter([
         element: <Quote />,
       },
       {
-        path: "my-post-history-details/on/site/visit/:id",
+        path: "on-site-visit",
         element: <OnSiteVisit />,
       },
       {
         path: "my-post-history-details/edit/:id",
         element: <Profile />,
+      },
+      {
+        path: "review",
+        element: <Reviwes />,
       },
 
       {

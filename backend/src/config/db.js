@@ -31,7 +31,16 @@ const getOnSiteVisitCollection = () => {
   return client.db("Construction-Projects").collection("OnSiteVisit");
 };
 const getTokenCollection = () => {
-  return client.db("Construction-Projects").collection("Tokem");
+  return client.db("Construction-Projects").collection("Token");
+};
+const getReviewsCollection = () => {
+  return client.db("Construction-Projects").collection("Reviws");
+};
+const getBeforeafterimageCollection = () => {
+  return client.db("Construction-Projects").collection("BeforeAfterImage ");
+};
+const getImageTextSliderRoutesCollection = () => {
+  return client.db("Construction-Projects").collection("ImageTextSlider ");
 };
 
 module.exports = {
@@ -40,5 +49,8 @@ module.exports = {
   getBlogsCollection,
   getBookingCollection,
   getOnSiteVisitCollection,
-  getTokenCollection
+  getTokenCollection,
+  getReviewsCollection,
+  getBeforeafterimageCollection,
+  getImageTextSliderRoutesCollection
 };

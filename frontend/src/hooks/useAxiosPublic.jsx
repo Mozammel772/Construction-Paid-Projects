@@ -1,12 +1,12 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-    baseURL: 'https://api.amdeco-renovation.fr'
-
-})
+  // baseURL: 'http://localhost:9000'
+  baseURL: "https://api.amdeco-renovation.fr",
+});
 
 const useAxiosPublic = () => {
-    return axiosPublic;
+  return axiosPublic;
 };
 
 export default useAxiosPublic;
