@@ -63,7 +63,7 @@ const MyPostHistory = () => {
       />
 
       {blogs.length === 0 ? (
-        <p className="text-gray-500 p-5">No blogs found.</p>
+        <p className="text-gray-500 p-5">Aucun blog trouvé.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
           {blogs.map((blog) => (
@@ -81,13 +81,13 @@ const MyPostHistory = () => {
 
               <div className="card-body p-4 space-y-3 bg-orange-50">
                 <p className="text-base text-gray-600">
-                  Title:{" "}
+                  Titre:{" "}
                   <span className="text-orange-600 font-medium">
                     {blog.title?.slice(0, 40)} ...
                   </span>
                 </p>
                 <p className="text-base text-gray-600">
-                  Category:{" "}
+                  Catégorie:{" "}
                   <span className="text-orange-600 font-medium">
                     {blog.category || "Uncategorized"}
                   </span>
@@ -95,11 +95,11 @@ const MyPostHistory = () => {
 
                 {/* ✅ Status Badge */}
                 <p className="text-base text-gray-600">
-                  Status: {getStatusBadge(blog.status)}
+                  Statut: {getStatusBadge(blog.status)}
                 </p>
 
                 <p className="text-base text-gray-600">
-                  Content:
+                  Contenu:
                   <div
                     className="line-clamp-3 prose max-w-none font-medium"
                     dangerouslySetInnerHTML={{
@@ -117,7 +117,7 @@ const MyPostHistory = () => {
                     }
                     className="btn w-[95%] btn-base lg:btn-lg bg-orange-500 hover:bg-orange-600 text-white rounded-md px-4 py-2 mx-auto"
                   >
-                    View Details
+                    Afficher les détails
                   </button>
                 </div>
               </div>

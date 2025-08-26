@@ -302,7 +302,7 @@ const ImageTextSlider = () => {
   return (
     <div className="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-md mt-10 border border-orange-400">
       <h2 className="text-2xl font-bold mb-4 text-center text-orange-600">
-        Image and Text Slider
+       Curseur d'image et de texte
       </h2>
 
       {/* Form */}
@@ -310,11 +310,11 @@ const ImageTextSlider = () => {
         {/* Title */}
         <div>
           <label className="block text-sm font-medium text-gray-700">
-            Title
+            Titre
           </label>
           <input
             type="text"
-            {...register("title", { required: "Title is required" })}
+            {...register("title", { required: "Titre requis" })}
             className="input input-bordered w-full bg-orange-50 border-orange-300 rounded-lg px-3 py-2"
             placeholder="Enter title"
           />
@@ -342,11 +342,11 @@ const ImageTextSlider = () => {
         {/* Button URL */}
         <div>
           <label className="block text-sm font-medium text-gray-700">
-            Button Url
+            URL du bouton
           </label>
           <input
             type="url"
-            {...register("buttonUrl", { required: "Button URL is required" })}
+            {...register("buttonUrl", { required: "URL du bouton requise" })}
             className="input input-bordered w-full bg-orange-50 border-orange-300 rounded-lg px-3 py-2"
             placeholder="Enter button url (e.g. https://example.com)"
           />
@@ -358,7 +358,7 @@ const ImageTextSlider = () => {
         {/* Image */}
         <div>
           <label className="block text-sm font-medium text-gray-700">
-            Upload Image <span className="text-red-500">*</span>
+            Télécharger l'image <span className="text-red-500">*</span>
           </label>
           <input
             type="file"
@@ -385,17 +385,17 @@ const ImageTextSlider = () => {
               : "bg-orange-500 hover:bg-orange-600"
           }`}
         >
-          {loading ? "Submitting..." : "Submit"}
+          {loading ? "Soumission..." : "Soumettre"}
         </button>
       </form>
 
       {/* ✅ History List */}
       <div className="mt-10">
         <h3 className="text-xl font-semibold mb-4 text-orange-600">
-          Slider History
+          Historique des curseurs
         </h3>
         {sliders.length === 0 ? (
-          <p className="text-gray-500">No slider data found.</p>
+          <p className="text-gray-500">Aucune donnée de curseur trouvée.</p>
         ) : (
           <ul className="space-y-4">
             {sliders.map((item) => (
@@ -411,7 +411,7 @@ const ImageTextSlider = () => {
                   onClick={() => handleDelete(item._id)}
                   className="btn btn-sm bg-red-500 hover:bg-red-600 text-white rounded-md"
                 >
-                  Delete
+                  Supprimer
                 </button>
               </li>
             ))}

@@ -8,12 +8,12 @@ import useAuth from "../../hooks/useAuth";
 
 const getNavigationLinks = (user) => {
   const baseLinks = [
-    { title: "Home", link: "/" },
-    { title: "Portfolio", link: "/portfolio" },
+    { title: "Maison", link: "/" },
+    { title: "Portefeuille", link: "/portfolio" },
   ];
 
   if (user) {
-    baseLinks.push({ title: "Dashboard", link: "/dashboard" });
+    baseLinks.push({ title: "Tableau de bord", link: "/dashboard" });
   }
 
   // baseLinks.push({ title: "Contact", link: "/contact" });
@@ -91,7 +91,7 @@ const Navbar = () => {
                   onClick={logOut}
                   className="py-1.5 px-4 bg-red-100 hover:bg-red-200 text-red-600 rounded-md cursor-pointer"
                 >
-                  Logout
+                  Se déconnecter
                 </span>
               ) : (
                 <Link
@@ -102,7 +102,7 @@ const Navbar = () => {
                       : "text-white bg-orange-600 hover:bg-orange-400"
                   }`}
                 >
-                  Login
+                  Se connecter
                 </Link>
               )}
         </div>
@@ -172,7 +172,7 @@ const Navbar = () => {
                   onClick={logOut}
                   className="py-1.5 px-4 bg-red-100 hover:bg-red-200 text-red-600 rounded-md cursor-pointer"
                 >
-                  Logout
+                  Se déconnecter
                 </span>
               ) : (
                 <Link
@@ -183,7 +183,7 @@ const Navbar = () => {
                       : "text-white bg-orange-600 hover:bg-orange-400"
                   }`}
                 >
-                  Login
+                  Se connecter
                 </Link>
               )}
             </div>

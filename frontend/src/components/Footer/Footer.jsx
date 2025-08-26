@@ -1,3 +1,5 @@
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdEmail, MdLocationOn } from "react-icons/md";
 import { Link } from "react-router-dom";
 import logo from "../../../public/icon.jpg";
 const Footer = () => {
@@ -9,7 +11,7 @@ const Footer = () => {
         {/* Logo & Contact Info */}
         <div className="ml-5">
           <img src={logo} alt="Logo" className="h-12 mb-2" />
-            <p className="mb-4 font-bold uppercase text-base">Office Address</p>
+            <p className="mb-4 font-bold uppercase text-base">Adresse du bureau</p>
 
           <p className="flex items-center gap-2 mb-1">
             <FaPhoneAlt /> 0663277828

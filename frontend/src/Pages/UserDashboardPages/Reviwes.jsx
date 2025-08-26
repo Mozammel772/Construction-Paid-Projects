@@ -81,18 +81,18 @@ const ReviewForm = () => {
   return (
     <div className="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-md mt-10 border border-orange-400">
       <h2 className="text-2xl font-bold mb-4 text-center text-orange-600">
-        Submit Your Review
+       Soumettez votre avis
       </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">Name</label>
+          <label className="block text-sm font-medium text-gray-700">Nom</label>
           <input
             type="text"
-            {...register("name", { required: "Name is required" })}
+            {...register("name", { required: "Nom est requis" })}
             className="input input-bordered w-full bg-orange-50 border-orange-300 rounded-lg px-3 py-2"
-            placeholder="Enter your name"
+            placeholder="Entrez votre nom"
           />
           {errors.name && (
             <p className="text-red-500 text-sm">{errors.name.message}</p>
@@ -101,14 +101,14 @@ const ReviewForm = () => {
 
         {/* Rating */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">Rating</label>
+          <label className="block text-sm font-medium text-gray-700">Évaluation</label>
           <select
-            {...register("rating", { required: "Rating is required" })}
+            {...register("rating", { required: "L'évaluation est requise" })}
             className="select select-bordered w-full bg-orange-50 border-orange-300 rounded-lg"
           >
-            <option value="">Select Rating</option>
+            <option value="">Sélectionner une évaluation</option>
             {[1, 2, 3, 4, 5].map((star) => (
-              <option key={star} value={star}>{star} Star</option>
+              <option key={star} value={star}>{star} Étoile</option>
             ))}
           </select>
           {errors.rating && (
@@ -121,9 +121,9 @@ const ReviewForm = () => {
           <label className="block text-sm font-medium text-gray-700">Message</label>
           <textarea
             rows={4}
-            {...register("message", { required: "Message is required" })}
+            {...register("message", { required: "Message est requis" })}
             className="textarea textarea-bordered w-full bg-orange-50 border-orange-300 rounded-lg px-3 py-2"
-            placeholder="Write your review..."
+            placeholder="Écrivez votre avis ici..."
           />
           {errors.message && (
             <p className="text-red-500 text-sm">{errors.message.message}</p>
@@ -132,7 +132,7 @@ const ReviewForm = () => {
 
         {/* Image */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">Upload Image (optional)</label>
+          <label className="block text-sm font-medium text-gray-700">Télécharger une image (facultatif)</label>
           <input
             type="file"
             accept="image/*"
@@ -156,7 +156,7 @@ const ReviewForm = () => {
             loading ? "bg-orange-300 cursor-not-allowed" : "bg-orange-500 hover:bg-orange-600"
           }`}
         >
-          {loading ? "Submitting..." : "Submit Review"}
+          {loading ? "Soumission en cours..." : "Soumettre l'avis"}
         </button>
       </form>
     </div>

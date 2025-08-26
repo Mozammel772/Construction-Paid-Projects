@@ -95,7 +95,7 @@ const PendingPostEdit = () => {
      Swal.fire({
             icon: "success",
             title: "Post Updated",
-            text: "Your post has been successfully updated!",
+            text: "Votre message a été mis à jour avec succès !",
             confirmButtonColor: "#d97706",
           }).then(() => {
             navigate(`/admin-dashboard/post-management/pending-all-post-details/${id}`);
@@ -124,29 +124,29 @@ const PendingPostEdit = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <TittleAnimation tittle="Edit Pending Post" subtittle="Admin Editing" />
+      <TittleAnimation tittle="Modifier le message en attente" subtittle="Modification par l'administrateur" />
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>
-          <label className="font-semibold text-orange-700">Title:</label>
+          <label className="font-semibold text-orange-700">Titre:</label>
           <input
             type="text"
-            {...register("title", { required: "Title is required" })}
+            {...register("title", { required: "Titre est requis" })}
             className="input input-bordered w-full bg-orange-50"
           />
           {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
         </div>
 
         <div>
-          <label className="font-semibold text-orange-700">Category:</label>
+          <label className="font-semibold text-orange-700">Catégorie:</label>
           <select
-            {...register("category", { required: "Category is required" })}
+            {...register("category", { required: "Catégorie est requise" })}
             className="select select-bordered w-full bg-orange-50"
           >
-            <option value="">Select</option>
-            <option value="Electrician">Electrician</option>
-            <option value="Plumber">Plumber</option>
-            <option value="Carpenter">Carpenter</option>
-            <option value="Painter">Painter</option>
+            <option value="">Sélectionner</option>
+            <option value="Electrician">Électricien</option>
+            <option value="Plumber">Plombier</option>
+            <option value="Carpenter">Charpentier</option>
+            <option value="Painter">Peintre</option>
           </select>
         </div>
 
@@ -154,13 +154,13 @@ const PendingPostEdit = () => {
           <label className="font-semibold text-orange-700">Review:</label>
           <textarea
             rows={3}
-            {...register("review", { required: "Review is required" })}
+            {...register("review", { required: "Review est requis" })}
             className="textarea textarea-bordered w-full bg-orange-50"
           />
         </div>
 
         <div>
-          <label className="font-semibold text-orange-700">Content:</label>
+          <label className="font-semibold text-orange-700">Contenu:</label>
           <ReactQuill
             theme="snow"
             value={editorContent}
@@ -172,13 +172,13 @@ const PendingPostEdit = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="text-orange-700 font-medium">Before Image:</label>
+            <label className="text-orange-700 font-medium">Avant l'image:</label>
             <input type="file" onChange={(e) => handleImageChange(e, "before")} className="file-input w-full" />
             {beforePreview && <img src={beforePreview} className="mt-3 rounded-md h-40 object-cover" />}
           </div>
 
           <div>
-            <label className="text-orange-700 font-medium">After Image:</label>
+            <label className="text-orange-700 font-medium">Après l'image:</label>
             <input type="file" onChange={(e) => handleImageChange(e, "after")} className="file-input w-full" />
             {afterPreview && <img src={afterPreview} className="mt-3 rounded-md h-40 object-cover" />}
           </div>
@@ -189,7 +189,7 @@ const PendingPostEdit = () => {
           className={`btn btn-base lg:btn-lg w-full text-white font-semibold ${loading ? "bg-orange-300" : "bg-orange-600 hover:bg-orange-700"}`}
           disabled={loading}
         >
-          {loading ? "Updating..." : "Update Post"}
+          {loading ? "Mise à jour..." : "Mettre à jour le post"}
         </button>
       </form>
     </div>

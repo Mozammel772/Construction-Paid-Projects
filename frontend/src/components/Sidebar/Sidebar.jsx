@@ -117,44 +117,44 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
     {
       path: "/admin-dashboard",
       icon: FaPoll,
-      label: "Pending Post",
-      description: "Post Management",
+      label: "Poste en attente",
+      description: "Gestion des publications",
     },
     {
       path: "/admin-dashboard/manage-users/all-users",
       icon: FaUsers,
-      label: "Manage Users",
-      description: "User Management",
+      label: "Gérer les utilisateurs",
+      description: "Gestion des utilisateurs",
     },
     {
       path: "/admin-dashboard/reviws",
       icon: FaPaintBrush,
-      label: "Request A Review",
-      description: "Problem Review",
+      label: "Demander une révision",
+      description: "Problème de révision",
     },
     {
       path: "/admin-dashboard/on-site-visits",
       icon: FaPaintBrush,
-      label: "On-Site-Visits",
-      description: "Problem Solving",
+      label: "Visites sur site",
+      description: "Résolution de problèmes",
     },
     {
       path: "/admin-dashboard/create-token",
       icon: FaTools,
-      label: "create-token",
-      description: "Token",
+      label: "Créer un jeton",
+      description: "Gestion des jetons",
     },
     {
       path: "/admin-dashboard/before-after-image-upload",
       icon: FaTools,
-      label: "Image Upload",
-      description: "Image Upload",
+      label: "Téléchargement d'images avant/après",
+      description: "Téléchargement d'images avant/après",
     },
     {
       path: "/admin-dashboard/image-text-slider",
       icon: FaTools,
-      label: "Image Text Slider",
-      description: "Image Text Slider",
+      label: "Curseur d'image et de texte",
+      description: "Curseur d'image et de texte",
     },
   ];
 
@@ -162,26 +162,26 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
     {
       path: "/user-dashboard",
       icon: FaTools,
-      label: "Work Post",
-      description: "Your Work Post",
+      label: "Poste de travail",
+      description: "Votre poste de travail",
     },
     {
       path: "/user-dashboard/my-post-history",
       icon: FaTools,
-      label: "Post History",
-      description: "My Post History",
+      label: "Historique des publications",
+      description: "Mon historique des publications",
     },
     {
       path: "/user-dashboard/on-site-visit",
       icon: FaPaintBrush,
-      label: " On Site Visit",
-      description: "On Site Visit",
+      label: "Visite sur site",
+      description: "Visite sur site",
     },
     {
       path: "/user-dashboard/review",
       icon: FaPaintBrush,
-      label: "Create Review",
-      description: "Post Your Review",
+      label: "Créer un avis",
+      description: "Publiez votre avis",
     },
    
   ];
@@ -226,8 +226,8 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
                 </h1>
                 <p className="text-orange-700 text-xs">
                   {role === "admin"
-                    ? "Management Console"
-                    : "Construction Dashboard"}
+                    ? "Console de gestion"
+                    : "Tableau de bord de construction"}
                 </p>
               </div>
             </div>
@@ -285,7 +285,7 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
             <div className="flex items-center gap-2 mb-4">
               <Home className="w-4 h-4 text-orange-600" />
               <h3 className="text-xs font-semibold text-orange-800 uppercase tracking-wider">
-                Home
+                Maison
               </h3>
               <div className="flex-1 h-px bg-gradient-to-r from-orange-300 to-transparent"></div>
             </div>
@@ -294,8 +294,8 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
                 item={{
                   path: "/",
                   icon: HomeIcon,
-                  label: "Home",
-                  description: "Go To Home",
+                  label: "Maison",
+                  description: "Aller à la maison",
                 }}
                 onClick={handleMenuClick}
               />
@@ -333,9 +333,9 @@ const Sidebar = ({ isSidebarOpen, handleSidebarToggle }) => {
             >
               <HiLogout className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
               <div className="flex-1">
-                <div className="font-medium text-sm">Sign Out</div>
+                <div className="font-medium text-sm">Se déconnecter</div>
                 <div className="text-xs text-orange-600 group-hover:text-orange-700">
-                  End your session
+                  Mettre fin à votre 
                 </div>
               </div>
             </button>

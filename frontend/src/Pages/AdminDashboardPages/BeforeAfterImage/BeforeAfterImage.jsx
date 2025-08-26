@@ -114,7 +114,7 @@ const BeforeAfterImage = () => {
             {/* Before */}
             <div>
               <label className="block mb-1 text-sm font-semibold text-orange-700">
-                Before Image
+                Avant l'image
               </label>
               <input
                 type="file"
@@ -134,7 +134,7 @@ const BeforeAfterImage = () => {
             {/* After */}
             <div>
               <label className="block mb-1 text-sm font-semibold text-orange-700">
-                After Image
+                Après l'image
               </label>
               <input
                 type="file"
@@ -161,14 +161,14 @@ const BeforeAfterImage = () => {
                 : "bg-orange-600 hover:bg-orange-700 text-white"
             }`}
           >
-            {loading ? "Posting..." : "Publish Blog"}
+            {loading ? "Soumission..." : "Publier le blog"}
           </button>
         </form>
       </div>
 
       {/* History */}
       <div className="max-w-5xl mx-auto mt-12">
-        <h2 className="text-xl font-bold mb-4">Before/After Image History</h2>
+        <h2 className="text-xl font-bold mb-4">Historique des images avant/après</h2>
         <div className="grid md:grid-cols-2 gap-6">
           {blogs.map((blog) => (
             <div
@@ -195,7 +195,7 @@ const BeforeAfterImage = () => {
                   onClick={() => handleDelete(blog._id)}
                   className="text-red-600 hover:text-red-800"
                 >
-                  Delete
+                  Supprimer
                 </button>
               </div>
             </div>

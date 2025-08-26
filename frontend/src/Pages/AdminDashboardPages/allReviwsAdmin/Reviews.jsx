@@ -40,20 +40,20 @@ const Reviews = () => {
   return (
     <div className="max-w-7xl mx-auto p-2">
       <TittleAnimation
-        tittle="Total Pending Reviws"
-        subtittle={`Today All Pending Reviws (${review.length})`}
+        tittle="Nombre total d'avis en attente"
+        subtittle={`Aujourd'hui, tous les avis en attente (${review.length})`}
       />
 
       {review.length === 0 ? (
         <div className="text-center p-5 space-y-4">
           <p className="text-gray-500">
-            No pending review found or failed to load.
+            Aucun avis en attente trouvé ou échec du chargement.
           </p>
           <button
             onClick={fetchPendingreview}
             className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition"
           >
-            🔁 Reload
+            🔁 Recharger
           </button>
         </div>
       ) : (
@@ -73,16 +73,16 @@ const Reviews = () => {
               </figure> */}
               <div className="card-body p-4 space-y-3 bg-orange-50">
                 <p className="text-base text-gray-600">
-                  Name:{" "}
+                  Nom:{" "}
                   <span className="text-orange-600 font-medium">
                     {blog.name?.slice(0, 40)} ...
                   </span>
                 </p>
                 <p className="text-sm text-orange-600 italic">
-                  📅 Published on {formatDate(blog.createdAt)}
+                  📅 Publié le {formatDate(blog.createdAt)}
                 </p>
                 <p className="mt-2">
-                  <strong>Status:</strong>{" "}
+                  <strong>Statut:</strong>{" "}
                   <span
                     className={`${
                       review.status === "accepted"
@@ -106,7 +106,7 @@ const Reviews = () => {
                     }
                     className="btn w-[95%] btn-base lg:btn-lg bg-orange-500 hover:bg-orange-600 text-white rounded-md px-4 py-2 mx-auto"
                   >
-                    View Details
+                    Voir les détails
                   </button>
                 </div>
               </div>

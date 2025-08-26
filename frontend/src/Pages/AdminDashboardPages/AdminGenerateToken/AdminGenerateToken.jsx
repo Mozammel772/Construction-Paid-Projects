@@ -17,8 +17,8 @@ const AdminGenerateToken = () => {
 
       Swal.fire({
         icon: "success",
-        title: "Token Generated!",
-        text: `Token: ${res.data.token}`,
+        title: "Jeton généré!",
+        text: `Jeton: ${res.data.token}`,
         confirmButtonColor: "#f97316", // orange-500
       });
     } catch (err) {
@@ -37,8 +37,8 @@ const AdminGenerateToken = () => {
       await navigator.clipboard.writeText(token);
       Swal.fire({
         icon: "success",
-        title: "Copied!",
-        text: "Token copied to clipboard.",
+        title: "Copié!",
+        text: "Jeton copié dans le presse-papiers.",
         timer: 1500,
         showConfirmButton: false,
       });
@@ -48,7 +48,7 @@ const AdminGenerateToken = () => {
   return (
     <div className="max-w-md mx-auto mt-10 bg-white p-6 rounded-2xl shadow-lg border border-orange-200">
       <h1 className="text-2xl font-bold mb-4 text-center text-orange-600">
-        Admin Token Generator
+        Générateur de jetons d'administration
       </h1>
 
       <button
@@ -59,7 +59,7 @@ const AdminGenerateToken = () => {
         {loading ? (
           <span className="loading loading-spinner loading-sm text-white"></span>
         ) : (
-          "Generate Token"
+          "Générer le jeton"
         )}
       </button>
 

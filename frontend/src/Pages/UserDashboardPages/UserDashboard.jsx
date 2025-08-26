@@ -179,24 +179,24 @@ const UserDashboard = () => {
   return (
     <div className="min-h-screen flex justify-center items-center  px-1 md:px-4 py-12 bg-white">
       <Helmet>
-        <title>Admin | Create Blog Post</title>
+        <title>Administrateur | Créer un article de blog</title>
       </Helmet>
 
       <div className="w-full max-w-7xl border border-orange-300 rounded-xl bg-white shadow-lg p-4 md:p-8">
         <TittleAnimation
-          tittle="Create Services Post"
-          subtittle="Services Post"
+          tittle="Créer un article de service"
+          subtittle="Poste de services"
         />
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Title */}
           <div>
             <label className="block mb-1 text-base md:text-lg font-semibold text-orange-700">
-              Title :
+              Titre :
             </label>
             <input
               type="text"
-              {...register("title", { required: "Title is required" })}
+              {...register("title", { required: "Titre est requis" })}
               className="input input-bordered w-full bg-orange-50 border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-200"
               placeholder="Enter blog title"
             />
@@ -210,19 +210,19 @@ const UserDashboard = () => {
           {/* Service Category */}
           <div>
             <label className="block mb-1  font-semibold text-orange-700 text-base md:text-lg">
-              Category :
+              Catégorie de service :
             </label>
             <select
               {...register("category", {
-                required: "Service category is required",
+                required: "Catégorie de service est requise",
               })}
               className="select select-bordered w-full bg-orange-50 border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-200"
             >
-              <option value="">Select a service</option>
-              <option value="Electrician">Electrician</option>
-              <option value="Plumber">Plumber</option>
-              <option value="Carpenter">Carpenter</option>
-              <option value="Painter">Painter</option>
+              <option value="">Sélectionner un service</option>
+              <option value="Electrician">Électricien</option>
+              <option value="Plumber">Plombier</option>
+              <option value="Carpenter">Charpentier</option>
+              <option value="Painter">Peintre</option>
             </select>
             {errors.category && (
               <p className="text-orange-600 text-sm mt-1">
@@ -232,11 +232,11 @@ const UserDashboard = () => {
           </div>
           <div>
             <label className="block mb-1 text-base md:text-lg font-semibold text-orange-700">
-              Reviews :
+              Avis :
             </label>
             <textarea
               rows={4}
-              {...register("review", { required: "Review is required" })}
+              {...register("review", { required: "Avis est requis" })}
               className="textarea textarea-bordered w-full bg-orange-50 border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-200"
               placeholder="Write your review here..."
             />
@@ -250,7 +250,7 @@ const UserDashboard = () => {
           {/* Editor */}
           <div>
             <label className="block mb-1 font-semibold text-orange-700 text-base md:text-lg">
-              Content :
+              Contenu :
             </label>
             <ReactQuill
               theme="snow"
@@ -265,7 +265,7 @@ const UserDashboard = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block mb-1 text-sm font-semibold text-orange-700">
-                Before Image
+                Avant Image
               </label>
               <input
                 type="file"
@@ -285,7 +285,7 @@ const UserDashboard = () => {
 
             <div>
               <label className="block mb-1 text-sm font-semibold text-orange-700">
-                After Image
+                Après Image
               </label>
               <input
                 type="file"
@@ -313,7 +313,7 @@ const UserDashboard = () => {
                 : "bg-orange-600 hover:bg-orange-700"
             }`}
           >
-            {loading ? "Posting..." : "Publish Blog"}
+            {loading ? "Publication en cours..." : "Publier le blog"}
           </button>
         </form>
       </div>

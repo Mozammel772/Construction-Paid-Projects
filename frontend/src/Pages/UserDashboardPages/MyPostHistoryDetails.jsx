@@ -91,8 +91,8 @@ const MyPostHistoryDetails = () => {
     <div>
       <div className="max-w-7xl mx-auto p-2 space-y-10">
         <TittleAnimation
-          tittle="Pending Blog Details"
-          subtittle="Admin Reviews"
+          tittle="Détails du blog en attente"
+          subtittle="Avis d'administrateur"
         />
 
         <div className="bg-white border border-orange-100 rounded-xl shadow hover:shadow-md transition">
@@ -101,7 +101,7 @@ const MyPostHistoryDetails = () => {
           <div className="p-4 space-y-4">
             <div className="py-2">
               <p className="text-sm text-orange-600 italic">
-                📅 Published on {formatDate(blog.createdAt)}
+                📅 Publié le {formatDate(blog.createdAt)}
               </p>
             </div>
             <div className="py-5">
@@ -139,7 +139,7 @@ const MyPostHistoryDetails = () => {
                   onClick={handleEdit}
                   className="w-full btn btn-base lg:btn-lg bg-blue-500 hover:bg-blue-600 text-white"
                 >
-                  <FaEdit className="mr-1" /> Edit
+                  <FaEdit className="mr-1" /> Éditer
                 </button>
               )}
               <button
@@ -147,7 +147,7 @@ const MyPostHistoryDetails = () => {
                 className="w-full btn btn-base lg:btn-lg bg-red-500 hover:bg-red-600 text-white"
                 disabled={actionLoading}
               >
-                <FaTrash className="mr-1" /> Delete
+                <FaTrash className="mr-1" /> Supprimer
               </button>
               {/* {blog.status === "accepted" && (
                 <button
@@ -162,7 +162,7 @@ const MyPostHistoryDetails = () => {
                   onClick={handleOnSiteVisit}
                   className="w-full btn btn-base lg:btn-lg bg-orange-500 hover:bg-orange-600 text-white"
                 >
-                  <FaEdit className="mr-1" /> On Site Visit
+                  <FaEdit className="mr-1" /> Visite sur place
                 </button>
               )}
             </div>

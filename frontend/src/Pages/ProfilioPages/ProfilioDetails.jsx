@@ -174,7 +174,7 @@ const ProfilioDetails = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-2 space-y-10">
-      <TittleAnimation tittle="Pending Blog Details" subtittle="Admin Reviews" />
+      <TittleAnimation tittle="Détails du blog en attente" subtittle="Avis d'administrateur" />
 
       <div className="bg-white border border-orange-200 rounded-xl shadow-2xl hover:shadow-md transition">
         {/* Image Comparison like ImageSlider */}

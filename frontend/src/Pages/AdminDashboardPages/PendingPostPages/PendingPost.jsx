@@ -34,20 +34,20 @@ const PendingPost = () => {
   return (
     <div className="max-w-7xl mx-auto p-2">
       <TittleAnimation
-        tittle="Total Pending Post"
-        subtittle={`Today All Pending Post (${blogs.length})`}
+        tittle="Total des messages en attente"
+        subtittle={`Aujourd'hui, tous les messages en attente (${blogs.length})`}
       />
 
       {blogs.length === 0 ? (
         <div className="text-center p-5 space-y-4">
           <p className="text-gray-500">
-            No pending blogs found or failed to load.
+            Aucun message en attente trouvé ou échec du chargement.
           </p>
           <button
             onClick={fetchPendingBlogs}
             className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition"
           >
-            🔁 Reload
+            🔁 Recharger
           </button>
         </div>
       ) : (
@@ -67,19 +67,19 @@ const PendingPost = () => {
               </figure>
               <div className="card-body p-4 space-y-3 bg-orange-50">
                 <p className="text-base text-gray-600">
-                  Tittle:{" "}
+                  Titre:{" "}
                   <span className="text-orange-600 font-medium">
                     {blog.title?.slice(0, 40)} ...
                   </span>
                 </p>
                 <p className="text-base text-gray-600">
-                  Category:{" "}
+                  Catégorie:{" "}
                   <span className="text-orange-600 font-medium">
-                    {blog.category || "Uncategorized"}
+                    {blog.category || "Non classé"}
                   </span>
                 </p>
                 <p className="text-base text-gray-600">
-                  Content:{" "}
+                  Contenu:{" "}
                   <div
                     className="line-clamp-3 prose max-w-none font-medium "
                     dangerouslySetInnerHTML={{
@@ -98,7 +98,7 @@ const PendingPost = () => {
                     }
                     className="btn w-[95%] btn-base lg:btn-lg bg-orange-500 hover:bg-orange-600 text-white rounded-md px-4 py-2 mx-auto"
                   >
-                    View Details
+                    Voir les détails
                   </button>
                 </div>
               </div>

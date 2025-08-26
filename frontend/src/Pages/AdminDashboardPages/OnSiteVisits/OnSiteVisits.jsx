@@ -87,13 +87,13 @@ const AdminOnSiteVisits = () => {
   }
 
   return (
-    <div className="bg-orange-50 min-h-screen p-6">
+    <div className="bg-orange-50 min-h-screen p-2 md:p-6">
       <h2 className="text-3xl font-bold text-center text-orange-700 mb-6">
-        On-Site Visit Requests
+       Demandes de visite sur place
       </h2>
 
       {visits.length === 0 ? (
-        <p className="text-center text-gray-500">No visits found.</p>
+        <p className="text-center text-gray-500">Aucune visite trouvée.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {visits.map((visit) => (
@@ -134,7 +134,7 @@ const AdminOnSiteVisits = () => {
                     <FaRegCopy />
                   </button>
                   {copiedId === visit._id && (
-                    <span className="text-green-600 text-xs">Copied!</span>
+                    <span className="text-green-600 text-xs">Copié!</span>
                   )}
                 </div>
 
@@ -143,19 +143,19 @@ const AdminOnSiteVisits = () => {
                     className={`badge px-3 py-1 text-white text-xs ${visit.status === "solved" ? "bg-green-500" : "bg-yellow-500"
                       }`}
                   >
-                    {visit.status || "unsolved"}
+                    {visit.status || "non résolu"}
                   </span>
                   <button
                     disabled={visit.status === "solved"}
                     onClick={() =>
-                      handleStatusUpdate(visit._id, visit.status || "unsolved")
+                      handleStatusUpdate(visit._id, visit.status || "non résolu")
                     }
                     className={`btn btn-sm text-white ${visit.status === "solved"
                       ? "bg-gray-400 cursor-not-allowed"
                       : "bg-orange-600 hover:bg-orange-700"
                       }`}
                   >
-                    {visit.status === "solved" ? "Solved" : "Mark as Solved"}
+                    {visit.status === "solved" ? "Résolu" : "Marquer comme Résolu"}
                   </button>
                 </div>
               </div>

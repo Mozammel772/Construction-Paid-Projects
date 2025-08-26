@@ -40,7 +40,7 @@ const ReviewsEdit = () => {
       Swal.fire({
         icon: "success",
         title: "Updated",
-        text: "Review has been successfully updated.",
+        text: "L'avis a été mis à jour avec succès.",
         confirmButtonColor: "#3085d6",
       }).then(() => {
         navigate(`/admin-dashboard/reviws-details/${id}`);
@@ -49,7 +49,7 @@ const ReviewsEdit = () => {
       Swal.fire({
         icon: "error",
         title: "Update Failed",
-        text: "Please try again later.",
+        text: "Veuillez réessayer plus tard.",
       });
     } finally {
       setLoading(false);
@@ -58,12 +58,12 @@ const ReviewsEdit = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-6">
-      <TittleAnimation tittle="Edit Review" subtittle="Admin Editing" />
+      <TittleAnimation tittle="Éditer l'avis" subtittle="Administration de l'édition" />
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">Name</label>
+          <label className="block text-sm font-medium text-gray-700">Nom</label>
           <input
             type="text"
             {...register("name", { required: "Name is required" })}
@@ -75,14 +75,14 @@ const ReviewsEdit = () => {
 
         {/* Rating */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">Rating</label>
+          <label className="block text-sm font-medium text-gray-700">Évaluation</label>
           <select
             {...register("rating", { required: "Rating is required" })}
             className="select select-bordered w-full bg-orange-50 border-orange-300 rounded-lg"
           >
-            <option value="">Select Rating</option>
+            <option value="">Sélectionner une évaluation</option>
             {[1,2,3,4,5].map(star => (
-              <option key={star} value={star}>{star} Star</option>
+              <option key={star} value={star}>{star} Étoile</option>
             ))}
           </select>
           {errors.rating && <p className="text-red-500 text-sm">{errors.rating.message}</p>}
@@ -107,7 +107,7 @@ const ReviewsEdit = () => {
             loading ? "bg-orange-300 cursor-not-allowed" : "bg-orange-500 hover:bg-orange-600"
           }`}
         >
-          {loading ? "Submitting..." : "Update Review"}
+          {loading ? "Soumission..." : "Mettre à jour l'avis"}
         </button>
       </form>
     </div>

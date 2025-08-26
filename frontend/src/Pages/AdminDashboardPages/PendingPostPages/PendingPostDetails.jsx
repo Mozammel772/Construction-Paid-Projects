@@ -43,7 +43,7 @@ const PendingPostDetails = () => {
       Swal.fire({
         icon: "success",
         title: "Approved!",
-        text: "Blog has been approved successfully.",
+        text: "Le blog a été approuvé avec succès.",
         confirmButtonColor: "#3085d6",
       });
       navigate("/admin-dashboard");
@@ -52,7 +52,7 @@ const PendingPostDetails = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Failed to approve blog.",
+        text: "Échec de l'approbation du blog.",
         confirmButtonColor: "#d33",
       });
     } finally {
@@ -67,7 +67,7 @@ const PendingPostDetails = () => {
       Swal.fire({
         icon: "success",
         title: "Rejected!",
-        text: "Blog has been rejected.",
+        text: "Le blog a été rejeté.",
         confirmButtonColor: "#3085d6",
       });
       navigate("/admin-dashboard");
@@ -76,7 +76,7 @@ const PendingPostDetails = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Failed to reject blog.",
+        text: "Échec du rejet du blog.",
         confirmButtonColor: "#d33",
       });
     } finally {
@@ -87,7 +87,7 @@ const PendingPostDetails = () => {
   const handleDelete = async () => {
     const result = await Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "Vous ne pourrez pas revenir en arrière!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
@@ -103,7 +103,7 @@ const PendingPostDetails = () => {
       Swal.fire({
         icon: "success",
         title: "Deleted!",
-        text: "Blog has been deleted.",
+        text: "Le blog a été supprimé.",
         confirmButtonColor: "#3085d6",
       });
       navigate("/admin-dashboard");
@@ -112,7 +112,7 @@ const PendingPostDetails = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Failed to delete blog.",
+        text: "Échec de la suppression du blog.",
         confirmButtonColor: "#d33",
       });
     } finally {
@@ -125,13 +125,13 @@ const PendingPostDetails = () => {
   };
 
   if (loading) return <LoadingSpinner />;
-  if (!blog) return <div className="text-center p-5">No blog found.</div>;
+  if (!blog) return <div className="text-center p-5">Aucun blog trouvé.</div>;
 
   return (
     <div className="max-w-7xl mx-auto p-4 space-y-10">
       <TittleAnimation
-        tittle="Pending Blog Details"
-        subtittle="Admin Reviews"
+        tittle="Détails du blog en attente"
+        subtittle="Avis d'administrateur sur le blog en attente"
       />
 
       <div className="bg-white border border-orange-100 rounded-xl shadow hover:shadow-md transition">
@@ -140,13 +140,13 @@ const PendingPostDetails = () => {
         <div className="p-6 space-y-4">
           <div className="py-2">
             <p className="text-sm text-orange-600 italic">
-              📅 Published on {formatDate(blog.createdAt)}
+              📅 Publié le {formatDate(blog.createdAt)}
             </p>
           </div>
           <div className="py-5">
-            <h1>Post Auther Information</h1>
+            <h1>Informations sur l'auteur du post</h1>
             <p className="text-base font-semibold text-orange-700">
-              Name : {blog.name}
+              Nom : {blog.name}
             </p>
             <p className="text-base font-semibold text-orange-700">
               Email : {blog.email}
@@ -187,27 +187,27 @@ const PendingPostDetails = () => {
               className="w-full btn btn-base lg:btn-lg bg-green-500 hover:bg-green-600 text-white"
               disabled={actionLoading}
             >
-              <FaCheck className="mr-1" /> Approve
+              <FaCheck className="mr-1" /> Approuver
             </button>
             <button
               onClick={handleReject}
               className="w-full btn btn-base lg:btn-lg bg-yellow-500 hover:bg-yellow-600 text-white"
               disabled={actionLoading}
             >
-              <FaTimes className="mr-1" /> Reject
+              <FaTimes className="mr-1" /> Rejeter
             </button>
             <button
               onClick={handleEdit}
               className="w-full btn btn-base  lg:btn-lg bg-blue-500 hover:bg-blue-600 text-white"
             >
-              <FaEdit className="mr-1" /> Edit
+              <FaEdit className="mr-1" /> Modifier
             </button>
             <button
               onClick={handleDelete}
               className="w-full btn btn-base lg:btn-lg bg-red-500 hover:bg-red-600 text-white"
               disabled={actionLoading}
             >
-              <FaTrash className="mr-1" /> Delete
+              <FaTrash className="mr-1" /> Supprimer
             </button>
           </div>
         </div>

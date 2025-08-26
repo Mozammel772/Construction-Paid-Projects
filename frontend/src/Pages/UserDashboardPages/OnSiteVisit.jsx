@@ -86,14 +86,15 @@ const OnSiteVisit = () => {
     <div className="min-h-screen bg-orange-50 flex items-center justify-center py-10 px-4">
       <div className="w-full max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-6 border border-orange-200">
         <h2 className="text-2xl font-bold text-center text-orange-700 mb-6">
-          Submit a Request
+         Soumettre une demande de visite sur site
+         Submit On-Site Visit Request
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Date */}
           <div>
             <label className="block text-orange-700 font-medium mb-1">
-              Select Date
+              Sélectionner la date
             </label>
             <input
               type="date"
@@ -109,7 +110,7 @@ const OnSiteVisit = () => {
           {/* Time */}
           <div>
             <label className="block text-orange-700 font-medium mb-1">
-              Select Time
+              Sélectionner l'heure
             </label>
             <input
               type="time"
@@ -125,7 +126,7 @@ const OnSiteVisit = () => {
           {/* Message */}
           <div>
             <label className="block text-orange-700 font-medium mb-1">
-              Message
+             Message pour demande de visite sur place
             </label>
             <textarea
               name="message"
@@ -141,7 +142,7 @@ const OnSiteVisit = () => {
           {/* Image Upload */}
           <div>
             <label className="block text-orange-700 font-medium mb-1">
-              Upload Image (optional)
+              Télécharger une image (facultatif)
             </label>
             <input
               type="file"
@@ -168,7 +169,7 @@ const OnSiteVisit = () => {
                 : "bg-orange-600 hover:bg-orange-700"
             }`}
           >
-            {loading ? "Submitting..." : "Submit Request"}
+            {loading ? "Soumission en cours..." : "Soumettre la demande"}
           </button>
         </form>
       </div>

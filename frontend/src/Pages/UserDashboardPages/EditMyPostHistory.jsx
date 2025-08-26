@@ -125,13 +125,13 @@ const EditMyPostHistory = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <TittleAnimation tittle="Edit My Post" subtittle="My Post Editing" />
+      <TittleAnimation tittle="Modifier mon message" subtittle="Modification de mon message" />
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>
-          <label className="font-semibold text-orange-700">Title:</label>
+          <label className="font-semibold text-orange-700">Titre:</label>
           <input
             type="text"
-            {...register("title", { required: "Title is required" })}
+            {...register("title", { required: "Titre est requis" })}
             className="input input-bordered w-full bg-orange-50"
           />
           {errors.title && (
@@ -140,30 +140,30 @@ const EditMyPostHistory = () => {
         </div>
 
         <div>
-          <label className="font-semibold text-orange-700">Category:</label>
+          <label className="font-semibold text-orange-700">Catégorie:</label>
           <select
-            {...register("category", { required: "Category is required" })}
+            {...register("category", { required: "Catégorie est requise" })}
             className="select select-bordered w-full bg-orange-50"
           >
-            <option value="">Select</option>
-            <option value="Electrician">Electrician</option>
-            <option value="Plumber">Plumber</option>
-            <option value="Carpenter">Carpenter</option>
-            <option value="Painter">Painter</option>
+            <option value="">Sélectionner</option>
+            <option value="Electrician">Électricien</option>
+            <option value="Plumber">Plombier</option>
+            <option value="Carpenter">Charpentier</option>
+            <option value="Painter">Peintre</option>
           </select>
         </div>
 
         <div>
-          <label className="font-semibold text-orange-700">Review:</label>
+          <label className="font-semibold text-orange-700">Récension:</label>
           <textarea
             rows={3}
-            {...register("review", { required: "Review is required" })}
+            {...register("review", { required: "Récension est requise" })}
             className="textarea textarea-bordered w-full bg-orange-50"
           />
         </div>
 
         <div>
-          <label className="font-semibold text-orange-700">Content:</label>
+          <label className="font-semibold text-orange-700">Contenu:</label>
           <ReactQuill
             theme="snow"
             value={editorContent}
@@ -175,7 +175,7 @@ const EditMyPostHistory = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="text-orange-700 font-medium">Before Image:</label>
+            <label className="text-orange-700 font-medium">Image Avant:</label>
             <input
               type="file"
               onChange={(e) => handleImageChange(e, "before")}
@@ -190,7 +190,7 @@ const EditMyPostHistory = () => {
           </div>
 
           <div>
-            <label className="text-orange-700 font-medium">After Image:</label>
+            <label className="text-orange-700 font-medium">Image Après:</label>
             <input
               type="file"
               onChange={(e) => handleImageChange(e, "after")}
@@ -212,7 +212,7 @@ const EditMyPostHistory = () => {
           }`}
           disabled={loading}
         >
-          {loading ? "Updating..." : "Update Post"}
+          {loading ? "Mise à jour..." : "Mettre à jour le message"}
         </button>
       </form>
     </div>

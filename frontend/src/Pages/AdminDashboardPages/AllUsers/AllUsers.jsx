@@ -72,10 +72,10 @@ const AllUsers = () => {
 
   return (
     <div className="p-4 w-full">
-  <h2 className="text-2xl font-bold mb-4 text-orange-700">All Users</h2>
+  <h2 className="text-2xl font-bold mb-4 text-orange-700">Tous les utilisateurs</h2>
 
   <div className="flex items-center gap-4 mb-4">
-    <label className="text-orange-700 font-medium">Show per page:</label>
+    <label className="text-orange-700 font-medium">Afficher par page :</label>
     <select
       value={limit}
       onChange={(e) => {
@@ -95,10 +95,10 @@ const AllUsers = () => {
       <thead className="bg-orange-600 text-white rounded-2xl mb-4">
         <tr>
           <th>#</th>
-          <th>Name</th>
+          <th>Nom</th>
           <th>Email</th>
-          <th>Role</th>
-          <th>Action</th>
+          <th>Rôle</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>

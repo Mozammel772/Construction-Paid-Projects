@@ -45,7 +45,7 @@ const ReviewsDetails = () => {
       Swal.fire({
         icon: "success",
         title: "Approved!",
-        text: "Review has been approved successfully.",
+        text: "L'avis a été approuvé avec succès.",
         confirmButtonColor: "#3085d6",
       });
       navigate("/admin-dashboard/reviws");
@@ -54,7 +54,7 @@ const ReviewsDetails = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Failed to approve review.",
+        text: "Échec de l'approbation de l'avis.",
         confirmButtonColor: "#d33",
       });
     } finally {
@@ -69,7 +69,7 @@ const ReviewsDetails = () => {
       Swal.fire({
         icon: "success",
         title: "Rejected!",
-        text: "Review has been rejected.",
+        text: "L'avis a été rejeté.",
         confirmButtonColor: "#3085d6",
       });
       navigate("/admin-dashboard/reviws");
@@ -78,7 +78,7 @@ const ReviewsDetails = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Failed to reject review.",
+        text: "Échec du rejet de l'avis.",
         confirmButtonColor: "#d33",
       });
     } finally {
@@ -133,8 +133,8 @@ const ReviewsDetails = () => {
   return (
     <div className="max-w-7xl mx-auto p-4 space-y-10">
       <TittleAnimation
-        tittle="Pending Review Details"
-        subtittle="Admin Review Management"
+        tittle="Détails de l'avis en attente"
+        subtittle="Gestion des avis administratifs"
       />
 
       <div className="bg-white border border-orange-100 rounded-xl shadow hover:shadow-md transition">
@@ -149,28 +149,28 @@ const ReviewsDetails = () => {
         <div className="p-6 space-y-4">
           <div className="py-2">
             <p className="text-sm text-orange-600 italic">
-              📅 Submitted on {formatDate(review.createdAt)}
+              📅 Soumis le {formatDate(review.createdAt)}
             </p>
           </div>
 
           <div className="py-5">
             <h1 className="text-lg font-semibold text-orange-700">
-              Reviewer Information
+              Informations sur le réviseur
             </h1>
             <p className="text-base font-medium text-gray-700">
-              Name: {review.name}
+              Nom: {review.name}
             </p>
             <p className="text-base font-medium text-gray-700">
               Email: {review.email}
             </p>
             <p className="text-base font-medium text-gray-700">
-              Role: {review.role}
+              ôle: {review.role}
             </p>
           </div>
 
           <div className="py-5">
             <h2 className="text-xl font-semibold text-orange-700">
-              Review
+              Avis
             </h2>
             <p className="text-gray-800">{review.message}</p>
           </div>
@@ -182,27 +182,27 @@ const ReviewsDetails = () => {
               className="w-full btn btn-base lg:btn-lg bg-green-500 hover:bg-green-600 text-white"
               disabled={actionLoading}
             >
-              <FaCheck className="mr-1" /> Approve
+              <FaCheck className="mr-1" /> Approuver
             </button>
             <button
               onClick={handleReject}
               className="w-full btn btn-base lg:btn-lg bg-yellow-500 hover:bg-yellow-600 text-white"
               disabled={actionLoading}
             >
-              <FaTimes className="mr-1" /> Reject
+              <FaTimes className="mr-1" /> Rejeter
             </button>
             <button
               onClick={handleEdit}
               className="w-full btn btn-base lg:btn-lg bg-blue-500 hover:bg-blue-600 text-white"
             >
-              <FaEdit className="mr-1" /> Edit
+              <FaEdit className="mr-1" /> Éditer
             </button>
             <button
               onClick={handleDelete}
               className="w-full btn btn-base lg:btn-lg bg-red-500 hover:bg-red-600 text-white"
               disabled={actionLoading}
             >
-              <FaTrash className="mr-1" /> Delete
+              <FaTrash className="mr-1" /> Supprimers
             </button>
           </div>
         </div>
