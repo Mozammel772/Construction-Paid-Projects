@@ -90,7 +90,7 @@ const Quote = () => {
   return (
     <div className="min-h-screen bg-orange-50 flex flex-col items-center justify-center py-10 px-4">
       <h2 className="text-2xl font-bold text-center text-orange-700 mb-6">
-        Confirm Your Booking
+        Confirmez votre réservation
       </h2>
 
       <div
