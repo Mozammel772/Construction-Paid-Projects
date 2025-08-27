@@ -111,9 +111,9 @@ const Register = () => {
         <div className="w-full max-w-xl bg-white shadow-2xl rounded-xl overflow-hidden border border-orange-100">
           {/* Header */}
           <div className="bg-orange-600 py-4 px-5 lg:py-6 lg:px-8 text-white">
-            <h1 className="text-2xl font-bold">Create Your Account</h1>
+            <h1 className="text-2xl font-bold">Créez votre compte</h1>
             <p className="text-orange-200 mt-1">
-              Join us and start your learning journey
+              Rejoignez-nous et commencez votre parcours d'apprentissage
             </p>
           </div>
 
@@ -125,7 +125,7 @@ const Register = () => {
                 <div className="form-control">
                   <label htmlFor="fullName" className="label">
                     <span className="label-text text-base mb-1 font-medium text-gray-700">
-                      Full Name :
+                      Nom complet :
                     </span>
                   </label>
                   <Controller
@@ -133,18 +133,18 @@ const Register = () => {
                     defaultValue=""
                     control={control}
                     rules={{
-                      required: "Name is required",
+                      required: "Le nom est requis",
                       minLength: {
                         value: 2,
-                        message: "Name must be at least 2 characters long.",
+                        message: "Le nom doit comporter au moins 2 caractères.",
                       },
                       maxLength: {
                         value: 50,
-                        message: "Name can be up to 50 characters long.",
+                        message: "Le nom peut comporter jusqu'à 50 caractères.",
                       },
                       pattern: {
                         value: /^[\u0980-\u09FFa-zA-Z\s]+$/u,
-                        message: "Invalid name (use only letters and spaces)",
+                        message: "Nom invalide (utilisez uniquement des lettres et des espaces)", 
                       },
                     }}
                     render={({ field, fieldState }) => {
@@ -182,7 +182,7 @@ const Register = () => {
                               id="fullName-feedback"
                               className="text-green-600 text-sm mt-1 flex items-center"
                             >
-                              Name is Valid
+                              Le nom est valide
                             </p>
                           ) : null}
                         </>
@@ -195,7 +195,7 @@ const Register = () => {
                 <div className="form-control">
                   <label className="label" htmlFor="email">
                     <span className="label-text text-base mb-1 font-medium text-gray-700">
-                      Email Address :
+                      Adresse e-mail :
                     </span>
                   </label>
                   <Controller
@@ -203,11 +203,11 @@ const Register = () => {
                     defaultValue=""
                     control={control}
                     rules={{
-                      required: "Email address is required.",
+                      required: "L'adresse e-mail est requise.",
                       pattern: {
                         value:
                           /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                        message: "Invalid email address",
+                        message: "Adresse e-mail invalide",
                       },
                     }}
                     render={({ field, fieldState }) => {
@@ -248,7 +248,7 @@ const Register = () => {
                               className="text-green-600 text-sm mt-1 flex items-center"
                             >
                               {/* <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span> */}
-                              Email Address Valid
+                              Adresse e-mail valide
                             </p>
                           ) : null}
                         </>
@@ -261,7 +261,7 @@ const Register = () => {
                 <div className="form-control">
                   <label htmlFor="phoneNumber" className="label">
                     <span className="label-text text-base mb-1 font-medium text-gray-700">
-                      Phone Number :
+                      Numéro de téléphone :
                     </span>
                   </label>
                   <Controller
@@ -269,9 +269,9 @@ const Register = () => {
                     defaultValue=""
                     control={control}
                     rules={{
-                      required: "Phone number is required.",
+                      required: "Le numéro de téléphone est requis.",
                       pattern: {
-                        message: "Invalid phone number",
+                        message: "Numéro de téléphone invalide",
                       },
                     }}
                     render={({ field, fieldState }) => {
@@ -285,7 +285,7 @@ const Register = () => {
                             <input
                               {...field}
                               id="phoneNumber"
-                              placeholder="01XXXXXXXXX"
+                              placeholder="0XXXXXXXXX"
                               className={`w-full pl-10 pr-3 py-3 border rounded-md text-gray-700 transition-colors hover:border-purple-300 focus:outline-none focus:ring-1 focus:ring-green-200 ${
                                 error
                                   ? "border-red-500"
@@ -309,7 +309,7 @@ const Register = () => {
                               id="phoneNumber-feedback"
                               className="text-green-600 text-sm mt-1 flex items-center"
                             >
-                              Phone Number is Valid
+                              Le numéro de téléphone est valide
                             </p>
                           ) : null}
                         </>
@@ -323,7 +323,7 @@ const Register = () => {
                 <div className="form-control">
                   <label htmlFor="projectsName" className="label">
                     <span className="label-text text-base mb-1 font-medium text-gray-700">
-                      Projects Name (Optional) :
+                      Nom du projet (facultatif) :
                     </span>
                   </label>
                   <Controller
@@ -333,15 +333,15 @@ const Register = () => {
                     rules={{
                       minLength: {
                         value: 2,
-                        message: "Name must be at least 2 characters long.",
+                        message: "Le nom doit comporter au moins 2 caractères.",
                       },
                       maxLength: {
                         value: 50,
-                        message: "Name can be up to 50 characters long.",
+                        message: "Le nom peut comporter jusqu'à 50 caractères.",
                       },
                       pattern: {
                         value: /^[\u0980-\u09FFa-zA-Z\s]+$/u,
-                        message: "Invalid name (use only letters and spaces)",
+                        message: "Nom invalide (utilisez uniquement des lettres et des espaces)",
                       },
                     }}
                     render={({ field, fieldState }) => {
@@ -379,7 +379,7 @@ const Register = () => {
                               id="projectsName-feedback"
                               className="text-green-600 text-sm mt-1 flex items-center"
                             >
-                              Name is Valid
+                              Le nom est valide
                             </p>
                           ) : null}
                         </>
@@ -400,18 +400,18 @@ const Register = () => {
                     defaultValue=""
                     control={control}
                     rules={{
-                      required: "Token is required",
+                      required: "Le token est requis",
                       minLength: {
                         value: 10,
-                        message: "Token must be exactly 10 digits",
+                        message: "Le token doit comporter exactement 10 chiffres",
                       },
                       maxLength: {
                         value: 10,
-                        message: "Token must be exactly 10 digits",
+                        message: "Le token doit comporter exactement 10 chiffres",
                       },
                       pattern: {
                         value: /^\d{10}$/,
-                        message: "Token must be numeric and 10 digits long",
+                        message: "Le token doit être numérique et comporter 10 chiffres",
                       },
                     }}
                     render={({ field, fieldState }) => {
@@ -464,18 +464,18 @@ const Register = () => {
                     className="text-base font-medium text-gray-700 mb-1 block"
                     htmlFor="password"
                   >
-                    Password
+                    Mot de passe
                   </label>
                   <Controller
                     name="password"
                     control={control}
                     defaultValue=""
                     rules={{
-                      required: "Password is required",
+                      required: "Le mot de passe est requis",
                       pattern: {
                         value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
                         message:
-                          "Password must be at least 8 characters long, and must contain uppercase, lowercase, and numbers.",
+                          "Le mot de passe doit comporter au moins 8 caractères et contenir des majuscules, des minuscules et des chiffres.",
                       },
                     }}
                     render={({ field, fieldState: { error } }) => (
@@ -536,17 +536,17 @@ const Register = () => {
                     className="text-base font-medium text-gray-700 mb-1 block"
                     htmlFor="confirmPassword"
                   >
-                    Confirm Password
+                    Confirmer le mot de passe
                   </label>
                   <Controller
                     name="confirmPassword"
                     control={control}
                     defaultValue=""
                     rules={{
-                      required: "Please confirm your password",
+                      required: "Veuillez confirmer votre mot de passe",
                       validate: (value) =>
                         value === getValues("password") ||
-                        "Passwords do not match",
+                        "Les mots de passe ne correspondent pas",
                     }}
                     render={({ field, fieldState: { error } }) => (
                       <div>
@@ -629,11 +629,11 @@ const Register = () => {
                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                       ></path>
                     </svg>
-                    <span>Creating Account...</span>
+                    <span>Création du compte...</span>
                   </div>
                 ) : (
                   <span className="font-semibold text-base tracking-wider">
-                    Create Account
+                    Créer un compte
                   </span>
                 )}
               </button>
@@ -642,12 +642,12 @@ const Register = () => {
             {/* Login Link */}
             <div className="mt-4 text-center">
               <p className="text-gray-600">
-                Already have an account?{" "}
+                Vous avez déjà un compte?{" "}
                 <Link
                   to="/login"
                   className="text-orange-600 hover:text-orange-800 font-medium"
                 >
-                  Sign In
+                  Se connecter
                 </Link>
               </p>
             </div>

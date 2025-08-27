@@ -62,9 +62,9 @@ const Login = () => {
         <div className="w-full max-w-xl bg-white shadow-2xl rounded-xl overflow-hidden border border-orange-100">
           {/* Header */}
           <div className="bg-orange-600 py-6 px-8 text-white">
-            <h2 className="text-2xl font-bold">Welcome Back</h2>
+            <h2 className="text-2xl font-bold">Content de te revoir</h2>
             <p className="text-orange-200 mt-1">
-              Sign in to continue your journey
+              Connectez-vous pour continuer votre voyage
             </p>
           </div>
 
@@ -74,7 +74,7 @@ const Login = () => {
               <div className="form-control">
                 <label className="label" htmlFor="email">
                   <span className="label-text text-base mb-1 font-medium text-gray-700">
-                    Email Address :
+                    Adresse e-mail :
                   </span>
                 </label>
                 <Controller
@@ -82,10 +82,10 @@ const Login = () => {
                   defaultValue=""
                   control={control}
                   rules={{
-                    required: "Email address is required.",
+                    required: "L'adresse e-mail est requise.",
                     pattern: {
                       value: /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                      message: "Invalid email address",
+                      message: "Adresse e-mail invalide",
                     },
                   }}
                   render={({ field, fieldState }) => {
@@ -135,7 +135,7 @@ const Login = () => {
               <div className="form-control">
                 <label className="label" htmlFor="password">
                   <span className="label-text text-base mb-1  font-medium text-gray-700">
-                    Password :
+                    Mot de passe :
                   </span>
                 </label>
 
@@ -144,11 +144,11 @@ const Login = () => {
                   control={control}
                   defaultValue=""
                   rules={{
-                    required: "Password is required.",
+                    required: "Le mot de passe est requis.",
                     pattern: {
                       value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
                       message:
-                        "Password must be at least 8 characters long, and must contain uppercase, lowercase, and numbers.",
+                        "Le mot de passe doit comporter au moins 8 caractères, et doit contenir des majuscules, des minuscules et des chiffres.",
                     },
                   }}
                   render={({ field, fieldState: { error } }) => (
@@ -202,7 +202,7 @@ const Login = () => {
                     to="/forgot-password"
                     className="text-sm text-orange-600 hover:text-orange-800 font-medium"
                   >
-                    Forgot Password?
+                    Mot de passe oublié ?
                   </Link>
                 </div>
               </div>
@@ -235,11 +235,11 @@ const Login = () => {
                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                       ></path>
                     </svg>
-                    <span>Signing In...</span>
+                    <span>Connexion en cours...</span>
                   </div>
                 ) : (
                   <span className="font-semibold text-base tracking-wider">
-                    Sign In
+                    Se connecter
                   </span>
                 )}
               </button>
@@ -248,12 +248,12 @@ const Login = () => {
             {/* Register Link */}
             <div className="mt-4 text-center">
               <p className="text-gray-600">
-                Don't have an account?{" "}
+                Vous n'avez pas de compte ?{" "}
                 <Link
                   to="/register"
                   className="text-orange-600 hover:text-orange-800 font-medium"
                 >
-                  Create Account
+                  Créer un compte
                 </Link>
               </p>
             </div>
