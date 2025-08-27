@@ -177,7 +177,7 @@ const Navbar = () => {
               ) : (
                 <Link
                   to="/login"
-                  className={`inline-block px-4 py-1.5 rounded-md w-20 ${
+                  className={`inline-block px-4 py-1.5 rounded-md w-full ${
                     location.pathname === "/login"
                       ? "bg-orange-600 text-white"
                       : "text-white bg-orange-600 hover:bg-orange-400"
