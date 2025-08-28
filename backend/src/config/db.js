@@ -2,9 +2,8 @@ const { MongoClient, ServerApiVersion } = require("mongodb");
 require("dotenv").config();
 
 // const uri = `mongodb+srv://Construction-Projects:dcw48n9B0WuIIFwp@construction-projects.z7ox4nb.mongodb.net/?retryWrites=true&w=majority&appName=Construction-Projects`;
-const uri = process.env.MONGO_URI;
 // const uri = "mongodb+srv://Construction-Projects:<db_password>@construction-projects.z7ox4nb.mongodb.net/?retryWrites=true&w=majority&appName=Construction-Projects";
-
+const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -15,7 +14,7 @@ const client = new MongoClient(uri, {
 
 const connectDB = async () => {
   await client.connect();
-  console.log("✅ MongoDB connected successfully.");
+  console.log("✅ MongoDB connected successfully with Construction Projects.");
 };
 
 const getUserCollection = () => {
@@ -53,5 +52,5 @@ module.exports = {
   getTokenCollection,
   getReviewsCollection,
   getBeforeafterimageCollection,
-  getImageTextSliderRoutesCollection
+  getImageTextSliderRoutesCollection,
 };

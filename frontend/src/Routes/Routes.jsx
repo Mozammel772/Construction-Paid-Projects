@@ -6,6 +6,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import AdminLayout from "../layout/AdminLayout";
 import MainLayout from "../layout/MainLayout";
 import UserLayout from "../layout/UserLayout";
+import About from "../Pages/AboutPages/About";
 import AdminGenerateToken from "../Pages/AdminDashboardPages/AdminGenerateToken/AdminGenerateToken";
 import AdminQuotes from "../Pages/AdminDashboardPages/AdminQuotes/AdminQuotes";
 import Reviews from "../Pages/AdminDashboardPages/allReviwsAdmin/Reviews";
@@ -45,6 +46,10 @@ export const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/portfolio",

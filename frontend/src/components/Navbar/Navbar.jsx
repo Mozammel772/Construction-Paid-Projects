@@ -9,6 +9,7 @@ import useAuth from "../../hooks/useAuth";
 const getNavigationLinks = (user) => {
   const baseLinks = [
     { title: "Maison", link: "/" },
+    { title: "À propos", link: "/about" },
     { title: "Portefeuille", link: "/portfolio" },
   ];
 
