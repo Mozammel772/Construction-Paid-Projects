@@ -53,7 +53,7 @@ const Quote = () => {
 
         try {
           const res = await axios.post(
-            "https://api.amdeco-renovation.fr/api/bookings",
+            "https://backend-two-ruby-25.vercel.app/api/bookings",
             updatedData
           );
           Swal.fire({
@@ -149,7 +149,7 @@ export default Quote;
 //     e.preventDefault();
 //     try {
 //       const res = await axios.post(
-//         "https://api.amdeco-renovation.fr/api/bookings",
+//         "https://backend-two-ruby-25.vercel.app/api/bookings",
 //         formData
 //       );
 //       Swal.fire({

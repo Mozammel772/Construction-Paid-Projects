@@ -4,7 +4,7 @@
  * A utility class for interacting with the course management API
  */
 class CourseApiClient {
-    constructor(baseUrl = "https://api.amdeco-renovation.fr") {
+    constructor(baseUrl = "https://backend-two-ruby-25.vercel.app") {
         this.baseUrl = baseUrl
     }
 

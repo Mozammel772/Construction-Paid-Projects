@@ -10,7 +10,7 @@ const AdminQuotes = () => {
 
   const fetchQuotes = async () => {
     try {
-      const res = await axios.get("https://api.amdeco-renovation.fr/api/bookings");
+      const res = await axios.get("https://backend-two-ruby-25.vercel.app/api/bookings");
       setQuotes(res.data);
     } catch (error) {
       Swal.fire({
@@ -52,7 +52,7 @@ const AdminQuotes = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await axios.patch(`https://api.amdeco-renovation.fr/api/bookings/${id}/status`, {
+        await axios.patch(`https://backend-two-ruby-25.vercel.app/api/bookings/${id}/status`, {
           status: "solved",
         });
 

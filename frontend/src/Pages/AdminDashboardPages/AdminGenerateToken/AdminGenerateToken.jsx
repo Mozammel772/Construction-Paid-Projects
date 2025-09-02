@@ -11,7 +11,7 @@ const AdminGenerateToken = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "https://api.amdeco-renovation.fr/token/generate-token"
+        "https://backend-two-ruby-25.vercel.app/token/generate-token"
       );
       setToken(res.data.token);
 

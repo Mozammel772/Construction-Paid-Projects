@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const axiosSecure = axios.create({
-  baseURL: 'https://api.amdeco-renovation.fr',
+  baseURL: 'https://backend-two-ruby-25.vercel.app',
   withCredentials: true,
 });
 

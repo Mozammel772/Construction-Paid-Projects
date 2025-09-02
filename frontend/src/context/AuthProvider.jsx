@@ -175,11 +175,11 @@
 
 import axios from "axios";
 import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-  updateProfile,
+    createUserWithEmailAndPassword,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    signOut,
+    updateProfile,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
@@ -238,7 +238,7 @@ const AuthProvider = ({ children }) => {
         } else {
           setUser(null);
           await axios.get(
-            `https://api.amdeco-renovation.fr/auth/logout`,
+            `https://backend-two-ruby-25.vercel.app/auth/logout`,
             {
               withCredentials: true,
             }

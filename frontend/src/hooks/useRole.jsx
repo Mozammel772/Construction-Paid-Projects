@@ -14,14 +14,12 @@ const useRole = () => {
         const { data } = await axiosSecure.get(`/users/role/${user.email}`);
         return data.role;
       } catch (err) {
-        console.error('Error fetching role:', err); // 🔍 See full error
+        // 🔍 See full error
         throw err; // rethrow so React Query handles it properly
       }
     },
   });
 
-
-  console.log("user", user, role);
   return { role, isLoading, error };
 };
 

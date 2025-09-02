@@ -11,7 +11,7 @@ const AdminOnSiteVisits = () => {
 
   const fetchVisits = async () => {
     try {
-      const res = await axios.get("https://api.amdeco-renovation.fr/api/onsitevisits");
+      const res = await axios.get("https://backend-two-ruby-25.vercel.app/api/onsitevisits");
       setVisits(res.data);
     } catch {
       Swal.fire({
@@ -59,7 +59,7 @@ const AdminOnSiteVisits = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await axios.patch(`https://api.amdeco-renovation.fr/api/onsitevisits/${id}/status`, {
+        await axios.patch(`https://backend-two-ruby-25.vercel.app/api/onsitevisits/${id}/status`, {
           status: "solved",
         });
 
